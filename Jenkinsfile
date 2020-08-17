@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-            image 'helaili/vuecli' 
+            image 'harunpeksen/docker-vue' 
             label 'red-host'
         }
     }
