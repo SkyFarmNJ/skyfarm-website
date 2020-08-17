@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-            image 'vuejs/ci' 
+            image 'helaili/vuecli' 
             label 'red-host'
         }
     }
