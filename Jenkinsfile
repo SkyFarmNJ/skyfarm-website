@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'df -h'
+                sh 'mkdir /.npm'
                 sh 'ls -la /'
                 sh 'npm install'
                 sh 'npm run build'
