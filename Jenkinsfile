@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker { 
             image 'node' 
-            args ‘-u 1000:1000’
+            args '-u 1000:1000'
             label 'red-host'
         }
     }
