@@ -34,6 +34,8 @@
         </v-row>
       </v-col>
 
+      <v-divider/>
+
       <v-col>
         <v-img
           :src="require('../assets/banner.jpg')"
@@ -46,18 +48,19 @@
 
 <script>
 export default {
-    name: 'HelloWorld',
-
-
-    facts: [
-        "Sky Farm is a membership community. Day passes are not available.",
-        "Unlike Gunnison, at Sky Farm there are no long walks to paradise!",
-        "Enjoy our pristine pool, relaxing hot tub and soothing sauna.",
-        "Get involved! Our calendar of events has something for everyone!",
-        "Relax as you enjoy adult beverages and make new friends.",
-        "Sky Farm is open 24/7 May to October.",
-        "BBQ lunch is available for purchase most weekends during the season."
-    ]
-
+    data: () => {
+        return {
+            name: 'HelloWorld',
+            facts: [
+                "Sky Farm is a membership community. Day passes are not available.",
+                "Unlike Gunnison, at Sky Farm there are no long walks to paradise!",
+                "Enjoy our pristine pool, relaxing hot tub and soothing sauna.",
+                "Get involved! Our calendar of events has something for everyone!",
+                "Relax as you enjoy adult beverages and make new friends.",
+                "Sky Farm is open 24/7 May to October.",
+                "BBQ lunch is available for purchase most weekends during the season."
+            ]
+        }
+    }
 }
 </script>

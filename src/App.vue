@@ -58,7 +58,6 @@
         dense
         >
         <v-list-item-group
-          v-model="group"
           >
           <v-list-item
             v-for="(opt, i) in options"
