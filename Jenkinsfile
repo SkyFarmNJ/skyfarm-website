@@ -40,7 +40,7 @@ pipeline {
                 sh 'tar cvf ${ARCHIVE_FILE} dist/'
                 
                 // Archive the built artifacts
-                archiveArtifacts artifacts: '${ARCHIVE_FILE}', followSymlinks: false
+                archiveArtifacts artifacts: "${ARCHIVE_FILE}", followSymlinks: false
 
                 // publish html
                 publishHTML([allowMissing: false, 
