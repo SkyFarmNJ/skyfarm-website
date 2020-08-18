@@ -43,14 +43,13 @@ pipeline {
                 archive includes: 'pkg/*.gem'
 
                 // publish html
-                publishHTML target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll: true,
-                    eportDir: 'dist',
-                    reportFiles: 'index.html',
-                    reportName: 'Site Sample'
-                ]
+                publishHTML([allowMissing: false, 
+                             alwaysLinkToLastBuild: false, 
+                             keepAll: false, 
+                             reportDir: 'dist', 
+                             reportFiles: 'index.html', 
+                             reportName: 'Website Example', 
+                             reportTitles: 'SkyFarm Website'])
             }
         } 
 
