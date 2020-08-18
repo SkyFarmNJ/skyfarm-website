@@ -1,6 +1,9 @@
 pipeline {
     agent none
-    environment { HOME='.' }
+    environment { 
+        HOME='.'
+        ASSET_PATH='./'
+    }
     stages {
         stage('Build') {
             agent {
