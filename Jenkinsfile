@@ -2,6 +2,7 @@ pipeline {
     agent none
     environment { 
         HOME='.'
+        ARCHIVE_FILE = 'skyfarm-website.tar'
     }
     stages {
         stage('Build') {
@@ -19,14 +20,39 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Stage to red') {
+        stage('Cleanup') {
+            when { expression { fileExists "${ARCHIVE_FILE}" } }
+            agent {
+                label 'red-host'
+            }
+
+            steps {
+                sh "rm -f  ${ARCHIVE_FILE}"
+            }
+        }            
+        stage('Stage to red, Archive and Publish') {
             agent {
                 label 'red-host'
             }
 
             steps {
                 sh 'rsync -r --delete -v dist/ /var/www/html/skyfarm/'
+                sh 'tar cvf ${ARCHIVE_FILE} dist/'
+                
+                // Archive the built artifacts
+                archive includes: 'pkg/*.gem'
+
+                // publish html
+                publishHTML target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    eportDir: 'dist',
+                    reportFiles: 'index.html',
+                    reportName: 'Site Sample'
+                ]
             }
         } 
+
     }
 }
