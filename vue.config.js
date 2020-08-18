@@ -4,7 +4,7 @@ module.exports = {
     ],
     publicPath : './',
     chainWebpack: config => {
-        //trivial
+
         config
             .plugin('html')
             .tap(args => {
