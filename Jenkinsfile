@@ -23,7 +23,7 @@ pipeline {
             }
 
             steps {
-                sh 'rsync -r —delete -v dist/ /var/www/html/skyfarm/'
+                sh 'rsync -r --delete -v dist/ /var/www/html/skyfarm/'
             }
         } 
     }
