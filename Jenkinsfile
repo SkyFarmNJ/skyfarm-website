@@ -17,13 +17,13 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage(‘Stage to red’) {
+        stage('Stage to red') {
             agent {
-                label ‘red-host’
+                label 'red-host'
             }
 
             steps {
-                sh ‘rsync -r —delete -v dist/ /var/www/html/skyfarm/’
+                sh 'rsync -r —delete -v dist/ /var/www/html/skyfarm/'
             }
         } 
     }
