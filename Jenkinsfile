@@ -41,15 +41,6 @@ pipeline {
                 
                 // Archive the built artifacts
                 archiveArtifacts artifacts: "${ARCHIVE_FILE}", followSymlinks: false
-
-                // publish html
-                publishHTML([allowMissing: false, 
-                             alwaysLinkToLastBuild: false, 
-                             keepAll: false, 
-                             reportDir: 'dist', 
-                             reportFiles: 'index.html', 
-                             reportName: 'Website Example', 
-                             reportTitles: 'SkyFarm Website'])
                 
                 // Build link info
                 script {
