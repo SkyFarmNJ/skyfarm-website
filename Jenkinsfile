@@ -36,7 +36,13 @@ pipeline {
             }
 
             steps {
+                // Dev Server
                 sh 'rsync -r --delete -v dist/ /var/www/html/skyfarm/'
+                
+                // UAT
+                sh 'rsync -r --delete -v dist/ 1n1:speers/sf-web-test/'
+                
+                // Create backup artifact.
                 sh 'tar cvf ${ARCHIVE_FILE} dist/'
                 
                 // Archive the built artifacts
