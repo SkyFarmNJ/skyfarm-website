@@ -5,8 +5,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker { 
-                    image ‘node’ 
-                    label ‘red-host’
+                    image 'node'
+                    label 'red-host'
                 }
             }
 
