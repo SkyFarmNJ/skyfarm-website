@@ -50,6 +50,11 @@ pipeline {
                              reportFiles: 'index.html', 
                              reportName: 'Website Example', 
                              reportTitles: 'SkyFarm Website'])
+                
+                // Build link info
+                script {
+                    currentBuild.description = "<a href='http://red.local/skyfarm'>SkyFarm dev website</a>"
+                }
             }
         } 
 
