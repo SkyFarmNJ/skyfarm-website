@@ -14,6 +14,7 @@ pipeline {
             }
 
             steps {
+                sh 'echo "BUILD_NUMBER = ${BUILD_NUMBER}" > .env'
                 sh 'node -v'
                 sh 'npm -v'
                 sh 'npm install'
