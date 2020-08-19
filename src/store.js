@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from './router.js'
 Vue.use(Vuex)
+
 
 export default new Vuex.Store({
     state: {
@@ -24,6 +26,9 @@ export default new Vuex.Store({
                 .then(res => {
                     console.log(res)
                     commit('authUser', encodedUserPwd)
+                    localStorage.setItem('token', encodedUserPwd)
+                    router.push('/docs')
+
                 })
                 .catch(err => {
                     console.log(err)
@@ -32,11 +37,23 @@ export default new Vuex.Store({
         },
         logout ({commit}) {
             commit('clearAuth')
+            localStorage.removeItem('token')
+            router.push('/')
+        },
+        AutoLogin ({commit}) {
+            const token = localStorage.getItem('token')
+            if (!token) {
+                return
+            }
+            commit('authUser', token)
         }
     },
     getters: {
         ifAuthenticated (state) {
             return state.notaToken != null
+        },
+        token (state) {
+            return state.notaToken
         }
     }
 })

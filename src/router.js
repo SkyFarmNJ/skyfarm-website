@@ -1,6 +1,10 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue'
 import AboutUs from './components/AboutUs.vue'
 import MemberPage from './components/MemberPage.vue'
+
+Vue.use(VueRouter)
 
 const routes = [
     { path: '/', component: HelloWorld},
@@ -8,4 +12,4 @@ const routes = [
     { path: '/docs', component: MemberPage}
 ]
 
-export default routes;
+export default new VueRouter({mode: 'history', routes})

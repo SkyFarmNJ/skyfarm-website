@@ -213,7 +213,8 @@ export default {
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
          {text:'Membership', route:'/'},
-         {text:'History', route:'/'}
+            {text:'History', route:'/'},
+            {text:'Member Documents', route:'/docs'},
         ],
         contactInfo: [
             {text:'New Jersey', icon:'map-marker'},
@@ -232,6 +233,9 @@ export default {
     },
     computed: {
         auth() {return this.$store.getters.ifAuthenticated}
+    },
+    created() {
+        this.$store.dispatch('AutoLogin')
     }
 };
 </script>
