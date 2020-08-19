@@ -85,18 +85,19 @@
         fluid
         >
         <v-row align="center">
-          <v-col cols="2">
+          <v-col cols="1" justify="right">
             <v-img
               :src="require('./assets/logo-2.png')"
               class="mt-5"
               contain
               height="50"/>
           </v-col>
-          <v-col cols="8">
-              <v-btn v-for="(opt, i) in options"
+          <v-col cols="11" justify="left">
+              <v-btn class="mr-2" v-for="(opt, i) in options"
                      :key=i
                      :to=opt.route
-                     >{{opt.text}}</v-btn>
+                     >{{opt.text}}
+		</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -195,8 +196,9 @@ export default {
         drawer: false,
         options: [
             {text:'Home', route:'/'},
-            {text:'About Us', route:'/about'}
-
+            {text:'About Us', route:'/about'},
+	    {text:'Membership', route:'/'},
+	    {text:'History', route:'/'}
         ],
         contactInfo: [
             {text:'New Jersey', icon:'map-marker'},
