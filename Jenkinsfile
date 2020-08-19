@@ -51,7 +51,7 @@ pipeline {
                 
                 // Build link info
                 script {
-                    currentBuild.description = "<a href='http://red.local/skyfarm'>SkyFarm dev website</a>\n<a href='http://www.speers.nu/sf-web-test/'>SkyFarm UAT Website</a>"
+                    currentBuild.description = "<a href='http://red.local/skyfarm'>SkyFarm dev website</a><br><a href='http://www.speers.nu/sf-web-test/'>SkyFarm UAT Website</a>"
                 }
             }
         } 
