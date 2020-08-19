@@ -192,7 +192,7 @@ export default {
 
     data: () => ({
         drawer: false,
-        build: (process.env.VUE_APP_BUILD_NUMBER == null) ? "N/A" : process.env.VUE_APP_BUILD_NUMBDER,
+        build: (process.env.VUE_APP_BUILD_NUMBER == null) ? "N/A" : process.env.VUE_APP_BUILD_NUMBER,
         options: [
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
