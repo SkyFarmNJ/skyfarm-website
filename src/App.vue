@@ -97,7 +97,7 @@
                      :key=i
                      :to=opt.route
                      >{{opt.text}}
-		</v-btn>
+          </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -197,8 +197,8 @@ export default {
         options: [
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
-	    {text:'Membership', route:'/'},
-	    {text:'History', route:'/'}
+         {text:'Membership', route:'/'},
+         {text:'History', route:'/'}
         ],
         contactInfo: [
             {text:'New Jersey', icon:'map-marker'},
