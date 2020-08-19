@@ -86,13 +86,15 @@
         >
         <v-row align="center">
           <v-col cols="1" justify="right">
+          </v-col>
+          <v-col cols="1" justify="right">
             <v-img
               :src="require('./assets/logo-2.png')"
               class="mt-5"
               contain
               height="50"/>
           </v-col>
-          <v-col cols="11" justify="left">
+          <v-col cols="10" justify="left">
               <v-btn class="mr-2" v-for="(opt, i) in options"
                      :key=i
                      :to=opt.route
