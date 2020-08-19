@@ -190,14 +190,9 @@
 export default {
     name: 'App',
 
-    computed: {
-        build() {
-            return process.env.APP_VUE_BUILD_NUMBER
-        }
-    },
-
     data: () => ({
         drawer: false,
+        build: (process.env.VUE_APP_BUILD_NUMBER == null) ? "N/A" : process.env.VUE_APP_BUILD_NUMBDER,
         options: [
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
