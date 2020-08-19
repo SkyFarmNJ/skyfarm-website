@@ -176,7 +176,7 @@
           <v-divider/>
         </v-row>
         <v-row>
-          Copyright 2020 Skyfarm all rights reserved. Made with Vue
+          Copyright 2020 Skyfarm all rights reserved. Made with Vue. Build: {{process.env.BUILD_NUMBER}}
         </v-row>
       </v-container>
     </v-footer>
