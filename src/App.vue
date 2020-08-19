@@ -72,11 +72,34 @@
     </v-navigation-drawer>
 
     <v-main>
+
       <v-img
+        v-if="$vuetify.breakpoint.xsOnly"
         :src="require('./assets/logo-2.png')"
         class="mt-5"
         contain
-        height="100"/>
+        height="50"/>
+
+      <v-container
+        v-else
+        fluid
+        >
+        <v-row align="center">
+          <v-col cols="2">
+            <v-img
+              :src="require('./assets/logo-2.png')"
+              class="mt-5"
+              contain
+              height="50"/>
+          </v-col>
+          <v-col cols="8">
+              <v-btn v-for="(opt, i) in options"
+                     :key=i
+                     :to=opt.route
+                     >{{opt.text}}</v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
       <v-divider/>
 
 
