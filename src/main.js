@@ -8,6 +8,7 @@ import { faMapMarker, faPhone, faEnvelope, faCalendar, faCheck } from '@fortawes
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import routes from './routes';
+import store from './store';
 
 Vue.use(VueRouter)
 
@@ -28,5 +29,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   vuetify,
     render: h => h(App),
-    router
+    router,
+    store
 }).$mount('#app')

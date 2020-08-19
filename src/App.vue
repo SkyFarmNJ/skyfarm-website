@@ -34,19 +34,31 @@
 
       <v-btn
         href="https://www.facebook.com/skyfarmnj"
-        text
-        class="p-0"
+        icon
+        large
+        style="min-width: 0"
         >
         <font-awesome-icon :icon="{prefix: 'fab', iconName: 'facebook'}"/>
       </v-btn>
       <v-btn
         href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.skyfarm.com%2F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=SkyFarmNJ&tw_p=followbutton"
-        text
+        icon large
+        style="min-width: 0"
         >
         <font-awesome-icon :icon="{prefix: 'fab', iconName: 'twitter'}"/>
       </v-btn>
 
+      <v-btn @click="inOrOut">
+        {{(auth) ? "Logout" : "Login"}}
+      </v-btn>
+
     </v-app-bar>
+
+    <v-overlay :value="overlay">
+      <login-form
+        @exit="overlay = false"
+        ></login-form>
+    </v-overlay>
 
     <v-navigation-drawer
       v-model="drawer"
@@ -186,13 +198,15 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld';
+import LoginForm from './components/LoginForm';
 
 export default {
     name: 'App',
-
+    components: {LoginForm},
     data: () => ({
         drawer: false,
         build: (process.env.VUE_APP_BUILD_NUMBER == null) ? "N/A" : process.env.VUE_APP_BUILD_NUMBER,
+        overlay: false,
         options: [
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
@@ -205,5 +219,17 @@ export default {
             {text:'membership@skyfarm.com', icon:'envelope'}
         ]
     }),
+    methods: {
+        inOrOut() {
+            if (this.auth) {
+                this.$store.dispatch('logout')
+            } else {
+                this.overlay = true
+            }
+        }
+    },
+    computed: {
+        auth() {return this.$store.getters.ifAuthenticated}
+    }
 };
 </script>
