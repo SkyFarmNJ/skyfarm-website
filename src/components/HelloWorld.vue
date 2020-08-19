@@ -5,8 +5,8 @@
       <v-col cols="12" jusify="center" align="center">
         <v-img
           :src="require('../assets/banner4.jpg')"
-	   height="450"
-	   width="90%"
+        height="450"
+        width="90%"
          />
       </v-col>
     </v-row>
@@ -52,8 +52,8 @@
       <v-col cols="12" align="center" justify="center">
         <v-img
           :src="require('../assets/banner.jpg')"
-	   height="450"
-	   width="90%"
+        height="450"
+        width="90%"
           />
       </v-col>
 
