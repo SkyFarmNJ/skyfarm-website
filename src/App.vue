@@ -177,7 +177,7 @@
           <v-divider/>
         </v-row>
         <v-row>
-          Copyright 2020 Skyfarm all rights reserved. Made with Vue. Build: {{process.env.APP_VUE_BUILD_NUMBER}}
+          Copyright 2020 Skyfarm all rights reserved. Made with Vue. Build: {{build}}
         </v-row>
       </v-container>
     </v-footer>
@@ -190,7 +190,11 @@
 export default {
     name: 'App',
 
-
+    computed: {
+        build() {
+            return process.env.APP_VUE_BUILD_NUMBER
+        }
+    },
 
     data: () => ({
         drawer: false,
