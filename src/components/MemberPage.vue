@@ -1,17 +1,18 @@
 <template>
 <v-container fluid>
-  <v-list
+  <v-expansion-panels
     v-if="auth"
     >
-    <v-list-item
+    <v-expansion-panel
       v-for="(item, i) in list"
       :key=i
-      :href="`http://red.local/members/${item[1]}`"
       >
-      <v-list-item-title
-        >{{item[0]}}</v-list-item-title>
-    </v-list-item>
-  </v-list>
+      <v-expansion-panel-header
+        @click="getFile(`http://red.local/members/${item[1]}`)"
+        >{{item[0]}}</v-expansion-panel-header>
+      <v-expansion-panel-content>{{content}}</v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 
   <v-alert type="error" prominent v-else>
     You must be logged in to view this page.
@@ -25,17 +26,27 @@ import axios from 'axios'
 
 export default {
     data: () => ({
-        list: null
+        list: null,
+        headers: null,
+        content: null,
     }),
     methods: {
-
+        getFile(url) {
+            axios.get(url, this.headers)
+                .then(res => {
+                    console.log(res)
+                    this.content = res
+                })
+                .catch(err => console.log(err))
+        }
     },
     mounted() {
-        axios.get("http://red.local/members/docs.csv", {
+        this.headers = {
             headers: {
                 Authorization: `Basic ${this.$store.getters.token}`
             }
-        })
+        }
+        axios.get("http://red.local/members/docs.csv", this.headers)
             .then(res => {
                 console.log(res)
                 this.list = res.data
