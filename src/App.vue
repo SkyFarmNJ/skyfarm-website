@@ -212,9 +212,9 @@ export default {
         options: [
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
-         {text:'Membership', route:'/'},
             {text:'History', route:'/'},
-            {text:'Member Documents', route:'/docs'},
+            {text:'Membership', route:'/membership'},
+            {text:'Member Documents', route:'/docs'}
         ],
         contactInfo: [
             {text:'New Jersey', icon:'map-marker'},
