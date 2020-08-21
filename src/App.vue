@@ -212,7 +212,7 @@ export default {
         options: [
             {text:'Home', route:'/'},
             {text:'About Us', route:'/about'},
-            {text:'History', route:'/'},
+            {text:'History', route:'/history'},
             {text:'Membership', route:'/membership'},
             {text:'Member Documents', route:'/docs'}
         ],

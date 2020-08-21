@@ -4,6 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import AboutUs    from './components/AboutUs.vue'
 import MemberPage from './components/MemberPage.vue'
 import Membership from './components/Membership.vue'
+import History    from './components/History.vue'
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,8 @@ const routes = [
     { path: '/',           component: HelloWorld},
     { path: '/about',      component: AboutUs   },
     { path: '/docs',       component: MemberPage},
-    { path: '/membership', component: Membership}
+    { path: '/membership', component: Membership},
+    { path: '/history',    component: History   }
 ]
 
 export default new VueRouter({routes})
