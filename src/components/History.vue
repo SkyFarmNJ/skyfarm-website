@@ -5,7 +5,7 @@
         <h2>Get To Know Sky Farm's Rich History</h2>
       </v-col>
       <v-col cols="12" mb-5>
-	<P>Originally founded as the American League for Physical Culture, what we know now as Sky Farm began in 1929 at a meeting in the Café Michelob on 28th Street in New York City. The first brochure issued by the League proclaimed on the cover: “An Invitation to Come Into the Sunlight.”</p>
+        <P>Originally founded as the American League for Physical Culture, what we know now as Sky Farm began in 1929 at a meeting in the Café Michelob on 28th Street in New York City. The first brochure issued by the League proclaimed on the cover: “An Invitation to Come Into the Sunlight.”</p>
 
 <P>Sky Farm bears the distinction of being the first nudist group in the United States to operate continuously in the same location.</p>
 
