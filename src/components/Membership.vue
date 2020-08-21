@@ -4,14 +4,11 @@
       <v-col cols="12" mb-5 class="text-center">
         <v-btn>Schedule a private tour of Sky Farm!</v-btn>
       </v-col>
-      <v-col cols="12" mb-5>
+      <v-col cols="12">
         <h2>Sky Farm Welcomes New Members!</h2>
-        <p class="ma-1">Do you already know the joys of being a naturist? Or, have always dreamed of skinny dipping in a crystal clear pool, relaxing in a steamy hot tub and hanging out with great people au naturel? </p>
-        <p class="ma-1">Either way, Sky Farm is the place for you!</p>
-      </v-col>
-
-      <v-col cols="12"  justify="left">
-        <ul class="ma-2">
+        <p>Do you already know the joys of being a naturist? Or, have always dreamed of skinny dipping in a crystal clear pool, relaxing in a steamy hot tub and hanging out with great people au naturel? </p>
+        <p>Either way, Sky Farm is the place for you!</p>
+        <ul class="mb-6">
           <li><b>Relax!</b> Sky Farm is a family-friendly nudist membership resort. Be yourself — in your birthday suit! </li>
           <li><b>Get involved!</b> There are tons of activities: 24/7 access to pool, hot tub & sauna, sports and games,  parties and dances, dinners and special events like Friendsgiving, Halloween Party, Pub & Poker Nights…. The list goes on and on.</li>
           <li>Enjoy Sky Farm’s beautiful grounds, lodge, clubhouse, immaculate bathrooms and showers and more!</li>
