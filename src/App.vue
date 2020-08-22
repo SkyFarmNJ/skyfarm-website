@@ -213,7 +213,7 @@ export default {
             {text:'History',          route:'/history'},
             {text:'Membership',       route:'/membership'},
             {text:'FAQ',              route:'/faq'},
-            {text:'Member Documents', route:'/docs'}
+            {text:'Member Access',    route:'/docs'}
         ],
         contactInfo: [
             {text:'New Jersey',             icon:'map-marker'},

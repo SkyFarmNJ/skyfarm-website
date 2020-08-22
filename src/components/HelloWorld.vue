@@ -6,9 +6,12 @@
         <v-carousel show-arrows cycle hide-delimiter-background 
                     height="425"
           >
-          <v-carousel-item>
+          <v-carousel-item
+             v-for="(pic, i) in pics"
+             :key=i
+          >
           <v-img
-            :src="require('../assets/banner4.jpg')"
+            :src=pic
             height="425"
             width="90%"
             />
@@ -16,6 +19,10 @@
         </v-carousel>
       </v-col>
     </v-row>
+
+<!--
+"require('../assets/banner4.jpg')"
+-->
 
     <v-row class="text-center">
       <v-col class="mb-2" cols="12">
@@ -69,6 +76,10 @@ export default {
                 "Relax as you enjoy adult beverages and make new friends.",
                 "Sky Farm is open 24/7 May to October.",
                 "BBQ lunch is available for purchase most weekends during the season."
+            ],
+            pics: [
+                require('../assets/banner4.jpg'),
+                require('../assets/SkyFarm800.png')
             ]
         }
     }
