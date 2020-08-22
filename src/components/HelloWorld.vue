@@ -79,7 +79,10 @@ export default {
             ],
             pics: [
                 require('../assets/banner4.jpg'),
-                require('../assets/SkyFarm800.png')
+                require('../assets/SkyFarm800.png'),
+                require('../assets/SkyFarm801.png'),
+                require('../assets/SkyFarm802.png'),
+                require('../assets/SkyFarm803.png')
             ]
         }
     }
