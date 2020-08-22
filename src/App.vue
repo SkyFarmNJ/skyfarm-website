@@ -97,12 +97,10 @@
         fluid
         >
         <v-row align="center">
-          <v-col cols="1" justify="right">
-          </v-col>
-          <v-col cols="1" justify="right">
+          <v-col cols="2" justify="right" align="center">
             <v-img
               :src="require('./assets/logo-2.png')"
-              class="mt-5"
+              class="mt-1"
               contain
               height="50"/>
           </v-col>
