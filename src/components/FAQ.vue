@@ -9,7 +9,7 @@
 
     <v-row class="text-left">
       <v-col cols="12" mb-5>
-        <h3>123 Sky Farm Frequently Asked Questions</h3>
+        <h3>Sky Farm Frequently Asked Questions</h3>
 
             <p>When you come for a tour of Sky Farm, our knowledgeable member guides will be happy to answer all your questions! We want you to feel at home here. But, for those who are very curious, here are some answers to popular FAQs.</p>
 
