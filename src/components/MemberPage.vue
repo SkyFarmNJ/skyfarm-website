@@ -6,11 +6,13 @@
     <v-expansion-panel
       v-for="(item, i) in list"
       :key=i
+      align="center"
       >
       <v-expansion-panel-header
         @click="getFile(`http://red.local/members/${item[1]}`)"
         >{{item[0]}}</v-expansion-panel-header>
       <v-expansion-panel-content
+
         v-touch="{
                  left:  () => changePage(1),
                  right: () => changePage(-1)
@@ -19,18 +21,27 @@
         <div
           v-if="content.contentType == 'application/pdf'"
           >
-          <v-btn
-            v-if="$vuetify.breakpoint.smAndDown"
-            :href="content.url"
-            @click="window.open(content.ur)"
-            >
-            Open in new window
+          <v-col cols="12">
+            <v-btn @click="changePage(-1)">
+              <v-icon>mdi-arrow-left-bold</v-icon>
             </v-btn>
+            <v-btn
+              :href="content.url"
+              @click="window.open(content.ur)"
+              >
+              <v-icon>mdi-open-in-new</v-icon>
+            </v-btn>
+            <v-btn @click="changePage(1)">
+              <v-icon>mdi-arrow-right-bold</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="12">
           <pdf
             :src="content.url"
             @num-pages="numPages = $event"
             :page="curPage"
             ></pdf>
+          </v-col>
         </div>
         <div v-else>
           {{content.data}}
