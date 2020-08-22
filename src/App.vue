@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app overflow-x-hidden>
     <v-app-bar
       app
       color="black"
