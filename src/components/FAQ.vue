@@ -1,20 +1,21 @@
 <template>
-  <v-container fluid>
+  <v-container px-10 fluid>
+
     <v-row class="text-left">
       <v-col cols="12" mb-5 class="text-center">
         <h2>Sky Farm FAQ</h2>
       </v-col>
     </v-row>
+
     <v-row class="text-left">
-      <v-col cols="1"/>
-      <v-col cols="10" mb-5>
+      <v-col cols="12" mb-5>
         <h3>123 Sky Farm Frequently Asked Questions</h3>
 
             <p>When you come for a tour of Sky Farm, our knowledgeable member guides will be happy to answer all your questions! We want you to feel at home here. But, for those who are very curious, here are some answers to popular FAQs.</p>
 
 <h3>What’s a naturist?</h3>
-<p>1. A person who goes naked in designated areas; a nudist.</p>
-<p>2. A person who loves Sky Farm.</p>
+<p>1. A person who goes naked in designated areas; a nudist.<br>
+2. A person who loves Sky Farm.</p>
  
 <h3>Can I buy a day pass?</h3>
 
@@ -47,7 +48,6 @@
 <p>GREAT QUESTION! Start with a tour and check us out. We’ll answer all your questions and invite you to spend the day at the pool enjoying our beautiful facilities. When available, lunch will be provided for you. We can’t wait to meet you!</p>
 
       </v-col>
-      <v-col/>
     </v-row>
   </v-container>
 </template>

@@ -1,5 +1,5 @@
 <template>
-<v-container fluid>
+<v-container px-10 fluid>
   <v-expansion-panels
     v-if="auth"
     >

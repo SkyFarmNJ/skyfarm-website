@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container px-10 fluid>
     <v-row class="text-center">
 
       <v-col cols="12" jusify="center" align="center">

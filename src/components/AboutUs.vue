@@ -1,5 +1,5 @@
 <template>
-  <v-container mx-10 fluid>
+  <v-container px-10 fluid>
     <v-row class="text-center">
       <v-col cols="12" mb-5>
         <v-btn>Schedule a private tour of Sky Farm!</v-btn>
