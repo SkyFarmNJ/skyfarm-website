@@ -144,7 +144,7 @@
 
           <v-spacer/>
 
-          <v-card>
+          <v-card :to="{path: '/tour'}">
             <div class="d-flex flex-no-wrap justify-space-between">
 
               <v-avatar

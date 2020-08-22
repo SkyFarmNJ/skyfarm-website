@@ -28,7 +28,7 @@
       <v-col class="mb-2" cols="12">
           <h1>Sky Farm Nudist Resort In Basking Ridge, NJ <br/> There’s Nothing Else Like It Under The Sun</h1>
           <h2>Want to enjoy the great outdoors naked? At Sky Farm, you’ve got nothing to lose but tan lines!</h2>
-          <v-btn large>Schedule a Tour!</v-btn>
+          <v-btn :to="{path: '/tour'}" exact >Schedule a Tour of Sky Farm!</v-btn>
       </v-col>
     </v-row>
     <v-row class="text-left">
@@ -82,7 +82,8 @@ export default {
                 require('../assets/SkyFarm800.png'),
                 require('../assets/SkyFarm801.png'),
                 require('../assets/SkyFarm802.png'),
-                require('../assets/SkyFarm803.png')
+                require('../assets/SkyFarm803.png'),
+                require('../assets/SkyFarm804.png')
             ]
         }
     }
