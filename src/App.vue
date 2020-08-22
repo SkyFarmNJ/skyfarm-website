@@ -210,15 +210,16 @@ export default {
         build: (process.env.VUE_APP_BUILD_NUMBER == null) ? "N/A" : process.env.VUE_APP_BUILD_NUMBER,
         overlay: false,
         options: [
-            {text:'Home', route:'/'},
-            {text:'About Us', route:'/about'},
-            {text:'History', route:'/history'},
-            {text:'Membership', route:'/membership'},
+            {text:'Home',             route:'/'},
+            {text:'About Us',         route:'/about'},
+            {text:'History',          route:'/history'},
+            {text:'Membership',       route:'/membership'},
+            {text:'FAQ',              route:'/faq'},
             {text:'Member Documents', route:'/docs'}
         ],
         contactInfo: [
-            {text:'New Jersey', icon:'map-marker'},
-            {text:'908-419-5443', icon:'phone'},
+            {text:'New Jersey',             icon:'map-marker'},
+            {text:'908-419-5443',           icon:'phone'},
             {text:'membership@skyfarm.com', icon:'envelope'}
         ]
     }),
