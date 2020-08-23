@@ -4,53 +4,61 @@
       app
       color="black"
       dark
+      dense
+      elevated
       >
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
 
       <v-container
-        v-if="!$vuetify.breakpoint.xsOnly"
+        v-if="$vuetify.breakpoint.mdAndUp"
         >
-        <v-row>
-          <v-col cols="3"
-            v-for="(c, i) in contactInfo"
-            :key=i
-            disabled outlined
-            >
-            <font-awesome-icon color="blue" :icon="{prefix: 'fas', iconName: c.icon}"/> {{c.text}}
-          </v-col>
-        </v-row>
+        <v-btn v-for="(c, i) in contactInfo"
+               :key=i
+               text
+               disabled
+             >
+          <font-awesome-icon color="blue" :icon="{prefix: 'fas', iconName: c.icon}"/> {{c.text}}
+          </v-btn>
       </v-container>
 
       <v-card
-        v-if="$vuetify.breakpoint.xsOnly"
+        v-else
         href="tel:908.419.5443"
         >
-        <v-spacer/>
-        <font-awesome-icon color="blue" :icon="{prefix: 'fas', iconName: phone}"/> 908.419.5443
+        <v-icon>mdi-phone</v-icon> 908.419.5443
       </v-card>
 
       <v-spacer/>
 
       <v-btn
-        href="https://www.facebook.com/skyfarmnj"
-        icon
-        large
-        style="min-width: 0"
-        >
-        <font-awesome-icon :icon="{prefix: 'fab', iconName: 'facebook'}"/>
-      </v-btn>
-      <v-btn
-        href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.skyfarm.com%2F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=SkyFarmNJ&tw_p=followbutton"
+        v-for="(x, i) in socials"
+        :key=i
+        :href=x.url
         icon large
-        style="min-width: 0"
+        style = "min-width: 0"
         >
-        <font-awesome-icon :icon="{prefix: 'fab', iconName: 'twitter'}"/>
+        <font-awesome-icon :icon="{prefix: 'fab', iconName: x.icon}"/>
       </v-btn>
 
       <v-btn @click="inOrOut">
         {{(auth) ? "Logout" : "Login"}}
       </v-btn>
+
+      <template v-slot:extension v-if="$vuetify.breakpoint.mdAndUp">
+         <v-img
+              :src="require('./assets/skyfarm_logo_fixed.png')"
+              class="mt-1"
+              contain
+           height="50"/>
+          <v-tabs align-with-title>
+            <v-tab
+              v-for="(opt, i) in options"
+              :key=i
+              :to=opt.route>
+              {{opt.text}}</v-tab>
+          </v-tabs>
+        </template>
 
     </v-app-bar>
 
@@ -84,38 +92,13 @@
     </v-navigation-drawer>
 
     <v-main>
-
       <v-img
-        v-if="$vuetify.breakpoint.xsOnly"
+        v-if="$vuetify.breakpoint.smAndDown"
         :src="require('./assets/logo-2.png')"
         class="mt-5"
         contain
         height="50"/>
-
-      <v-container
-        v-else
-        fluid
-        >
-        <v-row align="center">
-          <v-col cols="2" justify="right" align="center">
-            <v-img
-              :src="require('./assets/logo-2.png')"
-              class="mt-1"
-              contain
-              height="50"/>
-          </v-col>
-          <v-col cols="10" justify="left">
-              <v-btn class="mr-2" v-for="(opt, i) in options"
-                     :key=i
-                     :to=opt.route
-                     >{{opt.text}}
-          </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
       <v-divider/>
-
-
       <router-view/>
     </v-main>
 
@@ -219,6 +202,10 @@ export default {
             {text:'New Jersey',             icon:'map-marker'},
             {text:'908-419-5443',           icon:'phone'},
             {text:'membership@skyfarm.com', icon:'envelope'}
+        ],
+        socials: [
+            {url: "https://www.facebook.com/skyfarmnj", icon: "facebook"},
+            {url: "https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.skyfarm.com%2F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=SkyFarmNJ&tw_p=followbutton", icon: "twitter"},
         ]
     }),
     methods: {
