@@ -6,6 +6,7 @@ import MemberPage from './components/MemberPage.vue'
 import Membership from './components/Membership.vue'
 import History    from './components/History.vue'
 import FAQ        from './components/FAQ.vue'
+import Tour       from './components/Tour.vue'
 
 Vue.use(VueRouter)
 
@@ -15,7 +16,8 @@ const routes = [
     { path: '/docs',       component: MemberPage},
     { path: '/membership', component: Membership},
     { path: '/history',    component: History   },
-    { path: '/faq',        component: FAQ       }
+    { path: '/faq',        component: FAQ       },
+    { path: '/tour',       component: Tour      }
 ]
 
 export default new VueRouter({routes})
