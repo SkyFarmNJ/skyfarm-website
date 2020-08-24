@@ -8,6 +8,8 @@ import History    from './components/History.vue'
 import FAQ        from './components/FAQ.vue'
 import Tour       from './components/Tour.vue'
 import Next       from './components/Next.vue'
+import Reviews    from './components/Reviews.vue'
+
 
 Vue.use(VueRouter)
 
@@ -19,7 +21,8 @@ const routes = [
     { path: '/history',    component: History   },
     { path: '/faq',        component: FAQ       },
     { path: '/tour',       component: Tour      },
-    { path: '/next',       component: Next      }
+    { path: '/next',       component: Next      },
+    { path: '/reviews',    component: Reviews   }
 ]
 
 export default new VueRouter({routes})

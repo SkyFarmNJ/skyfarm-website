@@ -195,6 +195,7 @@ export default {
             {text:'About Us',         route:'/about'},
             {text:'History',          route:'/history'},
             {text:'Membership',       route:'/membership'},
+            {text:'Testimoials',      route:'/reviews'},
             {text:'FAQ',              route:'/faq'},
             {text:'Member Access',    route:'/docs'}
         ],
