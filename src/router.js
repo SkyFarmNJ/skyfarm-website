@@ -9,6 +9,7 @@ import FAQ        from './components/FAQ.vue'
 import Tour       from './components/Tour.vue'
 import Next       from './components/Next.vue'
 import Reviews    from './components/Reviews.vue'
+import ClubDocs   from './components/ClubDocs.vue'
 
 
 Vue.use(VueRouter)
@@ -22,6 +23,7 @@ const routes = [
     { path: '/faq',        component: FAQ       },
     { path: '/tour',       component: Tour      },
     { path: '/next',       component: Next      },
+    { path: '/clubdocs',   component: ClubDocs  },
     { path: '/reviews',    component: Reviews   }
 ]
 

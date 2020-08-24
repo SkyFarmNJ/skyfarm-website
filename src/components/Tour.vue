@@ -113,6 +113,7 @@ All information submitted will be kept in strict confidence.
 </template>
 
 <script>
+  import axios from 'axios'
 
   export default {
       data: () => ({
@@ -130,15 +131,24 @@ All information submitted will be kept in strict confidence.
 
       methods: {
           submit() {
-              //let data = { name: this.name, selectPessoa: this.selectPessoa }
-              //axios.post('http://127.0.0.1:3000/produtos', data)
-              //    .then(function (response) {
-              //        console.log(response);
-              //    })
-              //    .catch(function (error) {
-              //        console.log(error);
-              //    });
-              this.$router.push('/Next')
+              let data = { name: this.name, partner: this.partner,
+                           email: this.email, city: this.city,
+                           state: this.state, phone: this.phone,
+                           married:  this.married,
+                           ages: this.ages, membership: this.membership,
+                           learn: this.learnabout,
+                           affiliations: this.affiliations,
+                           aanr: this.aanr,
+                           my_email: 'tnjeditor@gmail.com'}
+              axios.post('https://www.verio.com/scripts/formemail.html', data)
+                  .then(function (response) {
+                      console.log(response);
+                      this.$router.push('/Next')
+                  })
+                  .catch(function (error) {
+                      console.log(error);
+                      alert("Something went wrong, please try again later.")
+                  });
           },
           validate () {
               this.$refs.form.validate()
