@@ -36,6 +36,8 @@
 
           <h3>Sky Farm is a members only nudist resort located on a 36-acre slice of heaven in beautiful Basking Ridge, NJ.  Here, we invite you to enjoy friends, food, drink, activities, and nature, naturally!</h3>
 
+          <h3>We know how amazing Sky Farm is when it comes to “Happy Places!” But, don’t take our word for it! We’re famous! Learn more about the best place to be <a href="https://meanderingnaturist.com/2020/08/23/naked-in-america-sky-farm-new-jersey/">“Naked in America.”</a></h3>
+
           <ul>
             <li
               v-for="(fact, i) in facts"

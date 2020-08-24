@@ -13,19 +13,19 @@
         <v-form
            ref="form"
            v-model="valid"
-           :lazy-validation="lazy"
+           method="post"
+           id="nativeForm"
            >
           <v-text-field
              v-model="name"
              :rules="nameRules"
-             label="First and Last Name"
+             label="First and Last name"
              required
              ></v-text-field>
 
           <v-text-field
              v-model="partner"
-             :rules="nameRules"
-             label="Partner First and Last Name"
+             label="Partner First and Last name"
              ></v-text-field>
 
           <v-text-field
@@ -54,47 +54,43 @@
              required
              ></v-text-field>
           <v-text-field
-             v-model="status"
-             :rules="nameRules"
+             v-model="married"
              label="Marital Status"
              required
              ></v-text-field>
           <v-text-field
              v-model="ages"
-             :rules="nameRules"
              label="Ages (You, Mate, Children)"
              required
              ></v-text-field>
           <v-text-field
-             v-model="type"
+             v-model="membership"
              :rules="nameRules"
              label="Membership Requested"
              required
              ></v-text-field>
           <v-text-field
-             v-model="learn"
-             :rules="nameRules"
+             v-model="learnabout"
              label="How did you hear about Sky Farm?"
              required
              ></v-text-field>
           <v-text-field
-             v-model="otherclubs"
-             :rules="nameRules"
+             v-model="affiliations"
              label="List any other clubs/affiliations, resorts or beaches similar to Sky Farm that you have experiened"
-             required
              ></v-text-field>
           <v-text-field
              v-model="aanr"
-             :rules="nameRules"
              label="If you are an AANR member, enter your membership number"
              ></v-text-field>
+
+          <v-btn @click="submit" :disabled="!valid">submit</v-btn>
 
           <v-btn
              color="success"
              class="mr-4"
              @click="validate"
              >
-            Submit
+            Validate
           </v-btn>
           
           <v-btn
@@ -123,7 +119,7 @@ All information submitted will be kept in strict confidence.
           valid: true,
           name: '',
           nameRules: [
-              v => !!v || 'Name is required',
+              v => !!v || 'name is required',
               v => (v && v.length <= 10) || 'Name must be less than 10 characters',
           ],
           email: '',
@@ -133,6 +129,17 @@ All information submitted will be kept in strict confidence.
           ],      }),
 
       methods: {
+          submit() {
+              //let data = { name: this.name, selectPessoa: this.selectPessoa }
+              //axios.post('http://127.0.0.1:3000/produtos', data)
+              //    .then(function (response) {
+              //        console.log(response);
+              //    })
+              //    .catch(function (error) {
+              //        console.log(error);
+              //    });
+              this.$router.push('/Next')
+          },
           validate () {
               this.$refs.form.validate()
           },
