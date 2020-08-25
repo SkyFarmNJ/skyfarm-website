@@ -1,31 +1,24 @@
 import Vue from 'vue';
 import VueRouter  from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue'
-import AboutUs    from './components/AboutUs.vue'
-import MemberPage from './components/MemberPage.vue'
-import Membership from './components/Membership.vue'
-import History    from './components/History.vue'
-import FAQ        from './components/FAQ.vue'
-import Tour       from './components/Tour.vue'
-import Next       from './components/Next.vue'
-import Reviews    from './components/Reviews.vue'
-import ClubDocs   from './components/ClubDocs.vue'
-
-
 Vue.use(VueRouter)
+
+function cmp(suffix) {
+    return () => import(`./components/${suffix}.vue`);
+}
 
 const routes = [
     { path: '/',           component: HelloWorld},
-    { path: '/about',      component: AboutUs   },
-    { path: '/membership', component: Membership},
-    { path: '/history',    component: History   },
-    { path: '/faq',        component: FAQ       },
-    { path: '/tour',       component: Tour      },
-    { path: '/next',       component: Next      },
-    { path: '/reviews',    component: Reviews   },
-    { path: '/docs',       component: MemberPage,
+    { path: '/about',      component: cmp('AboutUs')},
+    { path: '/membership', component: cmp('Membership')},
+    { path: '/history',    component: cmp('History')},
+    { path: '/faq',        component: cmp('FAQ')},
+    { path: '/tour',       component: cmp('Tour')},
+    { path: '/next',       component: cmp('Next')},
+    { path: '/reviews',    component: cmp('Reviews')},
+    { path: '/docs',       component: cmp('MemberPage'),
       children: [
-          { path: '',   component: ClubDocs  },
+          { path: '',   component: cmp('ClubDocs')  },
       ]
     }
 ]
