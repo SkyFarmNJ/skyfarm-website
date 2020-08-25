@@ -62,12 +62,6 @@
 
     </v-app-bar>
 
-    <v-overlay :value="overlay">
-      <login-form
-        @exit="overlay = false"
-        ></login-form>
-    </v-overlay>
-
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -181,11 +175,10 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld';
-import LoginForm from './components/LoginForm';
+import router from './router.js';
 
 export default {
     name: 'App',
-    components: {LoginForm},
     data: () => ({
         drawer: false,
         build: (process.env.VUE_APP_BUILD_NUMBER == null) ? "N/A" : process.env.VUE_APP_BUILD_NUMBER,
@@ -214,7 +207,8 @@ export default {
             if (this.auth) {
                 this.$store.dispatch('logout')
             } else {
-                this.overlay = true
+                //this.overlay = true
+                router.push('/docs')
             }
         }
     },

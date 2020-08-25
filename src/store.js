@@ -20,14 +20,14 @@ export default new Vuex.Store({
     actions: {
         login ({commit}, authData) {
             const encodedUserPwd = btoa(`${authData.user}:${authData.pw}`);
-            axios.get("http://red.local/members/", {
+            axios.get("/members/", {
                 auth: { username: authData.user, password: authData.pw}
             })
                 .then(res => {
                     console.log(res)
                     commit('authUser', encodedUserPwd)
                     localStorage.setItem('token', encodedUserPwd)
-                    router.push('/docs')
+                    router.push('/docs?login')
 
                 })
                 .catch(err => {
