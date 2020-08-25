@@ -17,14 +17,17 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/',           component: HelloWorld},
     { path: '/about',      component: AboutUs   },
-    { path: '/docs',       component: MemberPage},
     { path: '/membership', component: Membership},
     { path: '/history',    component: History   },
     { path: '/faq',        component: FAQ       },
     { path: '/tour',       component: Tour      },
     { path: '/next',       component: Next      },
-    { path: '/clubdocs',   component: ClubDocs  },
-    { path: '/reviews',    component: Reviews   }
+    { path: '/reviews',    component: Reviews   },
+    { path: '/docs',       component: MemberPage,
+      children: [
+          { path: '',   component: ClubDocs  },
+      ]
+    }
 ]
 
 export default new VueRouter({routes})

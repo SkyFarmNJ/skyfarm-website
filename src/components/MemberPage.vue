@@ -1,54 +1,19 @@
 <template>
 <v-container px-10 fluid>
-  <v-expansion-panels
-    v-if="auth"
-    >
-    <v-expansion-panel
-      v-for="(item, i) in list"
-      :key=i
-      align="center"
-      >
-      <v-expansion-panel-header
-        @click="getFile(`/members/${item[1]}`)"
-        >{{item[0]}}</v-expansion-panel-header>
-      <v-expansion-panel-content
 
-        v-touch="{
-                 left:  () => changePage(1),
-                 right: () => changePage(-1)
-                 }"
-        >
-        <div
-          v-if="content.contentType == 'application/pdf'"
-          >
-          <v-col cols="12">
-            <v-btn @click="changePage(-1)">
-              <v-icon>mdi-arrow-left-bold</v-icon>
-            </v-btn>
-            <v-btn
-              :href="content.url"
-              @click="window.open(content.ur)"
-              >
-              <v-icon>mdi-open-in-new</v-icon>
-            </v-btn>
-            <v-btn @click="changePage(1)">
-              <v-icon>mdi-arrow-right-bold</v-icon>
-            </v-btn>
-          </v-col>
-          <v-col cols="12">
-          <pdf
-            :src="content.url"
-            @num-pages="numPages = $event"
-            :page="curPage"
-            ></pdf>
-          </v-col>
-        </div>
-        <div v-else>
-          {{content.data}}
-        </div>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
+  <v-row v-if="auth">
+
+    <v-tabs align-with-title>
+      <v-tab
+         v-for="(opt, i) in options"
+         :key=i
+         :to=opt.route>
+        {{opt.text}}</v-tab>
+    </v-tabs>
+    
+    <router-view></router-view>
+
+  </v-row>
 
   <v-container v-else fluid
                class="mt-2"
@@ -119,7 +84,7 @@
 
 <script>
 import axios from 'axios'
-import pdf from 'vue-pdf'
+//import pdf from 'vue-pdf'
 
 export default {
     data: () => ({
@@ -130,6 +95,9 @@ export default {
         curPage: 1,
         user: '',
         pw: '',
+        options: [
+            { text: 'Club Documents', route: '/docs' }
+        ]
     }),
     methods: {
         login() {
@@ -169,6 +137,7 @@ export default {
             this.curPage = tmp
         }
     },
+/*
     mounted() {
         window.addEventListener('keydown', this.handleArrowKeys)
         this.headers = {
@@ -186,12 +155,13 @@ export default {
             })
             .catch(err => console.log(err))
     },
+*/
     computed: {
         auth() {return this.$store.getters.ifAuthenticated}
     },
-    components: {
-        pdf
-    },
+//    components: {
+//        pdf
+//    },
     destroyed() {
         window.removeEventListener('keydown', this.handleArrowKeys)
     }
