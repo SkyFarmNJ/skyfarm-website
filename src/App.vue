@@ -190,7 +190,7 @@ export default {
             {text:'Membership',       route:'/membership'},
             {text:'Testimoials',      route:'/reviews'},
             {text:'FAQ',              route:'/faq'},
-            {text:'Member Access',    route:'/docs'}
+            {text:'Member Access',    route:'/members'}
         ],
         contactInfo: [
             {text:'New Jersey',             icon:'map-marker'},
@@ -208,7 +208,7 @@ export default {
                 this.$store.dispatch('logout')
             } else {
                 //this.overlay = true
-                router.push('/docs')
+                router.push('/members')
             }
         }
     },

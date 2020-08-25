@@ -27,7 +27,7 @@ export default new Vuex.Store({
                     console.log(res)
                     commit('authUser', encodedUserPwd)
                     localStorage.setItem('token', encodedUserPwd)
-                    router.push('/docs?login')
+                    router.push('/members')
 
                 })
                 .catch(err => {

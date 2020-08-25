@@ -16,10 +16,10 @@ const routes = [
     { path: '/tour',       component: cmp('Tour')},
     { path: '/next',       component: cmp('Next')},
     { path: '/reviews',    component: cmp('Reviews')},
-    { path: '/docs',       component: cmp('MemberPage'),
+    { path: '/members',    component: cmp('MemberPage'),
       children: [
-          { path: '',          component: cmp('ClubDocs')  },
-          { path: 'minutes',   component: cmp('Minutes')   }
+          { path: 'clubdocs',     component: cmp('ClubDocs'), alias:''  },
+          { path: 'archive/:dir', component: cmp('Archive') },
       ]
     }
 ]

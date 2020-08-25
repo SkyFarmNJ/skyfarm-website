@@ -5,13 +5,15 @@
 
     <v-tabs align-with-title>
       <v-tab
-         v-for="(opt, i) in options"
-         :key=i
-         :to=opt.route>
+        v-for="(opt, i) in options"
+        :key=i
+        @click="(opt.param) ? getCsv(opt.param) : null"
+        :to=opt.route
+        >
         {{opt.text}}</v-tab>
     </v-tabs>
-    
-    <router-view></router-view>
+
+    <router-view :list=list></router-view>
 
   </v-row>
 
@@ -43,7 +45,7 @@
                    prepend-icon="mdi-account"
                    type="text"
                    ></v-text-field>
-                
+
                 <v-text-field
                    v-model="pw"
                    id="password"
@@ -64,7 +66,7 @@
                 Submit
               </v-btn>
             </v-card-actions>
-            
+
           </v-card>
 
         </v-card>
@@ -84,6 +86,7 @@
 
 <script>
 import axios from 'axios'
+//import router from '../router.js'
 //import pdf from 'vue-pdf'
 
 export default {
@@ -96,8 +99,10 @@ export default {
         user: '',
         pw: '',
         options: [
-            { text: 'Club Documents', route: '/docs' },
-            { text: 'Minutes'       , route: '/docs/minutes'},
+            { text: 'Club Documents',       route: '/members/clubdocs' },
+            { text: 'Minutes'       ,       route: '/members/archive/minutes',     param: 'minutes'},
+            { text: 'Financial Statements', route: '/members/archive/statements',  param: 'statements'},
+            { text: 'Newsletters',          route: '/members/archive/newsletters', param: 'newsletters'},
         ]
     }),
     methods: {
@@ -120,6 +125,17 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
+        getCsv(dir) {
+            axios.get(`/members/${dir}.csv`)
+                .then(res => {
+                    console.log(res)
+                    this.list = res.data
+                        .split('\n')
+                        .filter(Boolean)
+                        .map(substr => substr.slice(1).split('",'))
+                })
+                .catch(err => console.log(err))
+        },
         handleArrowKeys(event) {
             var delta
             if (event.keyCode == 37) delta = -1
@@ -138,7 +154,7 @@ export default {
             this.curPage = tmp
         }
     },
-/*
+
     mounted() {
         window.addEventListener('keydown', this.handleArrowKeys)
         this.headers = {
@@ -146,17 +162,9 @@ export default {
                 Authorization: `Basic ${this.$store.getters.token}`
             }
         }
-        axios.get("/members/docs.csv", this.headers)
-            .then(res => {
-                console.log(res)
-                this.list = res.data
-                    .split('\n')
-                    .filter(Boolean)
-                    .map(substr => substr.slice(1).split('",'))
-            })
-            .catch(err => console.log(err))
+        if (this.$route.params.dir) this.getCsv(this.$route.params.dir)
     },
-*/
+
     computed: {
         auth() {return this.$store.getters.ifAuthenticated}
     },
