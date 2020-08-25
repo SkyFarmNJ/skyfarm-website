@@ -18,7 +18,8 @@ const routes = [
     { path: '/reviews',    component: cmp('Reviews')},
     { path: '/docs',       component: cmp('MemberPage'),
       children: [
-          { path: '',   component: cmp('ClubDocs')  },
+          { path: '',          component: cmp('ClubDocs')  },
+          { path: 'minutes',   component: cmp('Minutes')   }
       ]
     }
 ]

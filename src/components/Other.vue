@@ -1,83 +1,21 @@
 <template>
 <v-container px-10 fluid>
 
-  <v-row v-if="auth">
+<v-card v-if="auth">
 
-    <v-tabs align-with-title>
-      <v-tab
-         v-for="(opt, i) in options"
-         :key=i
-         :to=opt.route>
-        {{opt.text}}</v-tab>
-    </v-tabs>
-    
-    <router-view></router-view>
+<v-form>
+<v-select
+   v-model="select"
+   :items="list"
+></v-select>
+</v-form>
 
-  </v-row>
-
-  <v-container v-else fluid
-               class="mt-2"
-               >
-    <v-row>
-      <v-col cols="12">
-        <v-card class="mx-auto">
-          <h2>LOGIN TO YOUR ACCOUNT</h2>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <v-row justify="center">
-
-        <v-card style="box-shadow: none" class="mt-9">
-          <h3>Pages for Sky Farm Members only.</h3>
-          <p>If you are a current Sky Farm Member and need an account<br>
-            email <a href="mailto:membership@skyfarm.com">membership@skyfarm.com</a> to have an account created for you.</p>
-
-          <v-card>
-            <v-card-text>
-              <v-form>
-                <v-text-field
-                   v-model="user"
-                   label="Username"
-                   name="login"
-                   prepend-icon="mdi-account"
-                   type="text"
-                   ></v-text-field>
-                
-                <v-text-field
-                   v-model="pw"
-                   id="password"
-                   label="Password"
-                   name="password"
-                   prepend-icon="mdi-lock"
-                   type="password"
-                   @keydown.enter="login"
-                   ></v-text-field>
-              </v-form>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                 color="primary"
-                 @click="login"
-                 >
-                Submit
-              </v-btn>
-            </v-card-actions>
-            
-          </v-card>
-
-        </v-card>
-    </v-row>
-
-  </v-container>
+</v-card>
 
 
-<!--
   <v-alert type="error" prominent v-else>
     You must be logged in to view this page.
   </v-alert>
--->
 
 </v-container>
 </template>
@@ -95,10 +33,6 @@ export default {
         curPage: 1,
         user: '',
         pw: '',
-        options: [
-            { text: 'Club Documents', route: '/docs' },
-            { text: 'Minutes'       , route: '/docs/minutes'},
-        ]
     }),
     methods: {
         login() {
@@ -138,7 +72,6 @@ export default {
             this.curPage = tmp
         }
     },
-/*
     mounted() {
         window.addEventListener('keydown', this.handleArrowKeys)
         this.headers = {
@@ -146,23 +79,30 @@ export default {
                 Authorization: `Basic ${this.$store.getters.token}`
             }
         }
-        axios.get("/members/docs.csv", this.headers)
+	this.list = []
+        axios.get("/members/minutes.csv", this.headers)
             .then(res => {
                 console.log(res)
-                this.list = res.data
+                res.data
                     .split('\n')
                     .filter(Boolean)
                     .map(substr => substr.slice(1).split('",'))
+                    .forEach(([key, val]) => {
+                        var item = { label: val, value: key }
+			this.list.push(item)
+                    })
             })
             .catch(err => console.log(err))
+
     },
-*/
     computed: {
         auth() {return this.$store.getters.ifAuthenticated}
     },
-//    components: {
-//        pdf
-//    },
+/*
+    components: {
+        pdf
+    },
+*/
     destroyed() {
         window.removeEventListener('keydown', this.handleArrowKeys)
     }
