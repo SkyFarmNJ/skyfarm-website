@@ -99,7 +99,7 @@
     <v-footer dark>
       <v-container fluid>
         <v-row class="mb-5">
-
+<!--
           <v-card href="https://www.google.com">
             <div class="d-flex flex-no-wrap justify-space-between">
 
@@ -120,7 +120,7 @@
           </v-card>
 
           <v-spacer/>
-
+-->
           <v-card :to="{path: '/tour'}">
             <div class="d-flex flex-no-wrap justify-space-between">
 
@@ -142,7 +142,23 @@
 
           <v-spacer/>
 
-          <v-card disabled>
+          <v-card
+             class="align-center"
+             >
+            <v-row v-for="(c, i) in contactInfo"
+                 :key=i
+                   >
+              <v-btn
+                 text
+                 >
+                <font-awesome-icon color="blue" :icon="{prefix: 'fas', iconName: c.icon}"/> {{c.text}}
+              </v-btn>
+            </v-row>
+          </v-card>
+          
+          <v-spacer/>
+
+          <v-card>
             <div class="d-flex flex-no-wrap justify-space-between">
 
               <v-avatar
@@ -155,7 +171,7 @@
 
               <v-card-title
                 >
-                Sky Farm is an AANR affiliated facility.
+                Sky Farm is an <a href="https://www.aanr.com/">AANR</a> affiliated facility.
               </v-card-title>
 
             </div>

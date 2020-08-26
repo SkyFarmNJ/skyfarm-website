@@ -25,6 +25,7 @@
 
           <v-text-field
              v-model="partner"
+             :rules="simpleRule"
              label="Partner First and Last name"
              ></v-text-field>
 
@@ -37,54 +38,59 @@
 
           <v-text-field
              v-model="city"
-             :rules="nameRules"
+             :rules="requiredRules"
              label="City"
              required
              ></v-text-field>
           <v-text-field
              v-model="state"
-             :rules="nameRules"
+             :rules="requiredRules"
              label="State"
              required
              ></v-text-field>
           <v-text-field
              v-model="phone"
-             :rules="nameRules"
+             :rules="requiredRules"
              label="Phone Number"
              required
              ></v-text-field>
           <v-text-field
              v-model="married"
+             :rules="simpleRule"
              label="Marital Status"
              required
              ></v-text-field>
           <v-text-field
              v-model="ages"
+             :rules="requiredRules"
              label="Ages (You, Mate, Children)"
              required
              ></v-text-field>
           <v-text-field
              v-model="membership"
-             :rules="nameRules"
+             :rules="requirecRules"
              label="Membership Requested"
              required
              ></v-text-field>
           <v-text-field
              v-model="learnabout"
+             :rules="simpleRule"
              label="How did you hear about Sky Farm?"
              required
              ></v-text-field>
           <v-text-field
              v-model="affiliations"
+             :rules="longRule"
              label="List any other clubs/affiliations, resorts or beaches similar to Sky Farm that you have experiened"
              ></v-text-field>
           <v-text-field
              v-model="aanr"
+             :rules="simpleRule"
              label="If you are an AANR member, enter your membership number"
              ></v-text-field>
 
           <v-btn @click="submit" :disabled="!valid">submit</v-btn>
-
+<!--
           <v-btn
              color="success"
              class="mr-4"
@@ -92,10 +98,10 @@
              >
             Validate
           </v-btn>
-          
+-->
           <v-btn
              color="error"
-             class="mr-4"
+             class="mr-4 ml-6"
              @click="reset"
              >
             Reset Form
@@ -103,7 +109,7 @@
           
         </v-form>
 
-If you are interested in learning more about us please fill out the following information and press the SUBMIT button or Call 908-419-5443. A member of the membership committee will contact you shortly.
+If you are interested in learning more about us please fill out the following information and press the SUBMIT button or Call <a href="tel:908-419-5443">908-419-5443</a>. A member of the membership committee will contact you shortly.
 
 All information submitted will be kept in strict confidence.
 
@@ -119,11 +125,21 @@ All information submitted will be kept in strict confidence.
   export default {
       data: () => ({
           valid: true,
-	  subok: '',
+          subok: '',
           name: '',
           nameRules: [
               v => !!v || 'name is required',
-              v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+              v => (v && v.length <= 20) || 'Name must be less than 20 characters',
+          ],
+          simpleRule: [
+              v => (v.length <= 20) || 'Name must be less than 20 characters',
+          ],
+          longRule: [
+              v => (v.length <= 60) || 'Name must be less than 60 characters',
+          ],
+          requiredRule: [
+              v => !!v || 'Required',
+              v => (v.length <= 20) || 'Must be less than 20 characters',
           ],
           email: '',
           emailRules: [
