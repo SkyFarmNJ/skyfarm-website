@@ -136,27 +136,9 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
-        handleArrowKeys(event) {
-            var delta
-            if (event.keyCode == 37) delta = -1
-            else if (event.keyCode == 39) delta = 1
-            else return
-
-            this.changePage(delta)
-        },
-        changePage(delta) {
-            if (this.numPages == 1) return
-
-            var tmp = this.curPage + delta
-            if (tmp == 0) tmp = this.numPages
-            else if (tmp > this.numPages) tmp = 1
-
-            this.curPage = tmp
-        }
     },
 
     mounted() {
-        window.addEventListener('keydown', this.handleArrowKeys)
         this.headers = {
             headers: {
                 Authorization: `Basic ${this.$store.getters.token}`
@@ -171,8 +153,5 @@ export default {
 //    components: {
 //        pdf
 //    },
-    destroyed() {
-        window.removeEventListener('keydown', this.handleArrowKeys)
-    }
 }
 </script>

@@ -23,21 +23,36 @@
               <tr v-for="item in docs" :key="item.name">
                 <td>{{ item.name }}</td>
                 <td>{{ item.desc }}</td>
-		<td>View / Download</td>
+		<td>
+                  <v-btn icon>
+                    <v-icon>mdi-open-in-app</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>mdi-open-in-new</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>mdi-download</v-icon>
+                  </v-btn>
+                </td>
               </tr>
             </tbody>
           </template>
         </v-simple-table>
-        
+
 
       </v-col>
     </v-row>
+
+    <v-overlay :value="overlay">
+      <PdfControls/>
+    </v-overlay>
   </v-container>
 </template>
 
 <script>
   export default {
       data: () => ({
+          overlay: false,
           docs: [
               { name: 'COVID Camp Rules',
                 desc: 'Sky Farm Member COVID-19 Guidelines V2.6 June 25, 2020' },
@@ -58,6 +73,9 @@
               { name: 'Do Not Admit List',
                 desc: 'List of former members who have left not in good standing and are not to be readmitted.'},
           ]
-      })
+      }),
+      components: {
+          PdfControls: () => import('./PdfControls.vue')
+      },
 }
 </script>
