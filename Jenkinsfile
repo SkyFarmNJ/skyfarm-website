@@ -19,6 +19,7 @@ pipeline {
                 sh 'npm -v'
                 sh 'npm install'
                 sh 'npm run build'
+		sh 'echo "Build: ${BUILD_NUMBER}" > dist/build.txt'
             }
         }
         stage('Cleanup') {
