@@ -159,7 +159,8 @@ All information submitted will be kept in strict confidence.
                            aanr: this.aanr,
                            subject: 'Sky Farm Tour Request',
                            redirect: 'http://www.skyfarm.com',
-                           recipient: 'dan@speers.nu'
+                           recipient: 'dan@speers.nu',
+                           print_config: 'name,partner,married,email,ages,phone,city,state,membership,learn,affiliations,aanr'
                          }
               axios.post('/cgi-bin/contact.cgi', data)
                   .then( response => {
