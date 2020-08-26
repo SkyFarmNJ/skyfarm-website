@@ -114,10 +114,12 @@ All information submitted will be kept in strict confidence.
 
 <script>
   import axios from 'axios'
+  import router from '../router.js'
 
   export default {
       data: () => ({
           valid: true,
+	  subok: '',
           name: '',
           nameRules: [
               v => !!v || 'name is required',
@@ -139,16 +141,28 @@ All information submitted will be kept in strict confidence.
                            learn: this.learnabout,
                            affiliations: this.affiliations,
                            aanr: this.aanr,
-                           my_email: 'tnjeditor@gmail.com'}
-              axios.post('https://www.verio.com/scripts/formemail.html', data)
-                  .then(function (response) {
-                      console.log(response);
-                      this.$router.push('/Next')
+                           subject: 'Sky Farm Tour Request',
+                           redirect: 'http://www.skyfarm.com',
+                           recipient: 'dan@speers.nu'
+                         }
+              axios.post('/cgi-bin/contact.cgi', data)
+                  .then( response => {
+                      this.subok = response.data.status
+                      console.log("CGI Reply: " + response.data.status)
+
+                      if ( this.subok == 'ok' ) {
+                          router.push('/Next')
+                      } else {
+                          console.log("CGI Message: " + response.data.message)
+                          console.log("CGI Reason:  " + response.data.reason)
+                      }
+                      
                   })
                   .catch(function (error) {
                       console.log(error);
                       alert("Something went wrong, please try again later.")
                   });
+
           },
           validate () {
               this.$refs.form.validate()
