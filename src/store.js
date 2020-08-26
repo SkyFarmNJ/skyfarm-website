@@ -20,7 +20,7 @@ export default new Vuex.Store({
     actions: {
         login ({commit}, authData) {
             const encodedUserPwd = btoa(`${authData.user}:${authData.pw}`);
-            axios.get("/members/", {
+            axios.get("/members/docs.csv", {
                 auth: { username: authData.user, password: authData.pw}
             })
                 .then(res => {
