@@ -49,7 +49,7 @@
 
     <v-overlay :value="overlay">
       <PdfControls
-        :url=file
+        :file=file
         :overlay=true
         @close="overlay = false"
         ></PdfControls>
