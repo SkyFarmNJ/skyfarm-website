@@ -13,7 +13,10 @@
         {{opt.text}}</v-tab>
     </v-tabs>
 
-    <router-view :list=list></router-view>
+    <router-view
+      :list=list
+      :file=firstFile
+      ></router-view>
 
   </v-row>
 
@@ -98,6 +101,7 @@ export default {
         curPage: 1,
         user: '',
         pw: '',
+        firstFile: '',
         options: [
             { text: 'Club Documents',       route: '/members/clubdocs' },
             { text: 'Minutes'       ,       route: '/members/archive/minutes',     param: 'minutes'},
@@ -133,6 +137,7 @@ export default {
                         .split('\n')
                         .filter(Boolean)
                         .map(substr => substr.slice(1).split('",'))
+                    this.firstFile = this.list[0][0]
                 })
                 .catch(err => console.log(err))
         },
