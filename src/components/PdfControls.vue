@@ -19,7 +19,10 @@
   </v-row>
   <v-row style="width: 70vh">
     <pdf
-      :src="`/members/${url}`"
+      :src="{
+            url: `/members/${url}`,
+            httpHeaders: headers,
+            }"
       @num-pages="numPages = $event"
       :page=curPage
       >
@@ -63,6 +66,11 @@ export default {
         },
         close() {
             this.$emit('close', null)
+        },
+        headers() {
+            return {
+                Authorization: `Basic ${this.$store.getters.token}`,
+            }
         }
     },
     watch: {
