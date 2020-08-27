@@ -20,7 +20,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in docs" :key="item.name">
+              <tr
+                v-for="item in docs"
+                :key="item.name"
+                @click="openPdf(item.file)"
+                >
                 <td>{{ item.name }}</td>
                 <td>{{ item.desc }}</td>
                 <td>
@@ -44,7 +48,11 @@
     </v-row>
 
     <v-overlay :value="overlay">
-      <PdfControls/>
+      <PdfControls
+        :url=file
+        :overlay=true
+        @close="overlay = false"
+        ></PdfControls>
     </v-overlay>
   </v-container>
 </template>
@@ -55,10 +63,18 @@ import axios from 'axios'
 export default {
     data: () => ({
         overlay: false,
-        docs: []
+        docs: [],
+        file: '',
     }),
     components: {
         PdfControls: () => import('./PdfControls.vue')
+    },
+    methods: {
+        openPdf(file) {
+
+            this.file = file
+            this.overlay = true
+        }
     },
     mounted() {
         window.addEventListener('keydown', this.handleArrowKeys)
@@ -74,7 +90,7 @@ export default {
                 res.data
                     .split('\n')
                     .filter(Boolean)
-                    .map(substr => substr.slice(1).split(','))
+                    .map(substr => substr.split(','))
                     .forEach(([name, desc, file]) => {
                         var item = { name: name, desc: desc, file: file  }
                         this.docs.push(item)
@@ -85,3 +101,10 @@ export default {
     }
 
 </script>
+<!--
+<style lang="scss">
+  .v-overlay__content {
+  width: 100%
+  }
+</style>
+-->

@@ -1,5 +1,5 @@
 <template>
-<v-container fluid>
+<v-container>
   <v-row justify="center">
     <v-btn @click="changePage(-1)">
       <v-icon>mdi-arrow-left-bold</v-icon>
@@ -13,14 +13,18 @@
     <v-btn @click="changePage(1)">
       <v-icon>mdi-arrow-right-bold</v-icon>
     </v-btn>
+    <v-btn @click="close" v-if="overlay">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
   </v-row>
-  <v-row>
+  <v-row style="width: 70vh">
     <pdf
       :src="`/members/${url}`"
       @num-pages="numPages = $event"
       :page=curPage
-      ></pdf>
-    </v-row>
+      >
+    </pdf>
+  </v-row>
 </v-container>
 </template>
 
@@ -29,6 +33,10 @@ export default {
     props: {
         url: {
             type: String
+        },
+        overlay: {
+            type: Boolean,
+            default: false,
         }
     },
     data: () => ({
@@ -52,8 +60,10 @@ export default {
             else if (tmp > this.numPages) tmp = 1
 
             this.curPage = tmp
+        },
+        close() {
+            this.$emit('close', null)
         }
-
     },
     watch: {
         url: function() {this.curPage = 1}
