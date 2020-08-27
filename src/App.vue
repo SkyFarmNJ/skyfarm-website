@@ -171,7 +171,7 @@
 
               <v-card-title
                 >
-                Sky Farm is an <a href="https://www.aanr.com/">AANR</a> affiliated facility.
+                Sky Farm is an <a target="_blank" href="https://www.aanr.com/">AANR</a> affiliated facility.
               </v-card-title>
 
             </div>
@@ -182,7 +182,7 @@
           <v-divider/>
         </v-row>
         <v-row>
-          Copyright 2020 Skyfarm all rights reserved. Made with Vue. Build: {{build}}
+          Copyright (c) 2020 Sky Farm Inc. all rights reserved. Made with Vue. Build: {{build}}
         </v-row>
       </v-container>
     </v-footer>
@@ -204,7 +204,7 @@ export default {
             {text:'About Us',         route:'/about'},
             {text:'History',          route:'/history'},
             {text:'Membership',       route:'/membership'},
-            {text:'Testimoials',      route:'/reviews'},
+            {text:'Testimonials',     route:'/reviews'},
             {text:'FAQ',              route:'/faq'},
             {text:'Member Access',    route:'/members'}
         ],
