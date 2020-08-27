@@ -19,10 +19,7 @@
   </v-row>
   <v-row style="width: 70vh">
     <pdf
-      :src="{
-            url: `/members/${url}`,
-            httpHeaders: headers,
-            }"
+      :src="{data:ArrayBuffer}"
       @num-pages="numPages = $event"
       :page=curPage
       >
@@ -34,6 +31,9 @@
 <script>
 export default {
     props: {
+        data: {
+            type: String
+        },
         url: {
             type: String
         },
@@ -44,7 +44,7 @@ export default {
     },
     data: () => ({
         numPages: 1,
-        curPage: 1
+        curPage: 1,
     }),
     methods: {
         handleArrowKeys(event) {

@@ -130,7 +130,7 @@ export default {
                 .catch(err => console.log(err))
         },
         getCsv(dir) {
-            axios.get(`/members/${dir}.csv`)
+            axios.get(`/members/${dir}.csv`, this.headers)
                 .then(res => {
                     console.log(res)
                     this.list = res.data
