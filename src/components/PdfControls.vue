@@ -5,8 +5,7 @@
       <v-icon>mdi-arrow-left-bold</v-icon>
     </v-btn>
     <v-btn
-      :href="url"
-      @click="window.open(url)"
+      @click="window.open(url())"
       >
       <v-icon>mdi-open-in-new</v-icon>
     </v-btn>
@@ -19,7 +18,10 @@
   </v-row>
   <v-row style="width: 70vh">
     <pdf
-      :src="{data:ArrayBuffer}"
+      :src="{
+            url: url(),
+            httpHeaders: {Authorization: `Basic ${token()}`},
+            }"
       @num-pages="numPages = $event"
       :page=curPage
       >
@@ -31,10 +33,7 @@
 <script>
 export default {
     props: {
-        data: {
-            type: String
-        },
-        url: {
+        file: {
             type: String
         },
         overlay: {
@@ -67,14 +66,15 @@ export default {
         close() {
             this.$emit('close', null)
         },
-        headers() {
-            return {
-                Authorization: `Basic ${this.$store.getters.token}`,
-            }
+        token() {
+            return this.$store.getters.token
+        },
+        url() {
+            return `/members/${this.file}`
         }
     },
     watch: {
-        url: function() {this.curPage = 1}
+        file: function() {this.curPage = 1}
     },
     components: {
         pdf: () => import('vue-pdf')
