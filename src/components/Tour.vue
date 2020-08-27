@@ -15,98 +15,42 @@
            v-model="valid"
            method="post"
            id="nativeForm"
-           >
-          <v-text-field
-             v-model="name"
-             :rules="nameRules"
-             label="First and Last name"
-             required
-             ></v-text-field>
-
-          <v-text-field
-             v-model="partner"
-             :rules="simpleRule"
-             label="Partner First and Last name"
-             ></v-text-field>
-
-          <v-text-field
-             v-model="email"
-             :rules="emailRules"
-             label="Email"
-             required
-             ></v-text-field>
-
-          <v-text-field
-             v-model="city"
-             :rules="requiredRules"
-             label="City"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="state"
-             :rules="requiredRules"
-             label="State"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="phone"
-             :rules="requiredRules"
-             label="Phone Number"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="married"
-             :rules="simpleRule"
-             label="Marital Status"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="ages"
-             :rules="requiredRules"
-             label="Ages (You, Mate, Children)"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="membership"
-             :rules="requirecRules"
-             label="Membership Requested"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="learnabout"
-             :rules="simpleRule"
-             label="How did you hear about Sky Farm?"
-             required
-             ></v-text-field>
-          <v-text-field
-             v-model="affiliations"
-             :rules="longRule"
-             label="List any other clubs/affiliations, resorts or beaches similar to Sky Farm that you have experiened"
-             ></v-text-field>
-          <v-text-field
-             v-model="aanr"
-             :rules="simpleRule"
-             label="If you are an AANR member, enter your membership number"
-             ></v-text-field>
-
+          >
+          <div
+            v-for="(field, i) in form"
+            :key=i
+            >
+            <v-radio-group
+              v-if="field.type == 'radio'"
+              v-model=field.value
+              >
+              {{field.label}}
+              <v-radio
+                v-for="(opt, j) in field.options"
+                :key=j
+                :label=opt
+                :value=opt
+                ></v-radio>
+            </v-radio-group>
+            <v-text-field
+              v-else
+              v-model=field.value
+              :label=field.label
+              :type=field.type
+              :rules=field.rules
+              >
+            </v-text-field>
+          </div>
           <v-btn @click="submit" :disabled="!valid">submit</v-btn>
-<!--
-          <v-btn
-             color="success"
-             class="mr-4"
-             @click="validate"
-             >
-            Validate
-          </v-btn>
--->
+
           <v-btn
              color="error"
              class="mr-4 ml-6"
              @click="reset"
              >
             Reset Form
-          </v-btn>          
-          
+          </v-btn>
+
         </v-form>
 
 If you are interested in learning more about us please fill out the following information and press the SUBMIT button or Call <a href="tel:908-419-5443">908-419-5443</a>. A member of the membership committee will contact you shortly.
@@ -119,12 +63,99 @@ All information submitted will be kept in strict confidence.
 </template>
 
 <script>
-  import axios from 'axios'
-  import router from '../router.js'
+import axios from 'axios'
+import router from '../router.js'
+
+var rules = {
+    shortText: v => (v.length <= 20) || 'Value must be less than 20 characters',
+    longText:  v => (v.length <= 60)  || 'Value must be less than 60 characters',
+    email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+    required: v => !!v || 'required',
+}
 
   export default {
       data: () => ({
           valid: true,
+          form: {
+              name: {
+                  value: '',
+                  label: 'First and last name',
+                  type: 'text',
+                  rules: [rules.shortText, rules.required],
+              },
+              partner: {
+                  value: '',
+                  label: 'Partner\'s first and last name',
+                  type: 'text',
+                  rules: [rules.shortText],
+              },
+              email: {
+                  value: '',
+                  label: 'Email',
+                  type: 'email',
+                  rules: [rules.email, rules.required],
+              },
+              city: {
+                  value: '',
+                  label: 'City',
+                  type: 'text',
+                  rules: [rules.required],
+              },
+              state: {
+                  value: '',
+                  label: 'State',
+                  type: 'text',
+                  rules: [rules.required],
+              },
+              phone: {
+                  value: '',
+                  label: 'Phone Number',
+                  type: 'tel',
+                  rules: [rules.required],
+              },
+              married: {
+                  value: '',
+                  label: 'Marital Status',
+                  type: 'text',
+                  rules: [rules.required],
+              },
+              ages: {
+                  value: '',
+                  label: 'Ages (you, partner, children)',
+                  type: 'text',
+                  rules: [rules.required],
+              },
+              membership: {
+                  value: 'Single',
+                  label: 'Membership Requested',
+                  type: 'radio',
+                  options: ['Single', 'Couple', 'Family'],
+              },
+              learn: {
+                  value: '',
+                  label: 'How did you hear about Sky Farm?',
+                  type: 'text',
+                  rules: [rules.required],
+              },
+              affiliations: {
+                  value: '',
+                  label: 'List any other clubs/affiliations, resorts or beaches similar to Sky Farm that you have experiened',
+                  type: 'text',
+                  rules: [rules.longText, rules.required],
+              },
+              aanr: {
+                  value: '',
+                  label: 'If you are an AANR member, enter your membership number',
+                  type: 'number',
+                  rules: [],
+              },
+          },
+          otherStuff: {
+              subject: 'Sky Farm Tour Request',
+              redirect: 'http://www.skyfarm.com',
+              recipient: 'dan@speers.nu',
+              sort: 'order:',
+          },
           subok: '',
           name: '',
           nameRules: [
@@ -139,7 +170,7 @@ All information submitted will be kept in strict confidence.
           ],
           requiredRule: [
               v => !!v || 'Required',
-              v => (v.length <= 20) || 'Must be less than 20 characters',
+              //v => (v.length <= 20) || 'Must be less than 20 characters',
           ],
           email: '',
           emailRules: [
@@ -149,19 +180,18 @@ All information submitted will be kept in strict confidence.
 
       methods: {
           submit() {
-              let data = { name: this.name, partner: this.partner,
-                           email: this.email, city: this.city,
-                           state: this.state, phone: this.phone,
-                           married:  this.married,
-                           ages: this.ages, membership: this.membership,
-                           learn: this.learnabout,
-                           affiliations: this.affiliations,
-                           aanr: this.aanr,
-                           subject: 'Sky Farm Tour Request',
-                           redirect: 'http://www.skyfarm.com',
-                           recipient: 'dan@speers.nu',
-                           print_config: 'name,partner,married,email,ages,phone,city,state,membership,learn,affiliations,aanr'
-                         }
+              var data = {}
+              Object.keys(this.form)
+                  .forEach(key => {
+                      data[key] = this.form[key].value
+                      this.otherStuff.sort += `${key},`
+                  })
+              Object.keys(this.otherStuff)
+                  .forEach(key => {
+                      data[key] = this.otherStuff[key]
+                  })
+              data.sort = data.sort.slice(0, -1)
+              console.log(data);
               axios.post('/cgi-bin/contact.cgi', data)
                   .then( response => {
                       this.subok = response.data.status
@@ -173,7 +203,7 @@ All information submitted will be kept in strict confidence.
                           console.log("CGI Message: " + response.data.message)
                           console.log("CGI Reason:  " + response.data.reason)
                       }
-                      
+
                   })
                   .catch(function (error) {
                       console.log(error);
