@@ -146,7 +146,7 @@ export default {
                             this.desc.set(item.file,item.desc)
                             this.list.push(item)
                         })
-                    this.firstFile = this.list[0][0]
+                    this.firstFile = this.list[0].file
                 })
                 .catch(err => console.log(err))
                     },
