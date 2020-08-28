@@ -29,7 +29,7 @@
     </v-btn>
     </v-toolbar>
   </v-row>
-  <v-row style="width: 70vh">
+  <v-row> <!--  style="width: 100%"> -->
     <pdf
       :src="{
             url: url(),
