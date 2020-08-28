@@ -94,7 +94,7 @@ import axios from 'axios'
 
 export default {
     data: () => ({
-        list: null,
+        list: [],
         headers: null,
         content: {data: null, contentType: null, url: null},
         numPages: 1,
@@ -103,7 +103,8 @@ export default {
         pw: '',
         firstFile: '',
         options: [
-            { text: 'Club Documents',       route: '/members/clubdocs' },
+            { text: 'Member Home',          route: '/members/clubdocs' },
+            { text: 'Club Documents',       route: '/members/archive/docs',        param: 'docs'},
             { text: 'Minutes'       ,       route: '/members/archive/minutes',     param: 'minutes'},
             { text: 'Financial Statements', route: '/members/archive/statements',  param: 'statements'},
             { text: 'Newsletters',          route: '/members/archive/newsletters', param: 'newsletters'},
@@ -133,14 +134,19 @@ export default {
             axios.get(`/members/${dir}.csv`, this.headers)
                 .then(res => {
                     console.log(res)
-                    this.list = res.data
+                    this.list = []
+                    res.data
                         .split('\n')
                         .filter(Boolean)
-                        .map(substr => substr.slice(1).split('",'))
+                        .map(substr => substr.split(','))
+                        .forEach(([name, desc, file]) => {
+                            var item = { name: name, desc: desc, file: file  }
+                            this.list.push(item)
+                        })
                     this.firstFile = this.list[0][0]
                 })
                 .catch(err => console.log(err))
-        },
+                    },
     },
 
     mounted() {

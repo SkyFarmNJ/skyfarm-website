@@ -6,8 +6,8 @@
       <v-select
         v-model=file
         :items=list
-        item-text=1
-        item-value=0
+        item-text="name"
+        item-value="file"
         >
       </v-select>
       </v-col>
