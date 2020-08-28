@@ -117,6 +117,7 @@ export default {
         close() {
             this.$emit('exit', null)
         },
+        /*
         getFile(url) {
             axios.get(url, this.headers)
                 .then(res => {
@@ -129,6 +130,7 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
+*/
         getCsv(dir) {
             axios.get(`/members/${dir}.csv`, this.headers)
                 .then(res => {
