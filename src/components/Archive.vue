@@ -2,7 +2,7 @@
 <v-container px-10 fluid>
   <v-row>
     <v-toolbar>
-      <v-col cols="4">
+      <v-col cols="3">
       <v-select
         v-model=file
         :items=list
@@ -11,6 +11,7 @@
         >
       </v-select>
       </v-col>
+      <b>{{title}}</b>
       <v-spacer/>
       {{file}}
     </v-toolbar>
@@ -30,6 +31,7 @@
 
 export default {
     data: () => ({
+	title: null
     }),
     props: {
         list: {
@@ -38,9 +40,17 @@ export default {
         file: {
             type: String
         },
+        desc: {
+            type: Map
+        }
     },
     components: {
         PdfControls: () => import('./PdfControls.vue')
     },
+    watch: {
+        file: function(val) {
+            this.title = this.desc.get(val)
+        }
+    }
 }
 </script>

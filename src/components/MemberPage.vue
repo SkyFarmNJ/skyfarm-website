@@ -16,6 +16,7 @@
     <router-view
       :list=list
       :file=firstFile
+      :desc=desc
       ></router-view>
 
   </v-row>
@@ -95,6 +96,7 @@ import axios from 'axios'
 export default {
     data: () => ({
         list: [],
+	desc: new Map(),
         headers: null,
         content: {data: null, contentType: null, url: null},
         numPages: 1,
@@ -141,6 +143,7 @@ export default {
                         .map(substr => substr.split(','))
                         .forEach(([name, desc, file]) => {
                             var item = { name: name, desc: desc, file: file  }
+                            this.desc.set(item.file,item.desc)
                             this.list.push(item)
                         })
                     this.firstFile = this.list[0][0]
