@@ -1,16 +1,18 @@
 <template>
 <v-container>
   <v-row justify="center">
-    <v-toolbar>
+    <v-toolbar dark>
+      <v-spacer/>
     <v-btn @click="changePage(-1)">
       <v-icon>mdi-arrow-left-bold</v-icon>
     </v-btn>
     <v-text-field
       v-model.number=curPage
       outlined
-      style="top: 25%; width: 10%"
       type="number"
+      style="max-width: 10%; top: 25%"
       ></v-text-field>
+
     <v-btn @click="changePage(1)">
       <v-icon>mdi-arrow-right-bold</v-icon>
     </v-btn>
@@ -27,9 +29,11 @@
     <v-btn @click="close" v-if="overlay">
       <v-icon>mdi-close</v-icon>
     </v-btn>
-    </v-toolbar>
+    <v-spacer/>
+  </v-toolbar>
   </v-row>
   <v-row> <!--  style="width: 100%"> -->
+    <v-card>
     <pdf
       :src="{
             url: url(),
@@ -40,6 +44,7 @@
       ref="pdfComponent"
       >
     </pdf>
+    </v-card>
   </v-row>
 </v-container>
 </template>
