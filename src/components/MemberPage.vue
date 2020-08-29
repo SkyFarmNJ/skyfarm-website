@@ -5,18 +5,15 @@
 
     <v-tabs align-with-title>
       <v-tab
-        v-for="(opt, i) in options"
-        :key=i
-        @click="(opt.param) ? getCsv(opt.param) : null"
-        :to=opt.route
+        v-for="dir in Object.keys(sections)"
+        :key=dir
+        :to=getRoute(dir)
         >
-        {{opt.text}}</v-tab>
+        {{sections[dir].name}}</v-tab>
     </v-tabs>
 
     <router-view
-      :list=list
-      :file=firstFile
-      :desc=desc
+      :sections=this.sections
       ></router-view>
 
   </v-row>
@@ -106,11 +103,42 @@ export default {
         firstFile: '',
         options: [
             { text: 'Member Home',          route: '/members/home' },
-            { text: 'Club Documents',       route: '/members/archive/docs',        param: 'docs'},
-            { text: 'Minutes'       ,       route: '/members/archive/minutes',     param: 'minutes'},
-            { text: 'Financial Statements', route: '/members/archive/statements',  param: 'statements'},
-            { text: 'Newsletters',          route: '/members/archive/newsletters', param: 'newsletters'},
-        ]
+            { text: 'Club Documents',       route: '/members/archive/docs',        param: 'docs', list: []},
+            { text: 'Minutes'       ,       route: '/members/archive/minutes',     param: 'minutes', list: []},
+            { text: 'Financial Statements', route: '/members/archive/statements',  param: 'statements', list: []},
+            { text: 'Newsletters',          route: '/members/archive/newsletters', param: 'newsletters', list: []},
+        ],
+        sections: {
+            'home': {
+                name: 'Member Home',
+                route: '/members/home',
+                hasCsv: false,
+            },
+            'docs': {
+                name: 'Club Documents',
+                route: '/members/archive/docs',
+                hasCsv: true,
+                list: [],
+            },
+            'minutes': {
+                name: 'Minutes',
+                route: '/members/archive/minutes',
+                hasCsv: true,
+                list: [],
+            },
+            'statements': {
+                name: 'Financial Statements',
+                route: '/members/archive/statements',
+                hasCsv: true,
+                list: [],
+            },
+            'newsletters': {
+                name: 'Newsletters',
+                route: '/members/archive/newsletters',
+                hasCsv: true,
+                list: [],
+            },
+        },
     }),
     methods: {
         login() {
@@ -120,6 +148,37 @@ export default {
         close() {
             this.$emit('exit', null)
         },
+        getRoute(dir) {
+            /*
+            const x = this.sections[section_key]
+            if (!x.dir) return x.route
+            else if (x.list.length == 0) return
+            else return `${x.route}/${x.list[0].file}`
+            */
+            const prefix = '/members'
+            if (!this.sections[dir].hasCsv) return `${prefix}/${dir}`
+            else {
+                if (this.sections[dir].list.length == 0) return ''
+                return `${prefix}/archive/${dir}/${this.sections[dir].list[0].file}`
+            }
+        },
+        /*
+        updateLists(child_dir) {
+            console.log(`Hello from archive ${child_dir}`)
+            Object.keys(this.sections)
+                .forEach(key => {
+                    var dir = this.sections[key].dir
+                    if (dir) {
+                        if (dir == child_dir || !child_dir) {
+                            this.getCsv(key)
+                        }
+                        if (dir == child_dir && child_dir) {
+                            this.list = this.sections[key].list
+                        }
+                    }
+                })
+        },
+        */
         /*
         getFile(url) {
             axios.get(url, this.headers)
@@ -138,17 +197,20 @@ export default {
             axios.get(`/members/${dir}.csv`, this.headers)
                 .then(res => {
                     console.log(res)
-                    this.list = []
+                    this.sections[dir].list = []
                     res.data
                         .split('\n')
                         .filter(Boolean)
                         .map(substr => substr.split(','))
                         .forEach(([name, desc, file]) => {
                             var item = { name: name, desc: desc, file: file  }
-                            this.desc.set(item.file,item.desc)
-                            this.list.push(item)
+                            //this.desc.set(item.file,item.desc)
+                            //this.list.push(item)
+
+                            this.sections[dir].list.push(item)
+                            //this.sections[dir].files.push(file: {name: name, desc: desc})
                         })
-                    this.firstFile = this.list[0].file
+                    //this.firstFile = this.list[0].file
                 })
                 .catch(err => console.log(err))
                     },
@@ -160,7 +222,15 @@ export default {
                 Authorization: `Basic ${this.$store.getters.token}`
             }
         }
-        if (this.$route.params.dir) this.getCsv(this.$route.params.dir)
+
+        //if (this.$route.params.dir) this.getCsv(this.$route.params.dir)
+        Object.keys(this.sections)
+            .forEach(key => {
+                if (this.sections[key].hasCsv) this.getCsv(key)
+            })
+        //if (this.$route.params.file) this.firstFile = this.$route.params.file
+        //this.updateLists(null)
+
     },
 
     computed: {

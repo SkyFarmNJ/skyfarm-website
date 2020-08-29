@@ -38,7 +38,6 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
           <v-card-text class="text-left">
             <v-btn
                color="error"
-               :to="docs"
                >
               COVID-19 Guidelines - June 25, 2020
             </v-btn>
@@ -54,13 +53,11 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
           </v-card-subtitle>
           <v-card-text class="text-left">
             <v-btn
-               :to="docs"
                >
               Camp Rules
             </v-btn><br>
             <v-btn
                class="mt-2"
-               :to="docs"
                >
               Sky Farm Bylaws
             </v-btn>
