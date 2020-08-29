@@ -3,9 +3,10 @@
 
     <v-row class="text-left">
       <v-col lg="8" mb-5 class="text-left">
-        <h2>Member Home</h2>
+        <h2>Club News</h2>
+        <hr>
 
-        <h3>2020-2012 Board of Governers Nomiminees</h3>
+        <h3>2020-2021 Board of Governors Nominees</h3>
 
 <P>The Nominating Committee thanks everyone who applied for a position on the Board of Governors for their initiative and dedication to Sky Farm. We are pleased to present our slate of candidates for the Sky Farm Board of Governors for the 2020-2021 season:</p>
 
@@ -40,7 +41,7 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
                color="error"
                :to="docs"
                >
-              COVID-19 Guidelines - June 25, 2020
+              COVID-19 Guidelines
             </v-btn>
           </v-card-text>
         </v-card>
