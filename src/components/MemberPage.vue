@@ -8,6 +8,7 @@
         v-for="dir in Object.keys(sections)"
         :key=dir
         :to=getRoute(dir)
+        :exact=true
         >
         {{sections[dir].name}}</v-tab>
     </v-tabs>

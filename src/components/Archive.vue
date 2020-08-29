@@ -13,10 +13,14 @@
            >
         </v-select>
       </v-col>
-      <v-col lg="5" sm="12" class="text-center">
+      <v-col lg="5" sm="12" class="text-center"
+        v-if="$vuetify.breakpoint.mdAndUp"
+        >
         <b>{{getDesc()}}</b>
       </v-col>
-      <v-col lg="4" sm="12" class="text-right">
+      <v-col lg="4" sm="12" class="text-right"
+        v-if="$vuetify.breakpoint.mdAndUp"
+        >
         {{file}}
       </v-col>
     </v-toolbar>
