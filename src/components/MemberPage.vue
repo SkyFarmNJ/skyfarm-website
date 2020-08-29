@@ -105,7 +105,7 @@ export default {
         pw: '',
         firstFile: '',
         options: [
-            { text: 'Member Home',          route: '/members/clubdocs' },
+            { text: 'Member Home',          route: '/members/home' },
             { text: 'Club Documents',       route: '/members/archive/docs',        param: 'docs'},
             { text: 'Minutes'       ,       route: '/members/archive/minutes',     param: 'minutes'},
             { text: 'Financial Statements', route: '/members/archive/statements',  param: 'statements'},
