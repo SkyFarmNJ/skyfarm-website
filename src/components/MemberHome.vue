@@ -2,7 +2,7 @@
   <v-container px-10 fluid>
 
     <v-row class="text-left">
-      <v-col lg="8" mb-5 class="text-left">
+      <v-col lg="9" mb-5 class="text-left">
         <h2>Club News</h2>
         <hr>
 
@@ -31,7 +31,7 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
       <v-col  mb-5 class="text-center">
         <v-card>
           <v-card-title>
-            COVID Guidelines
+            COVID Notices
           </v-card-title>
           <v-card-subtitle class="text-left">
             Keeping The Farm Safe
@@ -41,8 +41,16 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
                color="error"
                :to="docs"
                >
-              COVID-19 Guidelines
+              Camp Rules
+            </v-btn><br>
+            <v-btn
+               color="error"
+               :to="docs"
+               class="mt-2"
+               >
+              Pool Rules
             </v-btn>
+
           </v-card-text>
         </v-card>
 
