@@ -2,14 +2,14 @@
   <v-container px-10 fluid>
 
     <v-row class="text-left">
-      <v-col cols="8" mb-5 class="text-left">
+      <v-col lg="8" mb-5 class="text-left">
         <h2>Member Home</h2>
-        
+
         <h3>2020-2012 Board of Governers Nomiminees</h3>
 
 <P>The Nominating Committee thanks everyone who applied for a position on the Board of Governors for their initiative and dedication to Sky Farm. We are pleased to present our slate of candidates for the Sky Farm Board of Governors for the 2020-2021 season:</p>
 
-<ul> 
+<ul>
 <li>Michael D- President</li>
 <li>Anthony M- Vice President</li>
 <li>Erica F- Secretary</li>
@@ -20,14 +20,14 @@
 <li>Josh H - Trustee</li>
 </ul>
 <P>Additional candidates may be nominated by petition. See Sky Farm Bylaws, Article VI, Section 6 for details.</P>
- 
+
 <P>Your Sky Farm Nominating Committee;<br>
 Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
 
 
 
       </v-col>
-      <v-col cols="4" mb-5 class="text-center">
+      <v-col  mb-5 class="text-center">
         <v-card>
           <v-card-title>
             COVID Guidelines
@@ -36,7 +36,7 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
             Keeping The Farm Safe
           </v-card-subtitle>
           <v-card-text class="text-left">
-            <v-btn 
+            <v-btn
                color="error"
                :to="docs"
                >
@@ -53,12 +53,12 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
             Knowning the rules
           </v-card-subtitle>
           <v-card-text class="text-left">
-            <v-btn 
+            <v-btn
                :to="docs"
                >
               Camp Rules
             </v-btn><br>
-            <v-btn 
+            <v-btn
                class="mt-2"
                :to="docs"
                >
