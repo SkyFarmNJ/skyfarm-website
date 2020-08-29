@@ -2,10 +2,11 @@
   <v-container px-10 fluid>
 
     <v-row class="text-left">
-      <v-col lg="8" mb-5 class="text-left">
-        <h2>Member Home</h2>
+      <v-col lg="9" mb-5 class="text-left">
+        <h2>Club News</h2>
+        <hr>
 
-        <h3>2020-2012 Board of Governers Nomiminees</h3>
+        <h3>2020-2021 Board of Governors Nominees</h3>
 
 <P>The Nominating Committee thanks everyone who applied for a position on the Board of Governors for their initiative and dedication to Sky Farm. We are pleased to present our slate of candidates for the Sky Farm Board of Governors for the 2020-2021 season:</p>
 
@@ -30,7 +31,7 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
       <v-col  mb-5 class="text-center">
         <v-card>
           <v-card-title>
-            COVID Guidelines
+            COVID Notices
           </v-card-title>
           <v-card-subtitle class="text-left">
             Keeping The Farm Safe
@@ -39,8 +40,16 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
             <v-btn
                color="error"
                >
-              COVID-19 Guidelines - June 25, 2020
+              Camp Rules
+            </v-btn><br>
+            <v-btn
+               color="error"
+               :to="docs"
+               class="mt-2"
+               >
+              Pool Rules
             </v-btn>
+
           </v-card-text>
         </v-card>
 
