@@ -1,21 +1,27 @@
 <template>
 <v-container px-10 fluid>
+
+
   <v-row>
     <v-toolbar>
-      <v-col cols="3">
-      <v-select
-        v-model=file
-        :items=getList()
-        item-text="name"
-        item-value="file"
-        >
-      </v-select>
+      <v-col lg="3" sm="12">
+        <v-select
+           v-model=file
+           :items=getList()
+           item-text="name"
+           item-value="file"
+           >
+        </v-select>
       </v-col>
-      <b>{{getDesc()}}</b>
-      <v-spacer/>
-      {{file}}
+      <v-col lg="5" sm="12" class="text-center">
+        <b>{{getDesc()}}</b>
+      </v-col>
+      <v-col lg="4" sm="12" class="text-right">
+        {{file}}
+      </v-col>
     </v-toolbar>
   </v-row>
+  
   <v-row>
   <PdfControls
     :file=file
@@ -32,7 +38,7 @@
 export default {
     data: () => ({
         content: '',
-	title: null
+        title: null
     }),
     props: {
         list: {
@@ -61,6 +67,7 @@ export default {
             for (var x in list) {
                 if (this.file == list[x].file) return list[x].desc
             }
+            console.log("[Archive:getDesc()]: failed to find desc for " + this.file)
         },
         /*
         checkList() {
@@ -76,10 +83,12 @@ export default {
             this.title = this.desc.get(val)
         }
         */
-        /*file: function() {
-            this.$router.push(`/members/archive/${this.$route.params.dir}/${this.file}`)
-        }
-        */
+        file: function() {
+            console.log('[Archive::watch::file]: ' + `/members/archive/${this.$route.params.dir}/${this.file}`)
+            document.location.href = '#/members/archive/' + this.$route.params.dir + '/' + this.file + '?redir'
+            //this.$router.push(`/members/archive/${this.$route.params.dir}/${this.file}`)
+        },
+        
         '$route.params.file': function() {this.file = this.$route.params.file}
     },
      mouted() {
