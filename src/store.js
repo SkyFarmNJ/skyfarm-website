@@ -19,20 +19,24 @@ export default new Vuex.Store({
     },
     actions: {
         login ({commit}, authData) {
-            const encodedUserPwd = btoa(`${authData.user}:${authData.pw}`);
-            axios.get("/members/docs.csv", {
-                auth: { username: authData.user, password: authData.pw}
+            return new Promise((resolve, reject) => {
+                const encodedUserPwd = btoa(`${authData.user}:${authData.pw}`);
+                axios.get("/members/docs.csv", {
+                    auth: { username: authData.user, password: authData.pw}
+                })
+                    .then(res => {
+                        console.log(res)
+                        commit('authUser', encodedUserPwd)
+                        localStorage.setItem('token', encodedUserPwd)
+                        router.push('/members')
+                        console.log("[store.login] auth ok")
+                        resolve(true)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        reject(false)
+                    })
             })
-                .then(res => {
-                    console.log(res)
-                    commit('authUser', encodedUserPwd)
-                    localStorage.setItem('token', encodedUserPwd)
-                    router.push('/members')
-
-                })
-                .catch(err => {
-                    console.log(err)
-                })
 
         },
         logout ({commit}) {

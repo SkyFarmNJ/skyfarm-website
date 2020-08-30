@@ -121,9 +121,10 @@ export default {
     }),
     methods: {
         login() {
-            this.$store.dispatch('login', {user: this.user, pw: this.pw})
+            this.$store.dispatch('login', {user: this.user, pw: this.pw}).then(() => {
+                this.initSections()
+            })
             this.close()
-            this.initSections()
         },
         close() {
             this.$emit('exit', null)
@@ -137,9 +138,10 @@ export default {
             }
         },
         getCsv(dir) {
+            console.log("[MemberPage.getCsv]: headers: " + this.headers.Authorization)
             axios.get(`/members/${dir}.csv`, this.headers)
                 .then(res => {
-                    console.log(res)
+                    console.log("[MemberPage.getCsv]: res: " +res)
                     this.sections[dir].list = []
                     res.data
                         .split('\n')
@@ -156,25 +158,31 @@ export default {
                 .catch(err => console.log(err))
         },
         initSections() {
+            this.initHeaders()
             Object.keys(this.sections)
                 .forEach(key => {
                     console.log("[MemberPage.initSections] Loading: " + key)
                     if (this.sections[key].hasCsv) this.getCsv(key)
                 })
         },
+        initHeaders() {
+            this.headers = {
+                headers: {
+                    Authorization: `Basic ${this.$store.getters.token}`
+                }
+            }
+            console.log("[MemberPage.initHeaders] token: " + this.$store.getters.token )
+        },
     },
 
     mounted() {
-        this.headers = {
-            headers: {
-                Authorization: `Basic ${this.$store.getters.token}`
-            }
-        }
         if (this.$store.getters.ifAuthenticated) this.initSections()
     },
 
     computed: {
-        auth() {return this.$store.getters.ifAuthenticated}
+        auth() {
+            return this.$store.getters.ifAuthenticated            
+        }
     },
 }
 </script>
