@@ -22,7 +22,8 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 const encodedUserPwd = btoa(`${authData.user}:${authData.pw}`);
                 axios.get("/members/docs.csv", {
-                    auth: { username: authData.user, password: authData.pw}
+                    auth: { username: authData.user, password: authData.pw},
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
                 })
                     .then(res => {
                         console.log(res)
