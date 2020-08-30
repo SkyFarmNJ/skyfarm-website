@@ -1,7 +1,6 @@
 <template>
 <v-container px-10 fluid>
 
-
   <v-row>
     <v-toolbar>
       <v-col lg="3" sm="12">
@@ -25,7 +24,7 @@
       </v-col>
     </v-toolbar>
   </v-row>
-  
+
   <v-row>
   <PdfControls
     :file=file
@@ -36,9 +35,6 @@
 </template>
 
 <script>
-//import axios from 'axios'
-//import router from '../router.js'
-
 export default {
     data: () => ({
         content: '',
@@ -50,7 +46,7 @@ export default {
         },
         file: {
             type: String,
-            default: function() {return this.$route.params.file}
+            default: function() {return this.$route.query.file}
         },
         desc: {
             type: Map
@@ -73,36 +69,14 @@ export default {
             }
             console.log("[Archive:getDesc()]: failed to find desc for " + this.file)
         },
-        /*
-        checkList() {
-            console.log(this.$route.params.dir)
-            if (this.list.length == 0) this.$emit('update', this.$route.params.dir)
-        },
-        */
     },
     watch: {
-        //list: function() {this.checkList()},
-        /*
-        file: function(val) {
-            this.title = this.desc.get(val)
-        }
-        */
         file: function() {
             console.log('[Archive::watch::file]: ' + `/members/archive/${this.$route.params.dir}/${this.file}`)
-            document.location.href = '#/members/archive/' + this.$route.params.dir + '/' + this.file + '?redir'
-            //this.$router.push(`/members/archive/${this.$route.params.dir}/${this.file}`)
+            document.location.href = `#/members/archive/${this.$route.params.dir}?file=${this.file}`
         },
-        
-        '$route.params.file': function() {this.file = this.$route.params.file}
-    },
-     mouted() {
-        /*
-        console.log(`Archive mounted: file is ${this.$route.params.file}`)
-        this.file = this.$route.params.file
-        this.checkList()
-        */
-         //console.log('what the heck')
-         //this.file = this.$route.params.file
+
+        '$route.query.file': function() {this.file = this.$route.query.file}
     },
 }
 </script>

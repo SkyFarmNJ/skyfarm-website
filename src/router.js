@@ -19,8 +19,7 @@ const routes = [
     { path: '/members',    component: cmp('MemberPage'),
       children: [
           { path: 'home',         component: cmp('MemberHome'), alias:''  },
-          { path: 'archive/:dir/:file', component: cmp('Archive')},
-          { path: 'archive/:dir', component: cmp('Archive'), redirect:'home'},
+          { path: 'archive/:dir', component: cmp('Archive')},
       ]
     }
 ]

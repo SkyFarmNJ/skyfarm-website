@@ -39,14 +39,14 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
           <v-card-text class="text-left">
             <v-btn
                color="error"
-               to='/members/archive/docs/Sky Farm Covid 19 Guidelines v2_6.pdf'
+               to='/members/archive/docs?file=Sky Farm Covid 19 Guidelines v2_6.pdf'
                >
               Camp Rules
             </v-btn><br>
             <v-btn
                color="error"
                class="mt-2"
-               to='/members/archive/docs/Sky Farm Covid 19 Pool & Spa Guidelines v1.1.pdf'
+               to='/members/archive/docs?file=Sky Farm Covid 19 Pool and Spa Guidelines v1.1.pdf'
                >
               Pool Rules
             </v-btn>
@@ -63,13 +63,13 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
           </v-card-subtitle>
           <v-card-text class="text-left">
             <v-btn
-               to='/members/archive/docs/Camp Rules September 2019.pdf'
+               to='/members/archive/docs?file=Camp Rules September 2019.pdf'
                >
               Camp Rules
             </v-btn><br>
             <v-btn
                class="mt-2"
-               to='/members/archive/docs/Bylaws-7-14-19-Word.pdf'
+               to='/members/archive/docs?file=Bylaws-7-14-19-Word.pdf'
                >
               Sky Farm Bylaws
             </v-btn>
