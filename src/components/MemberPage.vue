@@ -84,7 +84,7 @@ import axios from 'axios'
 export default {
     data: () => ({
         list: [],
-	desc: new Map(),
+        desc: new Map(),
         headers: null,
         content: {data: null, contentType: null, url: null},
         numPages: 1,
@@ -123,6 +123,7 @@ export default {
         login() {
             this.$store.dispatch('login', {user: this.user, pw: this.pw})
             this.close()
+            this.initSections()
         },
         close() {
             this.$emit('exit', null)
@@ -154,6 +155,13 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
+        initSections() {
+            Object.keys(this.sections)
+                .forEach(key => {
+                    console.log("[MemberPage.initSections] Loading: " + key)
+                    if (this.sections[key].hasCsv) this.getCsv(key)
+                })
+        },
     },
 
     mounted() {
@@ -162,11 +170,7 @@ export default {
                 Authorization: `Basic ${this.$store.getters.token}`
             }
         }
-
-        Object.keys(this.sections)
-            .forEach(key => {
-                if (this.sections[key].hasCsv) this.getCsv(key)
-            })
+        if (this.$store.getters.ifAuthenticated) this.initSections()
     },
 
     computed: {
