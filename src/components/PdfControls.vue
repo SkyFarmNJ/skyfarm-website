@@ -33,6 +33,7 @@
   </v-toolbar>
   </v-row>
   <v-row> <!--  style="width: 100%"> -->
+   <v-col cols="12">
     <v-card>
     <pdf
       :src="{
@@ -45,6 +46,7 @@
       >
     </pdf>
     </v-card>
+   </v-col>
   </v-row>
 </v-container>
 </template>
