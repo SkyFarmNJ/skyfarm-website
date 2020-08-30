@@ -45,6 +45,7 @@
                    name="login"
                    prepend-icon="mdi-account"
                    type="text"
+                   :error-messages=errorMsg
                    ></v-text-field>
 
                 <v-text-field
@@ -54,6 +55,7 @@
                    name="password"
                    prepend-icon="mdi-lock"
                    type="password"
+                   :error=passError
                    @keydown.enter="login"
                    ></v-text-field>
               </v-form>
@@ -86,6 +88,8 @@ export default {
         list: [],
         desc: new Map(),
         headers: null,
+        passError: false,
+        errorMsg: null,
         content: {data: null, contentType: null, url: null},
         numPages: 1,
         curPage: 1,
@@ -123,6 +127,9 @@ export default {
         login() {
             this.$store.dispatch('login', {user: this.user, pw: this.pw}).then(() => {
                 this.initSections()
+            }, () => {
+                this.errorMsg  = "Login Failed."
+                this.passError = true
             })
             this.close()
         },

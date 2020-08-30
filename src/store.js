@@ -33,7 +33,7 @@ export default new Vuex.Store({
                         resolve(true)
                     })
                     .catch(err => {
-                        console.log(err)
+                        console.log("[store.login] auth failed: " + err)
                         reject(false)
                     })
             })
