@@ -18,7 +18,7 @@
                text
                disabled
              >
-          <font-awesome-icon color="blue" :icon="{prefix: 'fas', iconName: c.icon}"/> {{c.text}}
+          <font-awesome-icon color="blue" :icon="{prefix: 'fas', iconName: c.icon}"/><font color="white"> {{c.text}}</font>
           </v-btn>
       </v-container>
 
