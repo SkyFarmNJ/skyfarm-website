@@ -21,9 +21,10 @@ export default new Vuex.Store({
         login ({commit}, authData) {
             return new Promise((resolve, reject) => {
                 const encodedUserPwd = btoa(`${authData.user}:${authData.pw}`);
-                axios.get("/members/docs.csv", {
-                    auth: { username: authData.user, password: authData.pw},
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                //axios.get("/members/docs.csv", {
+                axios.get("/cgi-bin/request.cgi", {
+                    //auth: { username: authData.user, password: authData.pw},
+                    headers: { 'X-WWW-Validation': encodedUserPwd }
                 })
                     .then(res => {
                         console.log(res)
