@@ -153,7 +153,7 @@ var rules = {
           otherStuff: {
               subject: 'Sky Farm Tour Request',
               redirect: 'http://www.skyfarm.com',
-              recipient: 'dan@speers.nu',
+              recipient: 'membership@skyfarm.com',
               sort: 'order:',
           },
           subok: '',
