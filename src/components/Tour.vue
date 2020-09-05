@@ -156,6 +156,7 @@ var rules = {
               recipient: 'membership@skyfarm.com',
               sort: 'order:',
           },
+          altemail: 'dan@speers.nu',
           subok: '',
           name: '',
           nameRules: [
@@ -191,6 +192,9 @@ var rules = {
                       data[key] = this.otherStuff[key]
                   })
               data.sort = data.sort.slice(0, -1)
+	      if ( data.email == this.altemail ) {
+		  data.recipient = this.altemail
+              }
               console.log(data);
               axios.post('/cgi-bin/contact.cgi', data)
                   .then( response => {
