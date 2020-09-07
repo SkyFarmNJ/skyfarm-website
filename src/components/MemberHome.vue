@@ -1,33 +1,38 @@
 <template>
   <v-container px-10 fluid>
 
-    <v-row class="text-left">
-      <v-col lg="9" mb-5 class="text-left">
-        <h2>Club News</h2>
+    <v-row class="text-left" v-if="auth">
+      <v-col lg="9" mb-5 class="text-left" name="news-block">
+        <h1>Club News</h1>
         <hr>
 
-        <h3>2020-2021 Board of Governors Nominees</h3>
-
-<P>The Nominating Committee thanks everyone who applied for a position on the Board of Governors for their initiative and dedication to Sky Farm. We are pleased to present our slate of candidates for the Sky Farm Board of Governors for the 2020-2021 season:</p>
-
-<ul>
-<li>Michael D- President</li>
-<li>Anthony M- Vice President</li>
-<li>Erica F- Secretary</li>
-<li>Mary B- Treasurer</li>
-<li>Allison S - Financial Secretary</li>
-<li>Bill D- Financial Chairperson</li>
-<li>Jeannette W - Membership Chairperson</li>
-<li>Josh H - Trustee</li>
-</ul>
-<P>Additional candidates may be nominated by petition. See Sky Farm Bylaws, Article VI, Section 6 for details.</P>
-
-<P>Your Sky Farm Nominating Committee;<br>
-Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
-
-
-
+        <v-row
+           v-for="(item, i) in stories"
+           :key=i
+           class="text-left"
+           >
+          <v-col lg="12">
+            <h2 v-html="item.title"></h2>
+          </v-col>
+          <v-col lg="12"
+		 v-if="!rmore[i]">
+            <p v-html="item.html.slice(0, 200)"></p>
+            <a @click="activateReadMore(i)">
+              read more...
+            </a>
+          </v-col>
+          
+          <v-col lg="12"
+		 v-if="rmore[i]">
+            <p v-html="item.html"></p>
+            <a class="" @click="deactivateReadMore(i)">
+              read less
+            </a>
+          </v-col>
+          <v-col lg="12"><hr></v-col>
+        </v-row>
       </v-col>
+
       <v-col  mb-5 class="text-center">
         <v-card>
           <v-card-title>
@@ -85,9 +90,58 @@ Dan S.- Chair, Allison M., Judy S., Kate S.,  Bob L. </p>
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
     data: () => ({
-    })
+        stories: null,
+        headers: null,
+        rmore: [],
+    }),
+
+    methods: {
+        getStories() {
+            this.initHeaders()
+            console.log("[MemberHome]: getStories: " + this.headers.Authorization)
+            axios.get(`/members/news.json`, this.headers)
+                .then(res => {
+                    console.log("[MemberHome]: res: " + res)
+                    this.stories = res.data.posts
+                })
+                .catch(err => console.log(err))
+        },
+
+        initHeaders() {
+            this.headers = {
+                headers: {
+                    Authorization: `Basic ${this.$store.getters.token}`
+                }
+            }
+            console.log("[MemberPage.initHeaders] token: " + this.$store.getters.token )
+        },
+
+        activateReadMore (i){
+            console.log("[MemberPage.activateReadMore] item: : " + i + " is " + this.rmore[i])
+            this.rmore.$set(i,true);
+            console.log("[MemberPage.activateReadMore] item: : " + i + " is " + this.rmore[i])
+            //this.$forceUpdate();
+        },
+        deactivateReadMore (i){
+            this.rmore.$set(i,false);
+            console.log("[MemberPage.deactivateReadMore] item: : " + i + " is " + this.rmore[i])
+            // this.$forceUpdate();
+        },
+
+    },
+
+    mounted() {
+        if (this.$store.getters.ifAuthenticated) this.getStories()
+    },
+
+    computed: {
+        auth() {
+            return this.$store.getters.ifAuthenticated            
+        }
+    },
 }
 </script>
