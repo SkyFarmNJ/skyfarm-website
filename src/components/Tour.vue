@@ -192,8 +192,8 @@ var rules = {
                       data[key] = this.otherStuff[key]
                   })
               data.sort = data.sort.slice(0, -1)
-	      if ( data.email == this.altemail ) {
-		  data.recipient = this.altemail
+              if ( data.email == this.altemail ) {
+                  data.recipient = this.altemail
               }
               console.log(data);
               axios.post('/cgi-bin/contact.cgi', data)
