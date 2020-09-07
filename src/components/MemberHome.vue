@@ -121,15 +121,12 @@ export default {
         },
 
         activateReadMore (i){
+            this.$set(this.rmore,i,true);
             console.log("[MemberPage.activateReadMore] item: : " + i + " is " + this.rmore[i])
-            this.rmore.$set(i,true);
-            console.log("[MemberPage.activateReadMore] item: : " + i + " is " + this.rmore[i])
-            //this.$forceUpdate();
         },
         deactivateReadMore (i){
-            this.rmore.$set(i,false);
+            this.$set(this.rmore,i,false);
             console.log("[MemberPage.deactivateReadMore] item: : " + i + " is " + this.rmore[i])
-            // this.$forceUpdate();
         },
 
     },
