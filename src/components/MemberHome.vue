@@ -16,10 +16,10 @@
           </v-col>
           <v-col lg="12"
 		 v-if="!rmore[i]">
-            <p v-html="item.html.slice(0, 200)"></p>
-            <a @click="activateReadMore(i)">
-              read more...
-            </a>
+            <p v-html="item.html.slice(0, 200) + ' ...'"></p>
+            <b><a @click="activateReadMore(i)">
+              read more
+            </a></b>
           </v-col>
           
           <v-col lg="12"
