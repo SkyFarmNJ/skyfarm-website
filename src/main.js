@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
+import LoadScript from 'vue-plugin-load-script';
 //import VueRouter from 'vue-router';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
@@ -12,6 +13,7 @@ import store from './store'
 import router from './router'
 
 //Vue.use(VueRouter)
+Vue.use(LoadScript)
 
 Vue.config.productionTip = false
 

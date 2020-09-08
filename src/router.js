@@ -20,6 +20,7 @@ const routes = [
       children: [
           { path: 'home',         component: cmp('MemberHome'), alias:''  },
           { path: 'archive/:dir', component: cmp('Archive')},
+          { path: 'payment',      component: cmp('Payment')},
       ]
     }
 ]

@@ -10,27 +10,36 @@
            v-for="(item, i) in stories"
            :key=i
            class="text-left"
-           >
+          >
           <v-col lg="12">
             <h2 v-html="item.title"></h2>
           </v-col>
+          <v-col lg="12">
+            <component
+              :is="test(item.html, i)"
+              ></component>
+            <hr/>
+          </v-col>
+          <!--
           <v-col lg="12"
-		 v-if="!rmore[i]">
-            <p v-html="item.html.slice(0, 200) + ' ...'"></p>
+                 v-if="!rmore[i]">
+            <p v-html="item.html.slice(0, 200) + '...'"></p>
             <b><a @click="activateReadMore(i)">
               read more
             </a></b>
           </v-col>
-          
+
           <v-col lg="12"
-		 v-if="rmore[i]">
+                 v-if="rmore[i]">
             <p v-html="item.html"></p>
             <a class="" @click="deactivateReadMore(i)">
               read less
             </a>
           </v-col>
           <v-col lg="12"><hr></v-col>
+          -->
         </v-row>
+
       </v-col>
 
       <v-col  mb-5 class="text-center">
@@ -64,7 +73,7 @@
             Camp Documents
           </v-card-title>
           <v-card-subtitle class="text-left">
-            Knowning the rules
+            Knowing the rules
           </v-card-subtitle>
           <v-card-text class="text-left">
             <v-btn
@@ -100,6 +109,26 @@ export default {
     }),
 
     methods: {
+        test(html, i) {
+            var vm = this
+            return {
+                render: function(h) {
+                    return h('div', {
+                        domProps: {
+                            innerHTML: (vm.rmore[i])
+                                ? html + '<a id="fancy_tag">(read less)</a>'
+                                : html.slice(0,400) + '<a id="fancy_tag">...(read more)</a>'
+                        },
+                        on: {
+                            click: (e) => {
+                                if (e.target.id == "fancy_tag") vm.$set(vm.rmore, i, !vm.rmore[i])
+                            }
+                        },
+                    })
+                },
+                data: function() {return{}},
+            }
+        },
         getStories() {
             this.initHeaders()
             console.log("[MemberHome]: getStories: " + this.headers.Authorization)
@@ -137,8 +166,8 @@ export default {
 
     computed: {
         auth() {
-            return this.$store.getters.ifAuthenticated            
-        }
+            return this.$store.getters.ifAuthenticated
+        },
     },
 }
 </script>

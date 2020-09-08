@@ -121,6 +121,10 @@ export default {
                 hasCsv: true,
                 list: [],
             },
+            'payment': {
+                name: 'Payments',
+                hasCsv: false,
+            },
         },
     }),
     methods: {
@@ -188,7 +192,7 @@ export default {
 
     computed: {
         auth() {
-            return this.$store.getters.ifAuthenticated            
+            return this.$store.getters.ifAuthenticated
         }
     },
 }
