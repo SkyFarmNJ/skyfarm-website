@@ -84,6 +84,10 @@
                   <td align="left" >Sales Tax {{taxrate}}%</td>
                   <td align="right">${{getSalesTax().toFixed(2)}}</td>
                 </tr>
+                <tr v-if="options[selected].cif">
+                  <td align="left" >Capital Improvement Fund</td>
+                  <td align="right">${{itemChoice[0].cif.toFixed(2)}}</td>
+                </tr>
                 <tr>
                   <td align="left" >Total:</td>
                   <td align="right">${{getOptionTotal().toFixed(2)}}</td>
@@ -149,7 +153,7 @@
               <td align="right">${{subtotal.toFixed(2)}}</td>
             </tr>
             <tr>
-              <td>PalPal Fees:</td>
+              <td>PayPal Fees:</td>
               <td align="right">${{getPaypalFee().toFixed(2)}}</td>
             </tr>
             <tr>
@@ -176,7 +180,7 @@ export default {
             amt: '',
             purpose: '',
         },
-	extras: {},
+        extras: {},
         exlabel: {
             guest: "Name of Guest:",
             aanr_id: "AANR Member ID:",
@@ -195,12 +199,13 @@ export default {
             'Membership': {
                 desc: "Yearly membership dues.",
                 items: [
-                    { name: "Resident Couple",     amount: 990 },
-                    { name: "Resident Single",     amount: 495 },
-                    { name: "Non-Resident Couple", amount: 375 },
-                    { name: "Non-Resident Single", amount: 185 },
+                    { name: "Resident Couple",     amount: 890, cif: 100 },
+                    { name: "Resident Single",     amount: 445, cif:  50 },
+                    { name: "Non-Resident Couple", amount: 280, cif: 100 },
+                    { name: "Non-Resident Single", amount: 140, cif:  50 },
                 ],
                 taxable: true,
+                cif: true,
             },
             'Grounds Fee': {
                 desc: "For non-resident members visiting Sky Farm",
@@ -248,7 +253,7 @@ export default {
             this.setDefaults();
         },
         setDefaults() {
-	    this.extras = Object.assign({}, this.extrasDefaults)
+            this.extras = Object.assign({}, this.extrasDefaults)
         },
         addToOrder() {
             var desc = this.selected + "/" + this.itemChoice[0].name;
@@ -286,9 +291,9 @@ export default {
             }
         },
         getPaypalFee() {
-	    var r = ( 100 - 2.9 ) / 100;
-	    var i = ( this.subtotal + 0.30 ) / r;
-	    var s = ( i - this.subtotal )
+            var r = ( 100 - 2.9 ) / 100;
+            var i = ( this.subtotal + 0.30 ) / r;
+            var s = ( i - this.subtotal )
             return s;
             // return 0.30 + this.subtotal * .029
         },
@@ -322,7 +327,12 @@ export default {
             }
         },
         getOptionTotal() {
-            return ( this.getCost() + this.getSalesTax() )
+            return ( this.getCost() + this.getSalesTax() + this.getCIF() )
+        },
+        getCIF() {
+            if ( this.options[this.selected].cif ) {
+                return this.itemChoice[0].cif
+            } else return 0
         },
         getTotal() {
             return ( this.subtotal + this.getPaypalFee() )
