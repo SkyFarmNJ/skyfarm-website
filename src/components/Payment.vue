@@ -8,14 +8,33 @@
         <v-card-title>
           Choose a Payment Category
         </v-card-title>
-        <v-card-text class="text-left">
+        <v-card-text>
+          <v-row>
+          <v-col
+             cols="3"
+             align="center"
+             justify="center"
+             v-for="key in Object.keys(options)">
           <v-btn 
-             v-for="key in Object.keys(options)"
              v-model="selected"
+             fab
+             x-large
              :key=selected
              :value=key
              @click.stop="selected = key"
-             >{{key}}</v-btn>
+             :color=options[key].color
+             ><v-icon>{{options[key].icon}}</v-icon></v-btn><br>
+          <v-btn 
+             v-model="selected"
+             text
+             :key=selected
+             :value=key
+             @click.stop="selected = key"
+             >
+            {{key}}
+            </v-btn>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
       
@@ -48,7 +67,7 @@
             <v-col lg="6">
               <div v-if="options[selected].date">
                 <v-date-picker
-                   range
+                   multiple
                    v-model=range
                    class="pl-5"
                    ></v-date-picker>
@@ -206,6 +225,8 @@ export default {
                 ],
                 taxable: true,
                 cif: true,
+                icon: "mdi-card-account-details-outline",
+                color: "orange",
             },
             'Grounds Fee': {
                 desc: "For non-resident members visiting Sky Farm",
@@ -214,6 +235,8 @@ export default {
                     { name: "Couple", amount: 40 },
                 ],
                 date: true,
+                icon: 'mdi-pine-tree',
+                color: "green",
             },
             'Guest Fee': {
                 items: [
@@ -221,6 +244,8 @@ export default {
                     { name: "Non-AANR Member", amount: 25, guest: true },
                 ],
                 date: true,
+                icon: 'mdi-account-plus-outline',
+                color: "blue",
             },
             'Campsite Fee': {
                 items: [
@@ -228,6 +253,8 @@ export default {
                     { name: "Seasonal", amount: 600 },
                 ],
                 date: true,
+                icon: 'mdi-tent',
+                color: "brown",
             },
             'Other Payments': {
                 cost: 5,
@@ -236,6 +263,8 @@ export default {
                     { name: "General Payment",           amount:   0, amt: true, purpose: true },
                     { name: "Site License Transfer Fee", amount: 100 },
                 ],
+                icon: 'mdi-cash-usd-outline',
+                color: "yellow",
             },
         },
         headers: [
@@ -258,7 +287,7 @@ export default {
         addToOrder() {
             var desc = this.selected + "/" + this.itemChoice[0].name;
             if ( this.options[this.selected].date ) {
-                desc += " " + this.getDays() + " days: " + this.range[0];
+                desc += " " + this.getDays() + " days: " + this.range.length + ": \n   " + this.range.join(', ');
             }
             if ( this.extras.guest ) {
                 desc += "\n Name: " + this.extras.guest
@@ -310,7 +339,7 @@ export default {
                 if (this.extras.amt) {
                     return this.extras.amt * 1
                 }
-                if (this.options[this.selected].date && this.range.length == 2) {
+                if (this.options[this.selected].date ) {
                     return this.getDays() * this.itemChoice[0].amount
                 } else return cost
             } else {
@@ -318,10 +347,11 @@ export default {
             }
         },
         getDays() {
-            if (this.options[this.selected].date && this.range.length == 2) {
-                const diffTime = Math.abs(Date.parse(this.range[1]) - Date.parse(this.range[0]));
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                return diffDays + 1
+            if (this.options[this.selected].date ) {
+                return this.range.length
+                //const diffTime = Math.abs(Date.parse(this.range[1]) - Date.parse(this.range[0]));
+                //const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                //return diffDays + 1
             } else {
                 return 1
             }
@@ -362,7 +392,7 @@ export default {
                 paypal.Button.render({
                     env: 'sandbox',
                     client: {
-                        sandbox: 'Abvpp7waGKupSk7svxlJMV8REpPDM87g_0Jd3OhJEN8dUVyuWrg6BKMs5932JRtepp4NuUfiKCXngT6E',
+                        sandbox: 'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y',
                     },
 
                     locale: 'en_US',
