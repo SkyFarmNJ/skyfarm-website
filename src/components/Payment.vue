@@ -141,7 +141,9 @@
     </v-col>
     <v-col lg="4" mb-5 class="text-left">
       <h2>Order Summary</h2>
-
+      <v-card v-if="!isLive()">
+        <v-icon color="orange">mdi-alert-circle</v-icon> Paypal Sandbox
+      </v-card>
       <v-data-table
          :headers="headers"
          :items="order"
@@ -382,6 +384,11 @@ export default {
                  +  "Total     : " + this.getTotal().toFixed(2)
 
             return desc
+        },
+        isLive() {
+            if ( document.location.host == 'www.skyfarm.com' && documnet.location.pathname == '/main/' ) {
+                return true
+            } else return false
         },
     },
     mounted() {
