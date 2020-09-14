@@ -1,9 +1,11 @@
 <template>
-<v-container px-10 fluid>
+<v-container px-lg-10 fluid>
 
   <v-row v-if="auth">
 
-    <v-tabs align-with-title>
+    <v-tabs align-with-title
+        v-if="$vuetify.breakpoint.mdAndUp"
+            >
       <v-tab
         v-for="dir in Object.keys(sections)"
         :key=dir
@@ -11,6 +13,17 @@
         >
         {{sections[dir].name}}</v-tab>
     </v-tabs>
+
+    <v-select v-else
+              v-model=menuPick
+              :items=menuItems
+              @change="goRoute()"
+              item-text="name"
+              item-value="dir"
+              solo
+              dense
+              >
+    </v-select>
 
     <router-view
       :sections=this.sections
@@ -96,6 +109,7 @@ export default {
         user: '',
         pw: '',
         firstFile: '',
+        menuPick: 'home',
         sections: {
             'home': {
                 name: 'Member Home',
@@ -148,6 +162,9 @@ export default {
                 return `${prefix}/archive/${dir}?file=${this.sections[dir].list[0].file}`
             }
         },
+        goRoute() {
+            this.$router.push({ path: this.getRoute(this.menuPick) })
+        },
         getCsv(dir) {
             console.log("[MemberPage.getCsv]: headers: " + this.headers.Authorization)
             axios.get(`/members/${dir}.csv`, this.headers)
@@ -193,7 +210,15 @@ export default {
     computed: {
         auth() {
             return this.$store.getters.ifAuthenticated
-        }
+        },
+        menuItems() {
+            var list = [];
+            for (var item in this.sections) {
+                console.log("[MemberPage.menuItems]: item: " + item)
+                list.push({ name: this.sections[item].name, dir: item })
+            }
+            return list
+        },
     },
 }
 </script>

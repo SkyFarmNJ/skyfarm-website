@@ -59,6 +59,7 @@
              class="elevation-1"
              hide-default-footer
              calculate-widths
+             disable-sort
              >
             <template v-slot:item.amount="{ item }">
               <span>${{item.amount.toFixed(2)}}</span>
@@ -312,12 +313,14 @@ export default {
             }
             this.goBack();
         },
+/*
         checkExtra(key) {
             console.log("[Payment.checkExtra] key: " + key.key);
             if(this.itemChoice && key) {
                 return this.itemChoice[0].[key.key]
             }
         },
+*/
         deleteItem (item) {
             const index = this.order.indexOf(item);
             this.order.splice(index, 1);
@@ -430,7 +433,7 @@ export default {
     mounted() {
         this.setDefaults()
         var vm = this
-        
+
         if ( this.isLive() ) {
             console.log("[Payment.mounted()]: PAYPAL IS LIVE")
             this.paypal.id = this.paypal.live
@@ -438,6 +441,7 @@ export default {
 
         this.$loadScript("https://www.paypal.com/sdk/js?client-id=" + this.paypal.id)
         .then(() => {
+            // eslint-disable-next-line
             paypal.Buttons({
 
                 createOrder: function(data, actions) {
