@@ -4,6 +4,7 @@
   <v-row class="text-left">
     <v-col lg="8" mb-5 class="text-left">
       <h2>Payments</h2>
+
       <v-card v-if="!selected">
         <v-card-title>
           Choose a Payment Category
@@ -191,6 +192,7 @@
       <div align="right" class="py-5 disabled" id="paypal-button"></div>
     </v-col>
   </v-row>
+
 </v-container>
 </template>
 
@@ -281,13 +283,16 @@ export default {
         paypal: {
             id:   'AdrZYH_SrkFk8DQ8N7bcyAN5sSC67w0Nt0IqRAJpt4ClF3Y8FGkqC80xd4vHFg1gGK4sqrRhlqciQcC_', // SF SANDBOX
             live: 'ATuVEwdc_Ai8YKkfJI10l6Mnj87NxO_arJ6IgR_jxauAgiFNCemgXxw_5gihm398iLTYr6NrOZZRUvp2', // SF LIVE
-/*
-            id:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
-            live: 'ASSEm7kdswk2tkWve-NErqICn3_iHWKnoJhzplJuCrSkS1wcPNzePLu1nXy3FMU5ZizXBUhQNt8J6mLY', // ds LIVE
-*/
+
+//            id:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
+//            live: 'ASSEm7kdswk2tkWve-NErqICn3_iHWKnoJhzplJuCrSkS1wcPNzePLu1nXy3FMU5ZizXBUhQNt8J6mLY', // ds LIVE
+
         },
     }),
     methods: {
+        thanks(details) {
+            this.$router.push({ name: "ThankYou", params: { details: details }})
+        },
         goBack() {
             this.selected   = null;
             this.itemChoice = null;
@@ -450,6 +455,7 @@ export default {
 
                 createOrder: function(data, actions) {
                     // This function sets up the details of the transaction, including the amount and line item details.
+
                     return actions.order.create({
                         purchase_units: [{
                             amount: {
@@ -477,7 +483,8 @@ export default {
                     // This function captures the funds from the transaction.
                     return actions.order.capture().then(function(details) {
                         // This function shows a transaction success message to your buyer.
-                        alert('Transaction completed by ' + details.payer.name.given_name);
+			console.log("[Payment.paypal.onApprove]: " + details)
+			vm.thanks(details);
                     });
                 }
 
