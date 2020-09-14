@@ -11,10 +11,12 @@
         <v-card-text>
           <v-row>
           <v-col
-             cols="3"
+             lg="3"
              align="center"
              justify="center"
-             v-for="key in Object.keys(options)">
+             v-for="key in Object.keys(options)"
+             :key=key
+             >
           <v-btn 
              v-model="selected"
              fab
@@ -75,8 +77,7 @@
             </v-col>
             <v-col lg="6">
               <div
-                 v-for="key in Object.keys(extras)"
-                 v-if="checkExtra({key})"
+                 v-for="key in checkExtra"
                  :key=key
                  >
                 <v-text-field
@@ -392,7 +393,7 @@ export default {
                              quantity: 1,
                            })
             }
-	    console.log("[Payment.getOrder]: " + items)
+            console.log("[Payment.getOrder]: " + items)
             return items
         },
         getDesc() {
@@ -407,20 +408,33 @@ export default {
             return desc
         },
         isLive() {
-            return true;
-            if ( document.location.host == 'www.skyfarm.com' && documnet.location.pathname == '/main/' ) {
+            //return true;
+            if ( document.location.host == 'www.skyfarm.com' && document.location.pathname == '/main/' ) {
                 return true
             } else return false
+        },
+    },
+    computed: {
+        checkExtra() {
+            var list = [];
+            if(this.itemChoice) {
+                for(var key in this.extrasDefaults) {
+                    if(this.itemChoice[0].[key]) {
+                        list.push(key)
+                    }
+                }
+            }
+            return list
         },
     },
     mounted() {
         this.setDefaults()
         var vm = this
-	
-	if ( this.isLive() ) {
-	    console.log("[Payment.mounted()]: PAYPAL IS LIVE")
-	    this.paypal.id = this.paypal.live
-	}
+        
+        if ( this.isLive() ) {
+            console.log("[Payment.mounted()]: PAYPAL IS LIVE")
+            this.paypal.id = this.paypal.live
+        }
 
         this.$loadScript("https://www.paypal.com/sdk/js?client-id=" + this.paypal.id)
         .then(() => {
