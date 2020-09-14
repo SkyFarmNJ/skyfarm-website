@@ -279,8 +279,12 @@ export default {
         order: [],
         subtotal: 0,
         paypal: {
+            id:   'AdrZYH_SrkFk8DQ8N7bcyAN5sSC67w0Nt0IqRAJpt4ClF3Y8FGkqC80xd4vHFg1gGK4sqrRhlqciQcC_', // SF SANDBOX
+            live: 'ATuVEwdc_Ai8YKkfJI10l6Mnj87NxO_arJ6IgR_jxauAgiFNCemgXxw_5gihm398iLTYr6NrOZZRUvp2', // SF LIVE
+/*
             id:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
             live: 'ASSEm7kdswk2tkWve-NErqICn3_iHWKnoJhzplJuCrSkS1wcPNzePLu1nXy3FMU5ZizXBUhQNt8J6mLY', // ds LIVE
+*/
         },
     }),
     methods: {
