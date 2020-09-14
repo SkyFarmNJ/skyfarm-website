@@ -265,7 +265,7 @@ export default {
             'Other Payments': {
                 cost: 5,
                 items: [
-                    { name: "Donation",                  amount:   0, amt: true },
+                    { name: "Donation",                  amount:   0, amt: true, purpose: true },
                     { name: "General Payment",           amount:   0, amt: true, purpose: true },
                     { name: "Site License Transfer Fee", amount: 100 },
                 ],
