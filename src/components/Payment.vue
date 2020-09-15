@@ -193,15 +193,36 @@
 
       
       <div align="right" class="py-5 disabled" id="paypal-button"></div>
+      <div>
+        <v-alert
+           :value="alert"
+           color="error"
+           dark
+           border="top"
+           icon="mdi-home"
+           transition="scale-transition"
+           >
+          WARNING:  You have enabled LIVE PayPal transactions.  Any payments you make are real.
+          <br>
+          <v-btn
+             color="primary"
+             @click="enableLive()"
+             >
+            OK
+          </v-btn>
+
+        </v-alert>
+      </div>
+
     </v-col>
   </v-row>
-
 </v-container>
 </template>
 
 <script>
 export default {
     data: () => ({
+        alert: false,
         extrasDefaults: {
             guest: '',
             aanr_id: '',
@@ -447,8 +468,16 @@ export default {
             this.$unloadScript("https://www.paypal.com/sdk/js?client-id=" + this.paypal.id);
             if ( this.override ) {
                 this.override = false;
-            } else this.override = true;
-            this.setupPaypal()
+                this.setupPaypal();
+            } else {
+                document.getElementById('paypal-button').innerHTML = "";
+                this.alert = true;
+            }
+        },
+        enableLive() {
+            this.override = true;
+            this.alert = false;
+            this.setupPaypal();
         },
         setupPaypal() {
             var vm = this
