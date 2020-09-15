@@ -144,8 +144,11 @@
     </v-col>
     <v-col lg="4" mb-5 class="text-left">
       <h2>Order Summary</h2>
-      <v-card v-if="!isLive()">
-        <v-icon color="orange">mdi-alert-circle</v-icon> Paypal Sandbox
+      <v-card v-if="isPreview()">
+        <span icon v-if="!isPPLive()">
+        <v-btn icon color="orange" @click="togglePaypal()"><v-icon>mdi-alert-circle</v-icon></v-btn> Paypal Sandbox</span>
+        <span v-if=" isPPLive()">
+        <v-btn icon color="green"  @click="togglePaypal()"><v-icon>mdi-alert-circle</v-icon></v-btn> Paypal LIVE!</span>
       </v-card>
       <v-data-table
          :headers="headers"
@@ -281,13 +284,16 @@ export default {
         order: [],
         subtotal: 0,
         paypal: {
-            id:   'AdrZYH_SrkFk8DQ8N7bcyAN5sSC67w0Nt0IqRAJpt4ClF3Y8FGkqC80xd4vHFg1gGK4sqrRhlqciQcC_', // SF SANDBOX
+            id: '',
+            sand: 'AdrZYH_SrkFk8DQ8N7bcyAN5sSC67w0Nt0IqRAJpt4ClF3Y8FGkqC80xd4vHFg1gGK4sqrRhlqciQcC_', // SF SANDBOX
             live: 'ATuVEwdc_Ai8YKkfJI10l6Mnj87NxO_arJ6IgR_jxauAgiFNCemgXxw_5gihm398iLTYr6NrOZZRUvp2', // SF LIVE
 
-//            id:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
+//            sand:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
 //            live: 'ASSEm7kdswk2tkWve-NErqICn3_iHWKnoJhzplJuCrSkS1wcPNzePLu1nXy3FMU5ZizXBUhQNt8J6mLY', // ds LIVE
 
         },
+        liveparam: null,
+        override: false,
     }),
     methods: {
         thanks(details) {
@@ -419,11 +425,87 @@ export default {
 
             return desc
         },
+        // Return actual state of Paypal integration.
+        isPPLive() {
+            return this.liveparam
+        },
+        // Is this running on the acutal live website.
         isLive() {
-            //return true;
+            if ( this.override ) return true
             if ( document.location.host == 'www.skyfarm.com' && document.location.pathname == '/main/' ) {
                 return true
             } else return false
+        },
+        // return true UNLESS this is the live site running on www.skyfarm.com.  So true if preview or other dev sites.
+        isPreview() {
+            console.log("[Payment.isPreview]")
+            if ( document.location.host == 'www.skyfarm.com' && document.location.pathname == '/main/' ) {
+                return false
+            } else return true
+        },
+        togglePaypal() {
+            this.$unloadScript("https://www.paypal.com/sdk/js?client-id=" + this.paypal.id);
+            if ( this.override ) {
+                this.override = false;
+            } else this.override = true;
+            this.setupPaypal()
+        },
+        setupPaypal() {
+            var vm = this
+            
+            if ( this.isLive() ) {
+                console.log("[Payment.mounted()]: PAYPAL IS LIVE");
+                this.paypal.id = this.paypal.live
+                this.liveparam = true
+            } else {
+                console.log("[Payment.mounted()]: PAYPAL IS SANDBOXED");
+                this.paypal.id = this.paypal.sand
+                this.liveparam = false
+            }
+            
+            this.$loadScript("https://www.paypal.com/sdk/js?client-id=" + this.paypal.id)
+                .then(() => {
+                    // eslint-disable-next-line
+                    paypal.Buttons({
+                        
+                        createOrder: function(data, actions) {
+                            // This function sets up the details of the transaction, including the amount and line item details.
+                            
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: vm.getTotal().toFixed(2),
+                                        currency_code: "USD",
+                                        breakdown: {
+                                            item_total: {
+                                                value: vm.getSubTotal().toFixed(2),
+                                                currency_code: "USD",
+                                            },
+                                            handling: {
+                                                value: vm.getPaypalFee().toFixed(2),
+                                                currency_code: "USD",
+                                            },
+                                        },
+                                    },
+                                    description: 'Sky Farm Online Order',
+                                    soft_descriptor: 'Sky Farm',
+                                    items: vm.getOrder(),
+                                }],
+                            });
+                        },
+                        
+                        onApprove: function(data, actions) {
+                            // This function captures the funds from the transaction.
+                            return actions.order.capture().then(function(details) {
+                                // This function shows a transaction success message to your buyer.
+                                console.log("[Payment.paypal.onApprove]: " + details)
+                                vm.thanks(details);
+                            });
+                        }
+                        
+                    }).render('#paypal-button')
+                })
+
         },
     },
     computed: {
@@ -440,58 +522,9 @@ export default {
         },
     },
     mounted() {
-        this.setDefaults()
-        var vm = this
-
-        if ( this.isLive() ) {
-            console.log("[Payment.mounted()]: PAYPAL IS LIVE")
-            this.paypal.id = this.paypal.live
-        }
-
-        this.$loadScript("https://www.paypal.com/sdk/js?client-id=" + this.paypal.id)
-        .then(() => {
-            // eslint-disable-next-line
-            paypal.Buttons({
-
-                createOrder: function(data, actions) {
-                    // This function sets up the details of the transaction, including the amount and line item details.
-
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: vm.getTotal().toFixed(2),
-                                currency_code: "USD",
-                                breakdown: {
-                                    item_total: {
-                                        value: vm.getSubTotal().toFixed(2),
-                                        currency_code: "USD",
-                                    },
-                                    handling: {
-                                        value: vm.getPaypalFee().toFixed(2),
-                                        currency_code: "USD",
-                                    },
-                                },
-                            },
-                            description: 'Sky Farm Online Order',
-                            soft_descriptor: 'Sky Farm',
-                            items: vm.getOrder(),
-                        }],
-                    });
-                },
-
-                onApprove: function(data, actions) {
-                    // This function captures the funds from the transaction.
-                    return actions.order.capture().then(function(details) {
-                        // This function shows a transaction success message to your buyer.
-			console.log("[Payment.paypal.onApprove]: " + details)
-			vm.thanks(details);
-                    });
-                }
-
-            }).render('#paypal-button')
-        })
+        this.setDefaults();
+        this.setupPaypal();
     },
-
 
 /*
         this.$loadScript("https://www.paypalobjects.com/api/checkout.js")
