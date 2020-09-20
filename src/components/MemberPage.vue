@@ -46,8 +46,8 @@
 
         <v-card style="box-shadow: none" class="mt-9">
           <h3>Pages for Sky Farm Members only.</h3>
-          <p>If you are a current Sky Farm Member and need an account<br>
-            email <a href="mailto:membership@skyfarm.com">membership@skyfarm.com</a> to have an account created for you.</p>
+          <p>If you are a current Sky Farm Member and need an account or password reset send an <br>
+            email to <a href="mailto:website@skyfarm.com">website@skyfarm.com</a> with your request.</p>
 
           <v-card>
             <v-card-text>
