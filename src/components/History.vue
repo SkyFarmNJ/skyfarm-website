@@ -46,6 +46,10 @@
               require('../assets/Img1956_lg.jpg'),
               require('../assets/20190704_114909.jpg')
           ]
-      })
+      }),
+    mounted() {
+        this.$ga.page('/history')
+    },
+
   }
 </script>

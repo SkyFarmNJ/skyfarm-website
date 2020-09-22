@@ -225,7 +225,9 @@ var rules = {
               this.$refs.form.resetValidation()
           },
       },
-
+      mounted() {
+          this.$ga.page('/tour')
+      },
   }
 
 </script>

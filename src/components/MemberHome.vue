@@ -143,7 +143,7 @@ export default {
                 .catch(err => console.log(err))
         },
         getImage(item) {
-	    if ( item.tags[0] ) return "https://www.skyfarm.com/Images/" + item.tags[0].name + ".png"
+            if ( item.tags[0] ) return "https://www.skyfarm.com/Images/" + item.tags[0].name + ".png"
         },
         initHeaders() {
             this.headers = {
@@ -167,6 +167,7 @@ export default {
 
     mounted() {
         if (this.$store.getters.ifAuthenticated) this.getStories()
+        this.$ga.page('/memberhome')
     },
 
     computed: {

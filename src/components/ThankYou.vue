@@ -85,6 +85,7 @@ export default {
   },
   mounted() {
       this.details = this.$route.params.details;
+      this.$ga.page('/memberhome/payment/thanks')
   }
 }
 </script>

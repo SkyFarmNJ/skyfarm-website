@@ -18,9 +18,9 @@
           height="200"/>
       </v-col>
       <v-col cols="4" mb-5>
-	<p>Got questions? We have answers. Check out our FAQ!</P>
+        <p>Got questions? We have answers. Check out our FAQ!</P>
 
-	<p>Learn more about Sky Farm’s history!</P>
+        <p>Learn more about Sky Farm’s history!</P>
 
       </v-col>
       <v-col cols="4" mb-5>
@@ -34,7 +34,7 @@
     <v-row class="text-left">
       <v-col cols="12" mb-5>
         <h3>But wait! There's more!</h3>
-	<ul>
+        <ul>
         <li>At Sky Farm, responsible drinking of adult beverages is permitted. (No glass at the pool or hot tub!) Fill your cup or cooler at the ice machine!</li>
         <li>Our clubhouse has a full kitchen and event space — perfect for weekend lunches and super-fun events all season long!</li>
         <li>Check out Sky Farm’s calendar of events! You’ll find countless recreational activities including swimming, petanque, shuffleboard, pop tennis, volleyball and much more. The clubhouse, open 24/7 to members, has a pool table, poker table, foosball, dart board, a Big Screen TV and free WiFi.</li>
@@ -43,7 +43,7 @@
         <li>Hygiene is a top priority at Sky Farm. Showers are required before using the pool, hot tub or sauna. </li>
         <li>Lodge rooms and tent sites available for members to rent at nominal rates</li>
         <li>Sky Farm is an AANR-affiliated facility</li>
-	</ul>
+        </ul>
       </v-col>
 
     </v-row>
@@ -51,13 +51,16 @@
 </template>
 
 <script>
-  export default {
-      data: () => ({
-          pics: [
-              require('../assets/2019.jpg'),
-              require('../assets/hottubweb.jpg'),
-              require('../assets/couple2final.jpg')
-          ]
-      })
-  }
+export default {
+    data: () => ({
+        pics: [
+            require('../assets/2019.jpg'),
+            require('../assets/hottubweb.jpg'),
+            require('../assets/couple2final.jpg')
+        ]
+    }),
+    mounted() {
+        this.$ga.page('/about')
+    },
+}
 </script>

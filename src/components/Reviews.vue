@@ -35,6 +35,9 @@
               { author: "Bruce D., Bedminster",
                 text: "My wife and I had been going to Gunnison Beach to get our tans lines erased, but then heard about Sky Farm. We signed up the Memorial day Saturday we visited 8 years ago and have not been back to Gunnison since!  And we have No Tan Lines to erase!"}
           ]
-      })
+      }),
+    mounted() {
+        this.$ga.page('/reviews')
+    },
   }
 </script>

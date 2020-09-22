@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter  from 'vue-router';
+import VueAnalytics from 'vue-analytics';
 import HelloWorld from './components/HelloWorld.vue'
 Vue.use(VueRouter)
 
@@ -29,3 +30,7 @@ const routes = [
 export default new VueRouter({routes,scrollBehavior () {
   return { x: 0, y: 0 }
 }})
+
+Vue.use(VueAnalytics, {
+    id: 'UA-443750-5',
+})

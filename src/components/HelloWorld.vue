@@ -88,6 +88,9 @@ export default {
                 require('../assets/SkyFarm804.png')
             ]
         }
-    }
+    },
+    mounted() {
+        this.$ga.page('/')
+    },
 }
 </script>

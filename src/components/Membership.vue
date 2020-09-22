@@ -42,6 +42,9 @@
               require('../assets/hottubweb.jpg'),
               require('../assets/couple2final.jpg')
           ]
-      })
+      }),
+    mounted() {
+        this.$ga.page('/membership')
+    },
   }
 </script>

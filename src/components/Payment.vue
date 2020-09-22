@@ -553,6 +553,7 @@ export default {
     mounted() {
         this.setDefaults();
         this.setupPaypal();
+        this.$ga.page('/memberhome/payments');
     },
 
 /*
