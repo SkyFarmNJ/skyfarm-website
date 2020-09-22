@@ -11,10 +11,13 @@
            :key=i
            class="text-left"
           >
-          <v-col lg="12">
+          <v-col cols="8">
             <h2 v-html="item.title"></h2>
           </v-col>
-          <v-col lg="12">
+          <v-col cols="4" v-if="item.tags" align="right">
+            <v-img :src="getImage(item)" width="100"></v-img>
+          </v-col> 
+          <v-col cols="12">
             <component
               :is="test(item.html, i)"
               ></component>
@@ -139,7 +142,9 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
-
+        getImage(item) {
+	    if ( item.tags[0] ) return "https://www.skyfarm.com/Images/" + item.tags[0].name + ".png"
+        },
         initHeaders() {
             this.headers = {
                 headers: {
