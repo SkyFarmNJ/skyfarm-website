@@ -79,7 +79,7 @@ export default {
                 Authorization: `Basic ${this.$store.getters.token}`
             }
         }
-	this.list = []
+        this.list = []
         axios.get("/members/minutes.csv", this.headers)
             .then(res => {
                 console.log(res)
@@ -89,7 +89,7 @@ export default {
                     .map(substr => substr.slice(1).split('",'))
                     .forEach(([key, val]) => {
                         var item = { label: val, value: key }
-			this.list.push(item)
+                        this.list.push(item)
                     })
             })
             .catch(err => console.log(err))

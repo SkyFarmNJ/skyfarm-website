@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter  from 'vue-router';
-import VueAnalytics from 'vue-analytics';
+import VueGtag from "vue-gtag";
 import HelloWorld from './components/HelloWorld.vue'
 Vue.use(VueRouter)
 
@@ -31,6 +31,13 @@ export default new VueRouter({routes,scrollBehavior () {
   return { x: 0, y: 0 }
 }})
 
-Vue.use(VueAnalytics, {
-    id: 'UA-443750-5',
-})
+var gaid = 'UA-443750-6';  // Dev
+if ( document.location.host == 'www.skyfarm.com' && document.location.pathname == '/main/' ) {
+    gaid = 'UA-443750-5';  // Prod
+}
+
+Vue.use(VueGtag, {
+  config: { 
+      id: gaid
+  }
+});

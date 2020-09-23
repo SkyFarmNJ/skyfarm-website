@@ -62,7 +62,7 @@
           ]
       }),
     mounted() {
-        this.$ga.page('/faq')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'FAQ'})
     },
   }
 </script>

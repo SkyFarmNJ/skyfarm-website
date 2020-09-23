@@ -37,7 +37,7 @@
           ]
       }),
     mounted() {
-        this.$ga.page('/reviews')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Reviews'})
     },
   }
 </script>

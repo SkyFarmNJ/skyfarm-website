@@ -226,7 +226,7 @@ var rules = {
           },
       },
       mounted() {
-          this.$ga.page('/tour')
+          this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Schedule a Tour Form'})
       },
   }
 

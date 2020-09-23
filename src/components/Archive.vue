@@ -74,7 +74,7 @@ export default {
         file: function() {
             console.log('[Archive::watch::file]: ' + `/members/archive/${this.$route.params.dir}/${this.file}`)
             document.location.href = `#/members/archive/${this.$route.params.dir}?file=${this.file}`
-            this.$ga.page('/memberhome/archive/?' + this.file)
+            this.$gtag.pageview({ page_path: this.$route.fullPath, page_title: 'PDF Viewer'})
         },
 
         '$route.query.file': function() {this.file = this.$route.query.file}

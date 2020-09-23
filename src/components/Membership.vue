@@ -44,7 +44,7 @@
           ]
       }),
     mounted() {
-        this.$ga.page('/membership')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Membership'})
     },
   }
 </script>

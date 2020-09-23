@@ -85,7 +85,8 @@ export default {
   },
   mounted() {
       this.details = this.$route.params.details;
-      this.$ga.page('/memberhome/payment/thanks')
+      this.$gtag.event('purchase')
+      this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Payment Thank You'})
   }
 }
 </script>

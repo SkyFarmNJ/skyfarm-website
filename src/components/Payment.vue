@@ -553,7 +553,7 @@ export default {
     mounted() {
         this.setDefaults();
         this.setupPaypal();
-        this.$ga.page('/memberhome/payments');
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Payments'})
     },
 
 /*

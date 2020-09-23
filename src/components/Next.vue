@@ -36,7 +36,8 @@
           ]
       }),
     mounted() {
-        this.$ga.page('/next')
+        this.$gtag.event('generate_lead')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Next'})
     },
   }
 </script>

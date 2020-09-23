@@ -90,7 +90,7 @@ export default {
         }
     },
     mounted() {
-        this.$ga.page('/')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Site Home'})
     },
 }
 </script>

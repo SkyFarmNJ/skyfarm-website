@@ -48,7 +48,7 @@
           ]
       }),
     mounted() {
-        this.$ga.page('/history')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'History'})
     },
 
   }

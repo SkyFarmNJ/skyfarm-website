@@ -144,7 +144,7 @@ export default {
     methods: {
         login() {
             this.$store.dispatch('login', {user: this.user, pw: this.pw}).then(() => {
-                this.$ga.page('/memberpage-login')
+                this.$gtag.event('login')
                 this.initSections()
             }, () => {
                 this.errorMsg  = "Login Failed."
@@ -206,7 +206,7 @@ export default {
 
     mounted() {
         if (this.$store.getters.ifAuthenticated) this.initSections()
-        this.$ga.page('/memberpage')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Member Page'})
     },
 
     computed: {

@@ -222,6 +222,7 @@ export default {
         inOrOut() {
             if (this.auth) {
                 this.$store.dispatch('logout')
+                this.$gtag.event('logout')
             } else {
                 //this.overlay = true
                 router.push('/members')

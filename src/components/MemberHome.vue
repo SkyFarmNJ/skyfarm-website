@@ -125,6 +125,7 @@ export default {
                         on: {
                             click: (e) => {
                                 if (e.target.id == "fancy_tag") vm.$set(vm.rmore, i, !vm.rmore[i])
+                                vm.$gtag.event((vm.rmore[i] ? 'read more' : 'read less'))
                             }
                         },
                     })
@@ -167,7 +168,7 @@ export default {
 
     mounted() {
         if (this.$store.getters.ifAuthenticated) this.getStories()
-        this.$ga.page('/memberhome')
+        this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Member Home'})
     },
 
     computed: {
