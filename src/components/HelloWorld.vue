@@ -28,7 +28,7 @@
       <v-col class="mb-2" cols="12">
           <h1>Sky Farm Nudist Resort In Basking Ridge, NJ <br/> There’s Nothing Else Like It Under The Sun</h1>
           <h2>Want to enjoy the great outdoors naked? At Sky Farm, you’ve got nothing to lose but tan lines!</h2>
-          <v-btn :to="{path: '/tour'}" exact >Schedule a Tour of Sky Farm!</v-btn>
+          <v-btn class="mt-2" color="warning" :to="{path: '/tour'}" exact >Schedule a Tour of Sky Farm!</v-btn>
       </v-col>
     </v-row>
     <v-row class="text-left">

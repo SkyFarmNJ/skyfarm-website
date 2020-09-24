@@ -2,7 +2,7 @@
   <v-container px-10 fluid>
     <v-row class="text-center">
       <v-col cols="12" mb-5>
-        <v-btn :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>      </v-col>
+        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>      </v-col>
       <v-col cols="12" mb-5>
         <h1>About Us</h1>
         <h2>Sky Farm is New Jersey's best kept secret!</h2>
@@ -18,8 +18,8 @@
           height="200"/>
       </v-col>
       <v-col cols="4" mb-5>
-        <p>Got questions? We have answers. Check out our FAQ!</P>
-
+        <p>Got questions? We have answers.</p>
+        <v-btn class="mb-3" color="primary" :to="{path: '/faq'}" exact >Check out our FAQ!</v-btn>
         <p>Learn more about Sky Farm’s history!</P>
 
       </v-col>

@@ -2,7 +2,7 @@
   <v-container px-10 fluid>
     <v-row class="text-left">
       <v-col cols="12" mb-5 class="text-center">
-        <v-btn :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>
+        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>
       </v-col>
       <v-col cols="12">
         <h2>Sky Farm Welcomes New Members!</h2>
