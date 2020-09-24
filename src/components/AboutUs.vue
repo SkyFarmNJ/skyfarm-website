@@ -19,7 +19,7 @@
       </v-col>
       <v-col cols="4" mb-5>
         <p>Got questions? We have answers.</p>
-        <v-btn class="mb-3" color="primary" :to="{path: '/faq'}"     exact >Check out our FAQ!</v-btn>
+        <v-btn class="mb-3" color="primary" :to="{path: '/faq'}"     exact >Check out our FAQ!</v-btn><br>
         <v-btn class="mb-3" color="primary" :to="{path: '/history'}" exact >Learn more about Sky Farm’s history!</v-btn>
         <p>
 </P>
