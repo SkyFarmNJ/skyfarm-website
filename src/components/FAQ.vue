@@ -20,7 +20,7 @@
            v-for="(opt, i) in items"
            :key=i
            >
-          <v-card-title>
+          <v-card-title style="word-break: normal;">
             {{opt.quest}}
           </v-card-title>
           <v-card-text v-html="opt.ans">
@@ -38,7 +38,7 @@
            v-for="(opt, i) in why"
            :key=i
            >
-          <v-card-title>
+          <v-card-title style="word-break: normal;">
             {{opt.title}}
           </v-card-title>
 
@@ -85,7 +85,7 @@ export default {
             { quest: 'Is Sky Farm family friendly?',
               ans:   'Absolutely!  Many of our members have raised children here. Children are natural nudists, they love the freedom and Sky Farm is a safe place for the entire family.',
             },
-            { quest: 'What\’s involved in a Sky Farm tour?',
+            { quest: 'What\'s involved in a Sky Farm tour?',
               ans:   'We will welcome you at the gate and take you on a golf-cart tour of Sky Farm’s luscious grounds. You’ll visit the pool and hot tub, see our immaculate bathroom/shower facilities, check out the clubhouse including kitchen and lounge area and more. No doubt, you’ll be greeted by countless “Sky Farmers” who will be happy to share their love of this amazing place.',
             },
             { quest: 'Is Sky Farm a time-share facility?',
@@ -122,10 +122,10 @@ export default {
               intro: 'Hawkins had seen nudity like many American still see it today - as something to do in the privacy of your home, certainly not around other people and definitely not in public - but today she\'s a full-blown nudist, working full-time to promote the joys of nudity.',
               link:  'https://www.oregonlive.com/entertainment/2015/06/why_be_naked.html',
             },
-            { title: 'This Is What It\'s Like To Live Most Of Your Life Naked',
-              name:  'SELF',
-              intro: '"Why can\'t I just live my life naked?" The thing is, I can. And some people do. Nudists and naturists participate in plenty of normal activities like swimming, camping, and karaoke without clothes. ',
-              link:  'https://www.self.com/story/what-its-like-to-be-a-naturist',
+            { title: '10 Questions You Always Wanted to Ask a Naturist',
+              name:  'VICE',
+              intro: 'Ever wondered what it would be like to be naked all the time?',
+              link:  'https://www.vice.com/en_asia/article/9ky9b7/10-questions-you-always-wanted-to-ask-a-naturist',
             },
 /*
             { title: '',

@@ -17,7 +17,7 @@
            v-for="(opt, i) in stories"
            :key=i
            >
-          <v-card-title>
+          <v-card-title style="word-break: normal;">
             {{opt.title}}
           </v-card-title>
           <v-card-subtitle>
