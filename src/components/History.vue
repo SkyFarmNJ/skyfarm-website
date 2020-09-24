@@ -14,7 +14,7 @@
 <P>Since acquiring the property in 1932, Sky Farm has functioned as a member-owned cooperative. Located on the property are approximately 60 cottages which mostly began as tent platforms from the ‘30s and ‘40s. A dormitory (now known as Sky Farm Lodge) provided overnight accommodations for members who traveled mostly by train to the Farm. Today, the lodge rooms are available to members for rent.</p>
       </v-col>
 
-      <v-col cols="4"
+      <v-col lg="4"
              mb-5
              v-for="(pic, i) in pics"
              :key=i>

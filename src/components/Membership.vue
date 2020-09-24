@@ -19,7 +19,7 @@
         <p>Note: Memberships are limited and everyone is probationary for a minimum of one year. Sky Farm strive for a balance between couples and singles as well as males and females, so there can sometimes be a waiting list.</p>
       </v-col>
 
-      <v-col cols="4"
+      <v-col lg="4"
              mb-5
              v-for="(pic, i) in pics"
              :key=i>

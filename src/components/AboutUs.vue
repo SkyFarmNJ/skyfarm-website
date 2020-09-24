@@ -11,13 +11,13 @@
     </v-row>
 
     <v-row class="text-center">
-      <v-col cols="4" mb-5>
+      <v-col lg="4" mb-5>
         <v-img
           src="../assets/2019.jpg"
           contain
           height="200"/>
       </v-col>
-      <v-col cols="4" mb-5>
+      <v-col lg="4" mb-5>
         <p>Got questions? We have answers.</p>
         <v-btn class="mb-3" color="primary" :to="{path: '/faq'}"     exact >Check out our FAQ!</v-btn><br>
         <v-btn class="mb-3" color="primary" :to="{path: '/history'}" exact >Learn more about Sky Farm’s history!</v-btn>
@@ -25,7 +25,7 @@
 </P>
 
       </v-col>
-      <v-col cols="4" mb-5>
+      <v-col lg="4" mb-5>
         <v-img
           src="../assets/couple2final.jpg"
           contain
