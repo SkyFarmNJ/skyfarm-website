@@ -57,7 +57,7 @@
 
     <v-row>
       <v-col cols="12" mb-5 class="text-center">
-        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>
+        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour!</v-btn>
       </v-col>
 
     </v-row>

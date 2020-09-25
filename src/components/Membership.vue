@@ -2,7 +2,7 @@
   <v-container px-10 fluid>
     <v-row class="text-left">
       <v-col cols="12" mb-5 class="text-center">
-        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>
+        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour!</v-btn>
       </v-col>
       <v-col cols="12">
         <h2>Sky Farm Welcomes New Members!</h2>
@@ -19,7 +19,7 @@
         <p>Note: Memberships are limited and everyone is probationary for a minimum of one year. Sky Farm strive for a balance between couples and singles as well as males and females, so there can sometimes be a waiting list.</p>
       </v-col>
 
-      <v-col lg="4"
+      <v-col md="4"
              mb-5
              v-for="(pic, i) in pics"
              :key=i>

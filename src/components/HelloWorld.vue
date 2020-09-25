@@ -1,10 +1,10 @@
 <template>
-  <v-container px-10 fluid>
+  <v-container px-md-10 fluid>
     <v-row class="text-center">
 
       <v-col cols="12" jusify="center" align="center">
-        <v-carousel show-arrows cycle hide-delimiter-background 
-                    height="425"
+        <v-carousel show-arrows cycle hide-delimiter-background hide-delimiters
+                    :height="bheight"
           >
           <v-carousel-item
              v-for="(pic, i) in pics"
@@ -12,8 +12,8 @@
           >
           <v-img
             :src=pic
-            height="425"
-            width="90%"
+            width="100%"
+             :height="bheight"
             />
           </v-carousel-item>
         </v-carousel>
@@ -26,7 +26,7 @@
 
     <v-row class="text-center">
       <v-col class="mb-2" cols="12">
-          <h1>Sky Farm Nudist Resort In Basking Ridge, NJ <br/> There’s Nothing Else Like It Under The Sun</h1>
+          <h1>Sky Farm Nudist Resort</h1><h2>In Basking Ridge, NJ<br>There’s Nothing Else Like It Under The Sun</h2>
           <h2>Want to enjoy the great outdoors naked? At Sky Farm, you’ve got nothing to lose but tan lines!</h2>
           <v-btn class="mt-2" color="warning" :to="{path: '/tour'}" exact >Schedule a Tour of Sky Farm!</v-btn>
       </v-col>
@@ -56,7 +56,7 @@
       <v-col cols="12" align="center" justify="center">
         <v-img
           :src="require('../assets/banner.jpg')"
-        height="400"
+        :height="bheight"
         width="90%"
           />
       </v-col>
@@ -70,6 +70,7 @@ export default {
     data: () => {
         return {
             name: 'HelloWorld',
+            bheight: 150,
             facts: [
                 "Sky Farm is a membership community. Day passes are not available.",
                 "Unlike Gunnison, at Sky Farm there are no long walks to paradise!",
@@ -91,6 +92,7 @@ export default {
     },
     mounted() {
         this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Site Home'})
+	if ( this.$vuetify.breakpoint.mdAndUp ) this.bheight = 350;
     },
 }
 </script>

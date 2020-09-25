@@ -2,7 +2,7 @@
   <v-container px-10 fluid>
     <v-row class="text-center">
       <v-col cols="12" mb-5>
-        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour of Sky Farm!</v-btn>      </v-col>
+        <v-btn color="warning" :to="{path: '/tour'}" exact >Schedule a private tour!</v-btn>      </v-col>
       <v-col cols="12" mb-5>
         <h1>About Us</h1>
         <h2>Sky Farm is New Jersey's best kept secret!</h2>
@@ -11,21 +11,21 @@
     </v-row>
 
     <v-row class="text-center">
-      <v-col lg="4" mb-5>
+      <v-col md="4" mb-5>
         <v-img
           src="../assets/2019.jpg"
           contain
           height="200"/>
       </v-col>
-      <v-col lg="4" mb-5>
+      <v-col md="4" mb-5>
         <p>Got questions? We have answers.</p>
         <v-btn class="mb-3" color="primary" :to="{path: '/faq'}"     exact >Check out our FAQ!</v-btn><br>
-        <v-btn class="mb-3" color="primary" :to="{path: '/history'}" exact >Learn more about Sky Farm’s history!</v-btn>
+        <v-btn class="mb-3" color="primary" :to="{path: '/history'}" exact >Learn more about Sky Farm!</v-btn>
         <p>
 </P>
 
       </v-col>
-      <v-col lg="4" mb-5>
+      <v-col md="4" mb-5>
         <v-img
           src="../assets/couple2final.jpg"
           contain
