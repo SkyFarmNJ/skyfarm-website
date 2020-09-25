@@ -2,7 +2,7 @@
   <v-container px-10 fluid>
 
     <v-row class="text-left" v-if="auth">
-      <v-col lg="9" mb-5 class="text-left" name="news-block">
+      <v-col md="9" mb-5 class="text-left" name="news-block">
         <h1>Club News</h1>
         <hr>
 
@@ -125,7 +125,7 @@ export default {
                         on: {
                             click: (e) => {
                                 if (e.target.id == "fancy_tag") vm.$set(vm.rmore, i, !vm.rmore[i])
-                                vm.$gtag.event((vm.rmore[i] ? 'read more' : 'read less'))
+                                vm.$gtag.event((vm.rmore[i] ? 'read more' : 'read less'), { event_label: vm.stories[i].title })
                             }
                         },
                     })
