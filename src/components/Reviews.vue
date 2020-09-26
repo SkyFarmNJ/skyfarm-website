@@ -8,7 +8,7 @@
     </v-row>
 
      <v-row>
-      <v-col lg="8">
+      <v-col md="8">
         <h3>Sky Farm in the News</h3>
         <hr>
         <v-card
@@ -34,7 +34,7 @@
         </v-card>
 	
       </v-col>
-      <v-col lg="4" mb-5>
+      <v-col md="4" mb-5>
         <h3>Testimonials</h3>
 	<hr>
         <v-card

@@ -32,27 +32,50 @@
       </v-col>
     </v-row>
     <v-row class="text-left">
-      <v-col class="mb-2" cols="12">
+      <v-col class="mb-2" md="8">
 
           <h3>Sky Farm is a members only nudist resort located on a 36-acre slice of heaven in beautiful Basking Ridge, NJ.  Here, we invite you to enjoy friends, food, drink, activities, and nature, naturally!</h3>
-
-          <h3>We know how amazing Sky Farm is when it comes to “Happy Places!” But, don’t take our word for it! We’re famous! Learn more about the best place to be <a target="_blank" href="https://meanderingnaturist.com/2020/08/23/naked-in-america-sky-farm-new-jersey/">“Naked in America.”</a></h3>
 
           <ul>
             <li
               v-for="(fact, i) in facts"
               :key=i
-              >
-              {{fact}}
+              v-html="fact">
             </li>
           </ul>
-      </v-col>
+          <br>
+        <v-img
+          :src="require('../assets/Img1956_lg.jpg')"
+          contain
+          height="200"/>
 
-      <v-divider/>
+      </v-col>
+      <v-col md="4">
+        <v-card class="text-left ma-3">
+          <v-card-title>Sky Farm is the best place to be!</v-card-title>
+          <v-card-text>
+          We know how amazing Sky Farm is when it comes to “Happy Places!” But, don’t take our word for it! We’re famous! Learn more about the best place to be from {{links[0].name}}.
+          <v-btn text color="primary" @click="callLink(0)">{{links[0].title}}</v-btn>
+          <br><hr><br>
+          <h3>People Love Sky Farm</h3>
+          <p>"My wife and I came for our visit tour yesterday and instantly fell in love, we couldn't help but to become members on the spot." -- Ian M., Manville, NJ.</p>
+          <v-btn class="mt-2" color="primary" text :to="{path: '/reviews'}" exact >More Reviews and Media</v-btn>
+          <br><hr><br>
+          <h3>What is it like at Sky Farm?</h3>
+          <p>Nude recreation is a wholesome way of life for the whole family.  To help answer questions check out our FAQ, or better yet schedule a tour to see for yourself!</p>
+          <v-btn class="mt-2" color="primary" text :to="{path: '/faq'}" exact >FAQ & Why Naturism</v-btn><hr>
+          </v-card-text>
+        </v-card>
+        </v-col>
+
 
     </v-row>
     <v-row class="text-center">
-
+      <v-col cols="12">
+          <v-btn class="mt-2" color="warning" :to="{path: '/tour'}" exact >Schedule a Tour of Sky Farm!</v-btn>
+      </v-col>
+    </v-row>
+    <v-row class="text-center">
       <v-col cols="12" align="center" justify="center">
         <v-img
           :src="require('../assets/banner.jpg')"
@@ -75,8 +98,9 @@ export default {
                 "Sky Farm is a membership community. Day passes are not available.",
                 "Unlike Gunnison, at Sky Farm there are no long walks to paradise!",
                 "Enjoy our pristine pool, relaxing hot tub and soothing sauna.",
-                "Get involved! Our calendar of events has something for everyone!",
-                "Relax as you enjoy adult beverages and make new friends.",
+                "Get involved! Our calendar of events has something for everyone!<ul><li>Volleyball, Tennis, Nude Yoga, Pétanque, Themed Dinners, Pool Parties & More!</li></ul>",
+                "<b>Facilities Include:</b>  Heated Pool, Hot Tub, Sauna, Kids Playground, Tent Camping, <br>Free WIFI, Lodge rooms, Clubhouse, Large Sun Lawns, Nature Trails and so much more.",
+                "Relax as you enjoy cold beverages and make new friends.",
                 "Sky Farm is open 24/7 May to October.",
                 "BBQ lunch is available for purchase most weekends during the season."
             ],
@@ -87,12 +111,24 @@ export default {
                 require('../assets/SkyFarm802.png'),
                 require('../assets/SkyFarm803.png'),
                 require('../assets/SkyFarm804.png')
+            ],
+            links: [
+                { title: "Naked in America",
+                  name: 'The Meandering Naturist',
+                  url:  'https://meanderingnaturist.com/2020/08/23/naked-in-america-sky-farm-new-jersey/',
+                },
             ]
+        }
+    },
+    methods: {
+        callLink(i) {
+            this.$gtag.event('linkto', { event_label: this.links[i].title });
+            window.open(this.links[i].url, '_blank')
         }
     },
     mounted() {
         this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Site Home'})
-	if ( this.$vuetify.breakpoint.mdAndUp ) this.bheight = 350;
+        if ( this.$vuetify.breakpoint.mdAndUp ) this.bheight = 350;
     },
 }
 </script>

@@ -8,7 +8,7 @@
     </v-row>
 
     <v-row class="text-left">
-      <v-col lg="8" mb-5>
+      <v-col md="8" mb-5>
         <h3>Sky Farm Frequently Asked Questions</h3>
         <hr>
 
@@ -30,7 +30,7 @@
 
       </v-col>
 
-      <v-col lg="4" mb-5>
+      <v-col md="4" mb-5>
         <h3>Why Naturism?</h3>
 	<hr>
         <v-card
