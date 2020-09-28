@@ -2,7 +2,7 @@
 <v-container fluid>
 
   <v-row class="text-left">
-    <v-col lg="8" mb-5 class="text-left">
+    <v-col md="8" mb-5 class="text-left">
       <h2>Payments</h2>
 
       <v-card v-if="!selected">
@@ -12,7 +12,7 @@
         <v-card-text>
           <v-row>
           <v-col
-             lg="3"
+             md="3"
              align="center"
              justify="center"
              v-for="key in Object.keys(options)"
@@ -68,7 +68,7 @@
           </v-data-table>
           
           <v-row>
-            <v-col lg="6">
+            <v-col md="6">
               <div v-if="options[selected].date">
                 <v-date-picker
                    multiple
@@ -77,7 +77,7 @@
                    ></v-date-picker>
               </div>
             </v-col>
-            <v-col lg="6">
+            <v-col md="6">
               <div
                  v-for="key in checkExtra"
                  :key=key
@@ -95,7 +95,7 @@
           </v-row>
 
           <hr>
-          <v-simple-table dense class="pl-lg-15" align="end">
+          <v-simple-table dense class="pl-md-15" align="end">
             <template v-slot:default>
               <tbody>
                 <tr>
@@ -142,7 +142,7 @@
       </v-card>
       
     </v-col>
-    <v-col lg="4" mb-5 class="text-left">
+    <v-col md="4" mb-5 class="text-left">
       <h2>Order Summary</h2>
       <v-card v-if="isPreview()">
         <span icon v-if="!isPPLive()">
@@ -172,7 +172,7 @@
         </template>
       </v-data-table>
       <hr>
-      <v-simple-table dense class="pl-lg-15">
+      <v-simple-table dense class="pl-md-15">
         <template v-slot:default>
           <tbody>
             <tr>

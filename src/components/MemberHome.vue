@@ -93,6 +93,26 @@
           </v-card-text>
         </v-card>
 
+        <v-card class="mt-4">
+          <v-card-title>
+            Online Payments
+          </v-card-title>
+          <v-card-text class="text-left">
+            Skip the mailbox and pay your guest fees, grounds fees and more online.  We accept PayPal, Venmo and Credit Cards.
+          </v-card-text>
+          <v-card-action class="text-left">
+            <v-btn
+               class="mb-2"
+               to='/members/payment'
+               color="primary"
+               >
+              Make a Payment
+            </v-btn>
+          </v-card-action>
+        </v-card>
+
+
+
       </v-col>
     </v-row>
 
