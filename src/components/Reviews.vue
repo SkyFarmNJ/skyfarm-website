@@ -42,8 +42,7 @@
            v-for="(opt, i) in reviews"
            :key=i
            >
-          <v-card-text class="text--primary">
-            {{opt.text}}
+          <v-card-text class="text--primary" v-html="opt.text">
           </v-card-text>
           <v-card-actions>
             {{opt.author}}
@@ -59,6 +58,8 @@
   export default {
       data: () => ({
           reviews: [
+              { author: "T & K Morristown NJ",
+                text: "<p>My wife and I were going to Gunnison for years to work on our no tan line tan, until we ran into two members from Sky Farm.  Once they found out we were so close to the resort they convinced us to check it out.  No long walks to the water, bathrooms easily accessible, private club so you know practically everyone, and plenty of things to do made the decision easy and we joined quickly after visiting.</p>Fast Forward 8 years and we have made lifelong friends and bought an on site cabin (something we swore we would never do being so close). We spend a majority of the weekends here and come up during the week as well.  We haven't regretted our decision not one bit. <b>HIGHLY RECOMMENDED</b>."},
               { author: "Allison S, Morristown",
                 text:   "Sky Farm has so much to offer - even beyond our friendly members and crystal clear pool.  If you like being outside in nature, like I do - then I bet you'd love it here - like I do." },
               { author: "Marjie W., Weehawken",
@@ -66,7 +67,7 @@
               { author: "Ian M., Manville, NJ.",
                 text: "My wife and I came for our visit tour yesterday and instantly fell in love, we couldn't help but to become members on the spot. Everyone was so friendly and welcoming and we feel like family already. The grounds are beautiful the pool is amazing and there is always something going on. Sky farm has an awesome atmosphere of relaxation and happiness."},
               { author: "Bruce D., Bedminster",
-                text: "My wife and I had been going to Gunnison Beach to get our tans lines erased, but then heard about Sky Farm. We signed up the Memorial day Saturday we visited 8 years ago and have not been back to Gunnison since!  And we have No Tan Lines to erase!"}
+                text: "My wife and I had been going to Gunnison Beach to get our tans lines erased, but then heard about Sky Farm. We signed up the Memorial day Saturday we visited 8 years ago and have not been back to Gunnison since!  And we have No Tan Lines to erase!"},
           ],
           stories: [
               { title: 'SKY FARM: A Living, Breathing part of America Nudist History',

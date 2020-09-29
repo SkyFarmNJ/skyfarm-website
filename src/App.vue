@@ -34,7 +34,7 @@
       <v-btn
         v-for="(x, i) in socials"
         :key=i
-        :href=x.url
+	@click="callLink(i)"
         icon large
         style = "min-width: 0"
         >
@@ -216,6 +216,7 @@ export default {
         socials: [
             {url: "https://www.facebook.com/skyfarmnj", icon: "facebook"},
             {url: "https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.skyfarm.com%2F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=SkyFarmNJ&tw_p=followbutton", icon: "twitter"},
+         { url: "https://www.instagram.com/skyfarmnj", icon: "instagram" },
         ]
     }),
     methods: {
@@ -227,6 +228,10 @@ export default {
                 //this.overlay = true
                 router.push('/members')
             }
+        },
+        callLink(i) {
+            this.$gtag.event('linkto', { event_label: this.socials[i].icon });
+            window.open(this.socials[i].url, '_blank')
         }
     },
     computed: {

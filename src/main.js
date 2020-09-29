@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify';
 import LoadScript from 'vue-plugin-load-script';
 //import VueRouter from 'vue-router';
 import {library} from '@fortawesome/fontawesome-svg-core'
-import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faMapMarker, faPhone, faEnvelope, faCalendar, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -21,6 +21,7 @@ Vue.config.productionTip = false
 
 library.add(faFacebook)
 library.add(faTwitter)
+library.add(faInstagram)
 library.add(faMapMarker)
 library.add(faPhone)
 library.add(faEnvelope)
