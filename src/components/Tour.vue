@@ -10,6 +10,8 @@
     <v-row class="text-left">
       <v-col cols="12" mb-5>
 
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdQZYuEwOZFmdhmFy5VrtcEYhohFFiNJC66m9y3LeAK4wZc6Q/viewform?embedded=true" width="640" height="780" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
         <v-form
            ref="form"
            v-model="valid"

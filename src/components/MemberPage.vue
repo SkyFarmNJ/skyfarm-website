@@ -144,7 +144,7 @@ export default {
     methods: {
         login() {
             this.$store.dispatch('login', {user: this.user, pw: this.pw}).then(() => {
-                this.$gtag.event('login')
+                this.$gtag.event('login', { event_label: 'Login' })
                 this.initSections()
             }, () => {
                 this.errorMsg  = "Login Failed."
