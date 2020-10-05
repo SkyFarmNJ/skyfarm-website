@@ -147,6 +147,7 @@ export default {
                 this.$gtag.event('login', { event_label: 'Login' })
                 this.initSections()
             }, () => {
+                this.$gtag.event('login_fail', { event_label: 'Login Failed' })
                 this.errorMsg  = "Login Failed."
                 this.passError = true
             })
