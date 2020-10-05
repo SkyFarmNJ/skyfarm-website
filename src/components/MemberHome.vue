@@ -11,13 +11,9 @@
            :key=i
            class="text-left"
           >
-          <v-col cols="8">
-            <h2 v-html="item.title"></h2>
-          </v-col>
-          <v-col cols="4" v-if="item.tags" align="right">
-            <v-img :src="getImage(item)" width="100"></v-img>
-          </v-col> 
           <v-col cols="12">
+            <v-img :src="getImage(item)" width="100" class="float-right"></v-img>
+            <h2 v-html="item.title"></h2>
             <component
               :is="test(item.html, i)"
               ></component>
