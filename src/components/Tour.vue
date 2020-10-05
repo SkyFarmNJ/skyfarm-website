@@ -6,6 +6,29 @@
         <h2>Schedule A Tour</h2>
       </v-col>
     </v-row>
+    <v-row class="text-left">
+      <v-col cols="12" mb-5 class="text-left">
+	<v-img :src="pics[0]" width="140" class="ml-1 float-right"></v-img>
+
+        <p>Come on out and see why we think Sky Farm is the best place
+        under the sun!</p>
+
+        <p>Our Membership team would love to have the opportunity to
+        tell you more about Sky Farm, show you around the grounds and
+        answer any questions you might have.  Please take a moment to
+        fill out the following information and tell us something about
+        yourself and a member of the membership committee will contact
+        you shortly.</p>
+
+        <p>Our membership team can also be reached by
+        calling <a href="tel:908-419-5443">908-419-5443</a>.
+        
+        <p>We look forward to seeing you!</p>
+
+        <p><i>All information submitted will be kept in strict confidence.</i></p>
+
+      </v-col>
+    </v-row>
 
     <v-row class="text-left">
       <v-col cols="12" mb-5>
@@ -52,10 +75,6 @@
           </v-btn>
 
         </v-form>
-
-If you are interested in learning more about us please fill out the following information and press the SUBMIT button or Call <a href="tel:908-419-5443">908-419-5443</a>. A member of the membership committee will contact you shortly.
-
-All information submitted will be kept in strict confidence.
 
       </v-col>
     </v-row>
@@ -150,6 +169,9 @@ var rules = {
                   rules: [],
               },
           },
+          pics: [
+              require('../assets/SF_Pool_Fall_Evening.png'),
+          ],
           otherStuff: {
               subject: 'Sky Farm Tour Request',
               redirect: 'http://www.skyfarm.com',
