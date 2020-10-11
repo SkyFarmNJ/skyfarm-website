@@ -246,7 +246,7 @@ export default {
         ],
         options: {
             'Membership': {
-                desc: "Yearly membership dues.",
+                desc: "Yearly membership dues.  Select item to see taxes and Capital Improvement Fund fees.",
                 items: [
                     { name: "Resident Couple",     amount: 890, cif: 100 },
                     { name: "Resident Single",     amount: 445, cif:  50 },
@@ -259,7 +259,7 @@ export default {
                 color: "orange",
             },
             'Grounds Fee': {
-                desc: "For non-resident members visiting Sky Farm",
+                desc: "For non-resident members visiting Sky Farm.",
                 items: [
                     { name: "Single", amount: 20 },
                     { name: "Couple", amount: 40 },
@@ -269,6 +269,7 @@ export default {
                 color: "green",
             },
             'Guest Fee': {
+                desc: "Fees for guests using the faciltiies.  Each visit, regardless of facilities use, counts to a seasonal limit of 3 visits.",
                 items: [
                     { name: "AANR Member",     amount: 20, guest: true, aanr_id: true },
                     { name: "Non-AANR Member", amount: 25, guest: true },
@@ -287,6 +288,7 @@ export default {
                 color: "brown",
             },
             'Other Payments': {
+                desc: "For any payment type not listed select General Payment and note the purpose below.",
                 cost: 5,
                 items: [
                     { name: "Donation",                  amount:   0, amt: true, purpose: true },
