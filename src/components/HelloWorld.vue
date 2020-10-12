@@ -130,7 +130,7 @@
             <v-col class="mb-2" md="6">
               <v-card class="text-center ma-3" height="265">
               <v-img
-                 :src="require('../assets/couple2final.jpg')"
+                 :src="require('../assets/hottubweb.jpg')"
                  contain
                  height="220"/>
               </v-card>
@@ -145,8 +145,11 @@
           <v-card-title style="word-break: normal;">
             What's Nude @ The Farm
           </v-card-title>
+          <v-card-subtitle style="word-break: normal;">
+            Sky Farm News from twitter.<br>Be sure follow our main twitter account <a @click="callSocial(1)">@SkyFarmNJ</a>.
+          </v-card-subtitle>
           <v-card-text>
-            <Timeline id="skyfarmnews" sourceType="profile" :options="{ chrome: 'noborders nofooter', tweetLimit: '5' }"/>
+            <Timeline id="skyfarmnews" sourceType="profile" :options="{ chrome: 'noborders nofooter noheader', tweetLimit: '5' }"/>
             <hr>
           </v-card-text>
           <v-card-title style="word-break: normal;">
