@@ -86,6 +86,7 @@ import axios from 'axios'
 import router from '../router.js'
 
 var rules = {
+    phone:  v => (v.length <= 12) || 'Value must be less than 12 characters',
     shortText: v => (v.length <= 20) || 'Value must be less than 20 characters',
     longText:  v => (v.length <= 60)  || 'Value must be less than 60 characters',
     email: v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -130,12 +131,13 @@ var rules = {
                   value: '',
                   label: 'Phone Number',
                   type: 'tel',
-                  rules: [rules.required],
+                  rules: [rules.required,rules.tel],
               },
-              married: {
+              status: {
                   value: '',
                   label: 'Marital Status',
-                  type: 'text',
+                  type: 'radio',
+		  options: ['Married','Partnered','Single'],
                   rules: [rules.required],
               },
               ages: {
@@ -145,12 +147,12 @@ var rules = {
                   rules: [rules.required],
               },
               membership: {
-                  value: 'Single',
+                  value: '',
                   label: 'Membership Requested',
                   type: 'radio',
-                  options: ['Single', 'Couple', 'Family'],
+                  options: ['Married','Partnered','Single','Family'],
               },
-              learn: {
+              referred: {
                   value: '',
                   label: 'How did you hear about Sky Farm?',
                   type: 'text',

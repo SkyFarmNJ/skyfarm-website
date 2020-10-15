@@ -42,9 +42,10 @@
         <li>Check out Sky Farm’s calendar of events! You’ll find countless recreational activities including swimming, petanque, shuffleboard, pop tennis, volleyball and much more. The clubhouse, open 24/7 to members, has a pool table, poker table, foosball, dart board, a Big Screen TV and free WiFi.</li>
         <li>Looking for more serene activities? Take a long walk through the lush greens, settle in with a good book from our library or get your hands dirty in our community vegetable garden.</li>
         <li>Keep your chairs and umbrellas onsite, near the pool — no hassles here!</li>
-        <li>Hygiene is a top priority at Sky Farm. Showers are required before using the pool, hot tub or sauna. </li>
+        <li>Hygiene is a top priority at Sky Farm. Showers are required before using the pool, hot tub or sauna.  Everyone brings their own towels to sit on.</li>
         <li>Lodge rooms and tent sites available for members to rent at nominal rates</li>
-        <li>Sky Farm is an AANR-affiliated facility</li>
+        <li>Families are welcome here!  Kids are natural nudists and love to be free.  And while this is a very safe place for kids parents should always keep an eye on them.</li>
+        <li>Sky Farm is an AANR-affiliated facility and members can join AANR through Sky Farm.</li>
         </ul>
       </v-col>
 
