@@ -428,7 +428,7 @@ export default {
             for(var i in this.order) {
                 items.push({ name: this.order[i].thing, 
                              unit_amount: {
-                                 value: this.order[i].amount,
+                                 value: this.order[i].amount.toFixed(2),
                                  currency_code: "USD",
                              },
                              quantity: 1,

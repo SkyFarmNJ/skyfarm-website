@@ -8,7 +8,7 @@
     </v-row>
     <v-row class="text-left">
       <v-col cols="12" mb-5 class="text-left">
-	<v-img :src="pics[0]" width="140" class="ml-1 float-right"></v-img>
+        <v-img :src="pics[0]" width="140" class="ml-1 float-right"></v-img>
 
         <p>Come on out and see why we think Sky Farm is the best place
         under the sun!</p>
@@ -137,7 +137,7 @@ var rules = {
                   value: '',
                   label: 'Marital Status',
                   type: 'radio',
-		  options: ['Married','Partnered','Single'],
+                  options: ['Married','Partnered','Single'],
                   rules: [rules.required],
               },
               ages: {
