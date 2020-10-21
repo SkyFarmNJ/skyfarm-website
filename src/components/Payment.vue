@@ -150,6 +150,12 @@
         <span v-if=" isPPLive()">
         <v-btn icon color="green"  @click="togglePaypal()"><v-icon>mdi-alert-circle</v-icon></v-btn> Paypal LIVE!</span>
       </v-card>
+      <v-card v-if="error">
+        <v-btn icon color="red"><v-icon>mdi-alert-circle</v-icon></v-btn>{{ error }}</span>
+      </v-card>
+      <v-card v-if="message">
+        <v-btn icon color="orange"><v-icon>mdi-alert-circle</v-icon></v-btn>{{ message }}</span>
+      </v-card>
       <v-data-table
          :headers="headers"
          :items="order"
@@ -223,6 +229,8 @@
 export default {
     data: () => ({
         alert: false,
+        error: null,
+        message: null,
         extrasDefaults: {
             guest: '',
             aanr_id: '',
@@ -308,10 +316,10 @@ export default {
         subtotal: 0,
         paypal: {
             id: '',
-//            sand: 'AdrZYH_SrkFk8DQ8N7bcyAN5sSC67w0Nt0IqRAJpt4ClF3Y8FGkqC80xd4vHFg1gGK4sqrRhlqciQcC_', // SF SANDBOX
+            sand: 'AdrZYH_SrkFk8DQ8N7bcyAN5sSC67w0Nt0IqRAJpt4ClF3Y8FGkqC80xd4vHFg1gGK4sqrRhlqciQcC_', // SF SANDBOX
             live: 'ATuVEwdc_Ai8YKkfJI10l6Mnj87NxO_arJ6IgR_jxauAgiFNCemgXxw_5gihm398iLTYr6NrOZZRUvp2', // SF LIVE
 
-            sand:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
+//            sand:   'AYNl_K_60xs-14sYb7jheJRTzk7FOQDINZGhJN75ffofh4w6iHgNulgDijJcNfXTP4qzYd208iNVVb6y', // ds SANDBOX
 //            live: 'ASSEm7kdswk2tkWve-NErqICn3_iHWKnoJhzplJuCrSkS1wcPNzePLu1nXy3FMU5ZizXBUhQNt8J6mLY', // ds LIVE
 
         },
@@ -353,6 +361,7 @@ export default {
         },
 /*
         checkExtra(key) {
+
             console.log("[Payment.checkExtra] key: " + key.key);
             if(this.itemChoice && key) {
                 return this.itemChoice[0].[key.key]
@@ -368,7 +377,9 @@ export default {
             }
         },
         getPaypalFee() {
-	    if ( ! this.subtotal ) return 0;
+            this.error   = null;
+            this.message = null;
+            if ( ! this.subtotal ) return 0;
             var r = ( 100 - 2.9 ) / 100;
             var i = ( this.subtotal + 0.30 ) / r;
             var s = ( i - this.subtotal )
@@ -499,7 +510,7 @@ export default {
                 .then(() => {
                     // eslint-disable-next-line
                     paypal.Buttons({
-                        
+
                         createOrder: function(data, actions) {
                             // This function sets up the details of the transaction, including the amount and line item details.
                             
@@ -533,6 +544,16 @@ export default {
                                 console.log("[Payment.paypal.onApprove]: " + details)
                                 vm.thanks(details);
                             });
+                        },
+
+                        onCancel: function (data) {
+                            vm.message = "Order canceled.";
+                            console.log("[PayPal Canceled]: " + data);
+                        },
+
+                        onError: function (err) {
+                            vm.error = "Add items to your order and try again.";
+                            console.log("[PayPal Error]: " + err);
                         }
                         
                     }).render('#paypal-button')
