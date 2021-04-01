@@ -220,7 +220,7 @@ var rules = {
                   data.recipient = this.altemail
               }
               console.log(data);
-              axios.post('/cgi-bin/contact.cgi', data)
+              axios.post('/cgi-bin/tour.cgi', data)
                   .then( response => {
                       this.subok = response.data.status
                       console.log("CGI Reply: " + response.data.status)
