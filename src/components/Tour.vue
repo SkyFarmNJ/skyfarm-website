@@ -230,12 +230,12 @@ var rules = {
                       } else {
                           console.log("CGI Message: " + response.data.message)
                           console.log("CGI Reason:  " + response.data.reason)
-                          alert("Something went wrong, please try again later: " + response.data.message)
+                          alert("Our server did not like this.  Here is what it said: " + response.data.message + ". Sorry about that, call us!")
                       }
                   })
                   .catch(function (error) {
                       console.log(error);
-                      alert("Something went wrong, please try again later: " + error)
+                      alert("The Interwebs are not happy: " + error + ".  Sorry about that, call us!")
                   });
 
           },
