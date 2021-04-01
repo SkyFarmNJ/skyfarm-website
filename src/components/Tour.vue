@@ -235,7 +235,7 @@ var rules = {
                   })
                   .catch(function (error) {
                       console.log(error);
-                      alert("Something went wrong, please try again later.")
+                      alert("Something went wrong, please try again later: " + error)
                   });
 
           },
