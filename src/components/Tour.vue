@@ -230,8 +230,8 @@ var rules = {
                       } else {
                           console.log("CGI Message: " + response.data.message)
                           console.log("CGI Reason:  " + response.data.reason)
+                          alert("Something went wrong, please try again later: " + response.data.message)
                       }
-
                   })
                   .catch(function (error) {
                       console.log(error);
