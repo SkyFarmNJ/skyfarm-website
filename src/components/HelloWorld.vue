@@ -45,9 +45,28 @@
           </ul>
           <br>
 
+          <v-row class="text-center" v-if="hasEvents">
+            <v-col class="mb-2" md="12">
+              <v-card class="text-left ma-3">
+                <v-card-title>Events Calendar</v-card-title>
+                <v-card-text>
+                  <v-row
+                     v-for="(item, i) in events"
+                     :key=i
+                     class="text-left"
+                     >
+                    <v-col class="py-0" md="2"><b v-html="item.date"></b></v-col>
+                    <v-col class="py-0" md="2"><b v-html="item.time"></b></v-col>
+                    <v-col class="py-0" md="auto"><b v-html="item.title"></b></v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+
           <v-row class="text-center">
+
             <v-col class="mb-2" md="6">
-              
               <v-card class="text-left ma-3">
               <v-img
                  :src="require('../assets/Img1956_lg.jpg')"
@@ -55,8 +74,8 @@
                  height="210"/>
               </v-card>
             </v-col>
+
             <v-col class="mb-2" md="6">
-              
               <v-card class="text-left ma-3">
                 <v-card-title>Sky Farm is the best place to be!</v-card-title>
                 <v-card-text>
@@ -69,8 +88,8 @@
                   <v-btn text color="primary" @click="callLink(0)">{{links[0].title}}</v-btn>
                 </v-card-text>
               </v-card>
-              
             </v-col>
+
           </v-row>
 
           <v-row class="text-center">
@@ -191,12 +210,14 @@
 
 <script>
 import { Timeline } from 'vue-tweet-embed/dist'
+import axios from 'axios'
 
 export default {
     components: {Timeline},
     data: () => {
         return {
             name: 'HelloWorld',
+            events: [],
             bheight: 150,
             facts: [
                 "Sky Farm is a membership community. Day passes are not available.",
@@ -237,11 +258,29 @@ export default {
         callSocial(i) {
             this.$gtag.event('linkto', { event_label: this.socials[i].title });
             window.open(this.socials[i].url, '_blank')
-        }
+        },
+        getEvents() {
+            console.log("[Home]: getEvents")
+            axios.get(`/events.json`)
+                .then(res => {
+                    console.log("[Home]: res: " + res)
+                    this.events = res.data
+                })
+                .catch(err => console.log(err))
+        },
+
     },
     mounted() {
         this.$gtag.pageview({ page_path: this.$route.path, page_title: 'Site Home'})
+        this.getEvents()
         if ( this.$vuetify.breakpoint.mdAndUp ) this.bheight = 350;
     },
+    computed: {
+        hasEvents() {
+            console.log("[Home]: Event count:" + this.events.length)
+            if ( this.events.length > 0 ) return true;
+            return false;
+        }
+    }
 }
 </script>
