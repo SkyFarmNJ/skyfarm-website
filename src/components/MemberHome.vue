@@ -52,14 +52,14 @@
           <v-card-text class="text-left">
             <v-btn
                color="error"
-               to='/members/archive/docs?file=Sky Farm Covid 19 Guidelines v2_6.pdf'
+               to='/members/archive/docs?file=Sky Farm Covid 19 Guidelines v2_8a.pdf'
                >
               Camp Rules
             </v-btn><br>
             <v-btn
                color="error"
                class="mt-2"
-               to='/members/archive/docs?file=Sky Farm Covid 19 Pool and Spa Guidelines v1.1.pdf'
+               to='/members/archive/docs?file=Sky Farm Covid 19 Pool and Spa Guidelines v2.0.pdf'
                >
               Pool Rules
             </v-btn>
