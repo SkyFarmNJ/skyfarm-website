@@ -278,7 +278,7 @@ export default {
     computed: {
         hasEvents() {
             console.log("[Home]: Event count:" + this.events.length)
-            if ( this.events.length > 0 ) return true;
+            if ( this.events.length > 20 ) return true;
             return false;
         }
     }

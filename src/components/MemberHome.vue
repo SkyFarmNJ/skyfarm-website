@@ -3,9 +3,10 @@
 
     <v-row class="text-left" v-if="auth">
       <v-col md="9" mb-5 class="text-left" name="news-block">
-        <h1>Club News</h1>
-        <hr>
+        <h2 class="d-block d-md-none">Club News</h2>
+        <h1 class="d-none d-md-block">Club News</h1>
 
+        <hr>
         <v-row
            v-for="(item, i) in stories"
            :key=i
@@ -13,7 +14,8 @@
           >
           <v-col cols="12">
             <v-img :src="getImage(item)" width="100" class="float-right"></v-img>
-            <h2 v-html="item.title"></h2>
+            <h3 class="d-block d-md-none" v-html="item.title"></h3>
+            <h2 class="d-none d-md-block" v-html="item.title"></h2>
             <component
               :is="test(item.html, i)"
               ></component>
@@ -135,8 +137,8 @@ export default {
                     return h('div', {
                         domProps: {
                             innerHTML: (vm.rmore[i])
-                                ? html + '<a id="fancy_tag">(read less)</a>'
-                                : html.slice(0,400) + '<a id="fancy_tag">...(read more)</a>'
+                                ? html + '<a id="fancy_tag">Read Less</a>'
+                                : html.split('</p><p>',1) + '</p><a id="fancy_tag">Read More</a>'
                         },
                         on: {
                             click: (e) => {
