@@ -13,7 +13,8 @@
            class="text-left"
           >
           <v-col cols="12">
-            <v-img :src="getImage(item)" width="100" class="float-right"></v-img>
+            <v-img :src="getImage(item)" width="60"  class="float-right d-block d-md-none"></v-img>
+            <v-img :src="getImage(item)" width="100" class="float-right d-none d-md-block"></v-img>
             <h3 class="d-block d-md-none" v-html="item.title"></h3>
             <h2 class="d-none d-md-block" v-html="item.title"></h2>
             <component
@@ -138,7 +139,7 @@ export default {
                         domProps: {
                             innerHTML: (vm.rmore[i])
                                 ? html + '<a id="fancy_tag">Read Less</a>'
-                                : html.split('</p><p>',1) + '</p><a id="fancy_tag">Read More</a>'
+                                : ((this.$vuetify.breakpoint.xs) ? '' : html.split('</p><p>',1)) + '</p><a id="fancy_tag">Read More</a>'
                         },
                         on: {
                             click: (e) => {
