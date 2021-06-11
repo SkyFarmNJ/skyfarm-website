@@ -162,7 +162,7 @@ var rules = {
                   value: '',
                   label: 'List any other clubs/affiliations, resorts or beaches similar to Sky Farm that you have experiened',
                   type: 'text',
-                  rules: [rules.longText, rules.required],
+                  rules: [rules.longText],
               },
               aanr: {
                   value: '',
