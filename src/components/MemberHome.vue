@@ -45,31 +45,6 @@
       </v-col>
 
       <v-col  mb-5 class="text-center">
-        <v-card>
-          <v-card-title>
-            COVID Notices
-          </v-card-title>
-          <v-card-subtitle class="text-left">
-            Keeping The Farm Safe
-          </v-card-subtitle>
-          <v-card-text class="text-left">
-            <v-btn
-               color="error"
-               to='/members/archive/docs?file=Sky Farm Covid 19 Guidelines v2_8a.pdf'
-               >
-              Camp Rules
-            </v-btn><br>
-            <v-btn
-               color="error"
-               class="mt-2"
-               to='/members/archive/docs?file=Sky Farm Covid 19 Pool and Spa Guidelines v2.0.pdf'
-               >
-              Pool Rules
-            </v-btn>
-
-          </v-card-text>
-        </v-card>
-
         <v-card class="mt-4">
           <v-card-title>
             Camp Documents
@@ -79,7 +54,7 @@
           </v-card-subtitle>
           <v-card-text class="text-left">
             <v-btn
-               to='/members/archive/docs?file=Camp Rules September 2020.pdf'
+               to='/members/archive/docs?file=Camp Rules June 2021.pdf'
                >
               Camp Rules
             </v-btn><br>
