@@ -240,7 +240,7 @@ export default {
         extras: {},
         exlabel: {
             guest: "Name of Guest:",
-            aanr_id: "AANR Member ID:",
+            aanr_id: "AANR or TNS Member ID:",
             amt: "Amount:",
             purpose: "Purpose of payment",
         },
@@ -279,8 +279,8 @@ export default {
             'Guest Fee': {
                 desc: "Fees for guests using the faciltiies.  Each visit, regardless of facilities use, counts to a seasonal limit of 3 visits.",
                 items: [
-                    { name: "AANR Member",     amount: 20, guest: true, aanr_id: true },
-                    { name: "Non-AANR Member", amount: 25, guest: true },
+                    { name: "AANR or TNS Member",   amount: 20, guest: true, aanr_id: true },
+                    { name: "Non-AANR/TNS Member",  amount: 25, guest: true },
                 ],
                 date: true,
                 icon: 'mdi-account-plus-outline',

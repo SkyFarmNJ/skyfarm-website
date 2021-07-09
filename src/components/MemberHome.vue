@@ -54,7 +54,7 @@
           </v-card-subtitle>
           <v-card-text class="text-left">
             <v-btn
-               to='/members/archive/docs?file=Camp Rules June 2021.pdf'
+               to='/members/archive/docs?file=Camp Rules July 2021.pdf'
                >
               Camp Rules
             </v-btn><br>
